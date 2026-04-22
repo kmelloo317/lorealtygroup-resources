@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<!-- saved from url=(0147)file:///Users/kevinlo/Library/Mobile%20Documents/iCloud~md~obsidian/Documents/Lo%20Realty%20Group/LRG%20SOP/CAR%20Forms/CAR%20Forms%20Database.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contract Guide Database — Lo Realty Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #9EA58A;
+      --white: #ffffff;
+      --cream: #f5f4f0;
+      --cream-dark: #eeecea;
+      --gold: #92836b;
+      --gold-light: #c9a96e;
+      --border: #e0ddd8;
+      --text-muted: #7a7570;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--black);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--black);
+      color: var(--white);
+      padding: 52px 48px 44px;
+    }
+
+    header .eyebrow {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+
+    header h1 {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    header p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.55);
+      max-width: 520px;
+      line-height: 1.6;
+    }
+
+    /* ── CONTROLS BAR ── */
+    .controls {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 48px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    .search-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #bbb;
+    }
+
+    #search {
+      width: 100%;
+      padding: 10px 14px 10px 40px;
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      font-size: 14px;
+      font-family: var(--font-sans);
+      outline: none;
+      background: var(--cream);
+      color: var(--black);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    #search:focus {
+      border-color: var(--black);
+      background: var(--white);
+    }
+
+    #search::placeholder { color: #bbb; }
+
+    .filter-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 8px 18px;
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      background: var(--white);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all 0.15s;
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--black);
+      color: var(--black);
+    }
+
+    .filter-btn.active {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    /* ── COUNT BAR ── */
+    .count-bar {
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 12px 48px;
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── MAIN ── */
+    main {
+      padding: 40px 48px 80px;
+      max-width: 1280px;
+    }
+
+    /* ── CATEGORY BLOCK ── */
+    .category-block {
+      margin-bottom: 52px;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--black);
+    }
+
+    .category-header h2 {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--black);
+      letter-spacing: -0.01em;
+    }
+
+    .cat-count {
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    /* ── FORMS GRID ── */
+    .forms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 14px;
+    }
+
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: box-shadow 0.18s, border-color 0.18s, transform 0.18s;
+      cursor: default;
+    }
+
+    .form-card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+      border-color: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    .form-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .form-abbr {
+      background: var(--cream);
+      color: var(--black);
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border-radius: 3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 2px;
+      border: 1px solid var(--border);
+    }
+
+    .form-name {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--black);
+    }
+
+    .form-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .form-meta {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    .tag {
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+
+    .tag-buyer  { background: #e8f0fb; color: #2a5fa8; }
+    .tag-seller { background: #fef3e2; color: #9a5f10; }
+    .tag-both   { background: #eaf5ea; color: #2a6e30; }
+    .tag-advisory { background: #f0ecf8; color: #5a2a8a; }
+    .tag-probate  { background: #f8ece8; color: #8a2a1a; }
+
+    .form-updated {
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: #c0bdb8;
+      margin-top: auto;
+    }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+
+    .guide-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.15s, gap 0.15s;
+    }
+
+    .guide-link:hover {
+      color: var(--black);
+      gap: 8px;
+    }
+
+    .guide-link svg {
+      transition: transform 0.15s;
+    }
+
+    .form-card:hover .guide-link svg {
+      transform: translateX(2px);
+    }
+
+    .form-card.has-guide {
+      cursor: default;
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--text-muted);
+    }
+
+    .empty-state svg { margin-bottom: 16px; opacity: 0.25; }
+    .empty-state p { font-family: var(--font-serif); font-size: 18px; font-weight: 400; }
+
+    .hidden { display: none !important; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      header { padding: 36px 24px 30px; }
+      header h1 { font-size: 30px; }
+      .controls, main { padding-left: 24px; padding-right: 24px; }
+      .count-bar { padding-left: 24px; padding-right: 24px; }
+      .forms-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Lo Realty Group</div>
+  <h1>Contract Guide Database</h1>
+  <p>California Association of Realtors — common transaction forms organized for easy reference. Forms with a guide include a plain-English walkthrough to help you understand what you're signing.</p>
+</header>
+
+<div class="controls">
+  <div class="search-wrap">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+    <input type="text" id="search" placeholder="Search forms by name or description…">
+  </div>
+  <div class="filter-group">
+    <button class="filter-btn active" data-filter="all">All Forms</button>
+    <button class="filter-btn" data-filter="buyer">Buyer</button>
+    <button class="filter-btn" data-filter="seller">Seller</button>
+    <button class="filter-btn" data-filter="both">Both Sides</button>
+    <button class="filter-btn" data-filter="advisory">Advisories</button>
+    <button class="filter-btn" data-filter="probate">Probate</button>
+  </div>
+</div>
+
+<div class="count-bar" id="countBar">Showing all 41 forms</div>
+
+<main id="main">
+
+  <!-- CORE AGREEMENTS -->
+  <div class="category-block" data-category="Core Agreements">
+    <div class="category-header">
+      <h2>Core Agreements</h2>
+      <span class="cat-count">5 forms</span>
+    </div>
+    <div class="forms-grid">
+
+      <div class="form-card has-guide" data-tags="both" data-name="California Residential Purchase Agreement" data-desc="The primary contract for buying and selling residential property in California. Covers price, terms, contingencies, and all key transaction details.">
+        <div class="form-top">
+          <span class="form-abbr">RPA</span>
+          <span class="form-name">California Residential Purchase Agreement</span>
+        </div>
+        <div class="form-desc">The primary contract for buying and selling residential property in California. Covers price, terms, contingencies, and all key transaction details.</div>
+        <div class="form-meta">
+          <span class="tag tag-both">Buyer &amp; Seller</span>
+        </div>
+        <div class="form-footer">
+          <span class="form-updated">Updated Dec 2025</span>
+          <a class="guide-link" href="https://resources.lorealtygroup.com/Guides/RPA — Plain English Guide.html" target="_blank">View Guide <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="form-card has-guide" data-tags="seller" data-name="Residential Listing Agreement Exclusive" data-desc="The exclusive right-to-sell listing agreement between the seller and the listing brokerage. Defines price, term, commission, and marketing rights.">
+        <div class="form-top">
+          <span class="form-abbr">RLA</span>
+          <span class="form-name">Residential Listing Agreement — Exclusive</span>
+        </div>
+        <div class="form-desc">The exclusive right-to-sell listing agreement between the seller and the listing brokerage. Defines price, term, commission, and marketing rights.</div>
+        <div class="form-meta">
+          <span class="tag tag-seller">Seller</span>
+        </div>
+        <div class="form-footer">
+          <span class="form-updated">Updated Dec 2025</span>
+          <a class="guide-link" href="https://resources.lorealtygroup.com/Guides/RLA — Listing Agreement Guide.html" target="_blank">View Guide <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="form-card has-guide" data-tags="buyer" data-name="Buyer Representation and Broker Compensation Agreement" data-desc="Required by California law since August 2024. Formalizes the buyer-agent relationship and specifies how the buyer&#39;s agent is compensated. Must be signed before showing homes or submitting offers.">
+        <div class="form-top">
+          <span class="form-abbr">BRBC</span>
+          <span class="form-name">Buyer Representation and Broker Compensation Agreement</span>
+        </div>
+        <div class="form-desc">Required by California law since August 2024. Formalizes the buyer-agent relationship and specifies how the buyer's agent is compensated. Must be signed before showing homes or submitting offers.</div>
+        <div class="form-meta">
+          <span class="tag tag-buyer">Buyer</span>
+        </div>
+        <div class="form-footer">
+          <span class="form-updated">Updated Dec 2025</span>
+          <a class="guide-link" href="https://resources.lorealtygroup.com/Guides/BRBC — Buyer Representation Guide.html" target="_blank">View Guide <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="form-card" data-tags="both" data-name="Residential Income Property Purchase Agreement" data-desc="Purchase agreement specifically for multifamily residential income properties. Includes income, expense, and tenant review provisions.">
+        <div class="form-top">
+          <span class="form-abbr">RIPA</span>
+          <span class="form-name">Residential Income Property Purchase Agreement</span>
+        </div>
+        <div class="form-desc">Purchase agreement specifically for multifamily residential income properties. Includes income, expense, and tenant review provisions.</div>
+        <div class="form-meta">
+          <span class="tag tag-both">Buyer &amp; Seller</span>
+        </div>
+        <div class="form-updated">Updated Dec 2025</div>
+      </div>
+
+      <div class="form-card" data-tags="both" data-name="Residential Lease Month-to-Month Rental Agreement" data-desc="Standard California month-to-month residential lease for landlords and tenants. Covers rent, deposits, terms, and tenant obligations.">
+        <div class="form-top">
+          <span class="form-abbr">LR</span>
+          <span class="form-name">Residential Lease / Month-to-Month Rental Agreement</span>
+        </div>
+        <div class="form-desc">Standard California month-to-month residential lease for landlords and tenants. Covers rent, deposits, terms, and tenant obligations.</div>
+        <div class="form-meta">
+          <span class="tag tag-both">Landlord &amp; Tenant</span>
+        </div>
+        <div class="form-updated">Updated Dec 2025</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLOSURES -->
+  <div class="category-block" data-category="Disclosures">
+    <div class="category-header">
+      <h2>Disclosures</h2>
+      <span class="cat-count">9 forms</span>
+    </div>
+    <div class="forms-grid">
+
+      <div class="form-card has-guide" data-tags="seller" data-name="Real Estate Transfer Disclosure Statement" data-desc="Required by California law for most residential sales. The seller discloses known conditions, defects, and improvements of the property.">
+        <div class="form-top">
+          <span class="form-abbr">TDS</span>
+          <span class="form-name">Real Estate Transfer Disclosure Statement</span>
+        </div>
+        <div class="form-desc">Required by California law for most residential sales. The seller discloses known conditions, defects, and improvements of the property.</div>
+        <div class="form-meta">
+          <span class="tag tag-seller">Seller</span>
+        </div>
+        <div class="form-footer">
+          <span class="form-updated">Updated Jun 2024</span>
+          <a class="guide-link" href="https://resources.lorealtygroup.com/Guides/TDS — Transfer Disclosure Guide.html" target="_blank">View Guide <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="form-card has-guide" data-tags="seller" data-name="Seller Property Questionnaire" data-desc="A detailed supplement to the TDS. Seller answers specific questions about property history, systems, permits, and known issues.">
+        <div class="form-top">
+          <span class="form-abbr">SPQ</span>
+          <span class="form-name">Seller Property Questionnaire</span>
+        </div>
+        <div class="form-desc">A detailed supplement to the TDS. Seller answers specific questions about property history, systems, permits, and known issues.</div>
+        <div class="form-meta">
+          <span class="tag tag-seller">Seller</span>
+        </div>
+        <div class="form-footer">
+          <span class="form-updated">Updated Dec 2025</span>
+          <a class="guide-link" href="https://resources.lorealtygroup.com/Guides/SPQ — Seller Property Questionnaire Guide.html" target="_blank">View Guide <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="form-card" data-tags="both" data-name="Disclosure Regarding Real Estate Agency Relationship" data-desc="Explains the three types of agency relationships in California real estate. Required disclosure before presenting an offer or entering a listing agreement.">
+        <div class="form-top">
+          <span class="form-abbr">AD</span>
+          <span class="form-name">Disclosure Regarding Real Estate Agency Relationship</span>
+        </div>
+        <div class="form-desc">Explains the three types of agency relationships in California real estate. Required disclosure before presenting an offer or entering a listing agreement.</div>
+        <div class="form-meta">
+          <span class="tag tag-both">Buyer &amp; Seller</span>
+        </div>
+        <div class="form-updated">Updated Dec 2024</div>
+      </div>
+
+      <div class="form-card" data-tags="both" data-name="Agent Visual Inspection Disclosure" data-desc="Documents the agent&#39;s visual inspection of accessible areas of the property. Required of both listing and buyer&#39;s agents under California Civil Code.">
+        <div class="form-top">
+          <span class="form-abbr">AVID</span>
+          <span class="form-name">Agent Visual Inspection Disclosure</span>
+        </div>
+        <div class="form-desc">Documents the agent's visual inspection of accessible areas of the property. Required of both listing and buyer's agents under California Civil Code.</div>
+        <div class="form-meta">
+          <span class="tag tag-both">Both Agents</span>
+        </div>
+        <div class="form-updated">Updated Jun 2024</div>
+      </div>
+
+      <div class="form-card has-guide" data-tags="both" data-name="Statewide Buyer and Seller Advisory" data-desc="A comprehensive advisory covering topics buyers and sellers should know about, including inspections, natural hazards, insurance, and environmental issues.">
+        <div class="form-top">
+          <span class="form-abbr">SBSA</span>
+          <span class="form-name">Statewide Buyer and Seller Advisory</span>
+        </div>
+        <div class="form-desc">A comprehensive advisory covering topics buyers and sellers should know about, including inspections, natural hazards, insurance, and environmental issues.</div>
+        <div class="form-meta">
+          <span class="tag tag-both">Buyer &amp; Seller</span>
+        </div>
+        <div class="form-footer">
+          <span class="form-updated">Updated Jun 2024</span>
+          <a class="guide-link" href="https://resources.lorealtygroup.com/Guides/SBSA — Statewide Buyer Seller Advisory Guide.html" target="_blank">View Guide <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="form-card" data-tags="both" data-name="Disclosure Information Advisory" data-desc="Advises buyers on the many disclosures and reports available when purchasing property, and helps them make informed due diligence decisions.">
+        <div class="form-top">
+          <span class="form-abbr">DIA</span>
+          <span class="form-name">Disclosure Information Advisory</span>
+        </div>
+        <div class="form-desc">Advises buyers on the many disclosures and reports available when purchasing property, and helps them make informed due diligence decisions.</div>
+        <div class="form-meta">
+          <span class="tag tag-buyer">Buyer</span>
+        </div>
+        <div class="form-updated">Updated Dec 2025</div>
+      </div>
+
+      <div class="form-card" data-tags="seller" data-name="Exempt Seller Disclosure" data-desc="Used when the seller qualifies for an exemption from providing a TDS, such as REO sales, court-ordered sales, or certain probate transactions.">
+        <div class="form-top">
+          <span class="form-abbr">ESD</span>
+          <span class="form-name">Exempt Seller Disclosure</span>
+        </div>
+        <div class="form-desc">Used when the seller qualifies for an exemption from providing a TDS, such as REO sales, court-ordered sales, or certain probate transactions.</div>
+        <div class="form-meta">
+          <span class="tag tag-seller">Seller</span>
+        </div>
+        <div class="form-updated">Updated Jun 2023</div>
+      </div>
+
+      <div class="form-card" data-tags="both" data-name="Possible Representation of More than One Buyer or Seller Disclosure and Consent" data-desc="Discloses to the client that the broker may represent other buyers or sellers in competing transactions, and obtains written consent.">
+        <div class="form-top">
+          <span class="form-abbr">PRBS</span>
+          <span class="form-name">Possible Representation of More than One Buyer or Seller</span>
+        </div>
+        <div class="form-desc">Discloses to the client that the broker may represent other buyers or sellers in competing transactions, and obtains written consent.</div>
+        <div class="form-meta">
+          <span class="tag tag-both">Buyer &amp; Seller</span>
+        </div>
+        <div class="form-updated">Updated Jun 2025</div>
+      </div>
+
+      <div class="form-card" data-tags="both" data-name="California Consumer Privacy Act Advisory Disclosure and Notice" data-desc="Notifies clients of their rights under the CCPA regarding personal information collected and used during the transaction.">
+        <div class="form-top">
+          <span class="form-abbr">CCPA</span>
+          <span class="form-name">California Consumer Privacy Act Advisory</span>
+        </div>
+        <div class="form-desc">Notifies clients of their rights under the CCPA regarding personal information collected and used during the transaction.</div>
+        <div class="form-meta">
+          <span class="tag tag-both">Buyer &amp; Seller</span>
+        </div>
+        <div class="form-updated">Updated Dec 2022</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- OFFERS & COUNTER OFFERS -->
+  <div class="category-block" data-category="Offers and Counter Offers">
+    <div class="category-header">
+      <h2>Offers and Counter Offers</h2>
+      <span class="cat-count">4 forms</span>
+    </div>
+    <div class="forms-grid">
+
+      <div class="form-card" data-tags="seller" data-name="Seller Counter Offer" data-desc="Used by the seller to respond to a buyer&#39;s offer with modified terms. Both parties must sign for it to become a binding agreement.">
+        <div class="form-top">
+          <span class="form-abbr">SCO</span>
+          <span class="form-name">Seller Counter Offer</span>
+        </div>
+        <div class="form-desc">Used by the seller to respond to a buyer's offer with modified terms. Both parties must sign for it to become a binding agreement.</div>
+        <div class="form-meta">
+          <span class="tag tag-seller">Seller</span>
+        </div>
+        <div class="form-updated">Updated Dec 2025</div>
+      </div>
+
+      <div class="form-card" data-tags="seller" data-name="Seller Multiple Counter Offer" data-desc="Allows the seller to counter multiple buyers simultaneously in a multiple-offer situation. The seller chooses which acceptance to sign.">
+        <div class="form-top">
+          <span class="form-abbr">SMCO</span>
+          <span class="form-name">Seller Multiple Counter Offer</span>
+        </div>
+        <div class="form-desc">Allows the seller to counter multiple buyers simultaneously in a multiple-offer situation. The seller chooses which acceptance to sign.</div>
+        <div class="form-meta">
+          <span class="tag tag-seller">Seller</span>
+        </div>
+        <div class="form-updated">Updated Dec 2025</div>
+      </div>
+
+      <div class="form-card" data-tags="buyer" data-name="Buyer Counter Offer" data-desc="Used by the buyer to respond to a seller&#39;s counter offer with further modified terms. The cycle continues until both parties agree or walk away.">
+        <div class="form-top">
+          <span class="form-abbr">BCO</span>
+          <span class="form-name">Buyer Counter Offer</span>
+        </div>
+        <div class="form-desc">Used by the buyer to respond to a seller's counter offer with further modified terms. The cycle continues until both parties agree or walk away.</div>
+        <div class="form-meta">
+          <span class="tag tag-buyer">Buyer</span>
+        </div>
+        <div class="form-updated">Updated Dec 2025</div>
+      </div>
+
+      <div class="form-card" data-tags="both" data-name="Addendum" data-desc="A general-purpose addendum for adding terms, conditions, or additional provisions not covered by the standard purchase agreement.">
+        <div class="form-top">
+          <span class="form-abbr">ADM</span>
+          <span class="form-name">Addendum</span>
+        </div>
+        <div class="form-desc">A general-purpose addendum for adding terms, conditions, or additional provisions not covered by the standard purchase agreement.</div>
+        <div class="form-meta">
+          <span class="tag tag-both">Buyer &amp; Seller</span>
+        </div>
+        <div class="form-updated">Updated Jun 2025</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CONTINGENCIES & AMENDMENTS -->
+  <div class="category-block" data-category="Contingencies and Amendments">
+    <div class="category-header">
+      <h2>Contingencies and Amendments</h2>
+      <span class="cat-count">4 forms</span>
+    </div>
+    <div class="forms-grid">
+
+      <div class="form-card has-guide" data-tags="buyer" data-name="Buyer Contingency Removal" data-desc="Used by the buyer to remove one or more contingencies (inspection, loan, appraisal) during escrow, signaling commitment to proceed with the purchase.">
+        <div class="form-top">
+          <span class="form-abbr">CR</span>
+          <span class="form-name">Buyer Contingency Removal</span>
+        </div>
+        <div class="form-desc">Used by the buyer to remove one or more contingencies (inspection, loan, appraisal) during escrow, signaling commitment to proceed with the purchase.</div>
+        <div class="form-meta">
+          <span class="tag tag-buyer">Buyer</span>
+        </div>
+        <div class="form-footer">
+          <span class="form-updated">Updated Jun 2024</span>
+          <a class="guide-link" href="https://resources.lorealtygroup.com/Guides/CR — Contingency Removal Guide.html" target="_blank">View Guide <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="form-card" data-tags="buyer" data-name="Contingency for Sale of Buyer&#39;s Property" data-desc="Makes the buyer&#39;s purchase contingent on the successful close of their current home. Includes provisions for the seller to accept backup offers.">
+        <div class="form-top">
+          <span class="form-abbr">COP</span>
+          <span class="form-name">Contingency for Sale of Buyer's Property</span>
+        </div>
+        <div class="form-desc">Makes the buyer's purchase contingent on the successful close of their current home. Includes provisions for the seller to accept backup offers.</div>
+        <div class="form-meta">
+          <span class="tag tag-buyer">Buyer</span>
+        </div>
+        <div class="form-updated">Updated Jun 2024</div>
+      </div>
+
+      <div class="form-card" data-tags="both" data-name="Extension of Time Amendment" data-desc="Extends or modifies any deadline in the purchase agreement, such as the close of escrow, loan contingency removal, or inspection period.">
+        <div class="form-top">
+          <span class="form-abbr">ETA</span>
+          <span class="form-name">Extension of Time / Amendment</span>
+        </div>
+        <div class="form-desc">Extends or modifies any deadline in the purchase agreement, such as the close of escrow, loan contingency removal, or inspection period.</div>
+        <div class="form-meta">
+          <span class="tag tag-both">Buyer &amp; Seller</span>
+        </div>
+        <div class="form-updated">Updated Dec 2025</div>
+      </div>
+
+      <div class="form-card has-guide" data-tags="both" data-name="Cancellation of Contract Release of Deposit and Cancellation of Escrow" data-desc="Formally cancels the purchase agreement, specifies how the deposit is to be released, and instructs escrow to close without completing the sale.">
+        <div class="form-top">
+          <span class="form-abbr">CC</span>
+          <span class="form-name">Cancellation of Contract, Release of Deposit and Cancellation of Escrow</span>
+        </div>
+        <div class="form-desc">Formally cancels the purchase agreement, specifies how the deposit is to be released, and instructs escrow to close without completing the sale.</div>
+        <div class="form-meta">
+          <span class="tag tag-both">Buyer &amp; Seller</span>
+        </div>
+        <div class="form-footer">
+          <span class="form-updated">Updated Jun 2024</span>
+          <a class="guide-link" href="https://resources.lorealtygroup.com/Guides/CC — Cancellation Guide.html" target="_blank">View Guide <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- REPAIRS & PERFORMANCE -->
+  <div class="category-block" data-category="Repairs and Performance">
+    <div class="category-header">
+      <h2>Repairs and Performance</h2>
+      <span class="cat-count">5 forms</span>
+    </div>
+    <div class="forms-grid">
+
+      <div class="form-card has-guide" data-tags="buyer" data-name="Request for Repair" data-desc="Submitted by the buyer after inspections to formally request the seller make specific repairs or provide a credit in lieu of repairs.">
+        <div class="form-top">
+          <span class="form-abbr">RR</span>
+          <span class="form-name">Request for Repair</span>
+        </div>
+        <div class="form-desc">Submitted by the buyer after inspections to formally request the seller make specific repairs or provide a credit in lieu of repairs.</div>
+        <div class="form-meta">
+          <span class="tag tag-buyer">Buyer</span>
+        </div>
+        <div class="form-footer">
+          <span class="form-updated">Updated Dec 2023</span>
+          <a class="guide-link" href="https://resources.lorealtygroup.com/Guides/RR — Request for Repair Guide.html" target="_blank">View Guide <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="form-card" data-tags="seller" data-name="Seller Response and Buyer Reply to Request for Repair" data-desc="Documents the seller&#39;s formal response to the buyer&#39;s repair request and the buyer&#39;s reply — acceptance, counter, or rejection.">
+        <div class="form-top">
+          <span class="form-abbr">RRRR</span>
+          <span class="form-name">Seller Response and Buyer Reply to Request for Repair</span>
+        </div>
+        <div class="form-desc">Documents the seller's formal response to the buyer's repair request and the buyer's reply — acceptance, counter, or rejection.</div>
+        <div class="form-meta">
+          <span class="tag tag-seller">Seller</span>
+        </div>
+        <div class="form-updated">Updated Jun 2022</div>
+      </div>
+
+      <div class="form-card" data-tags="seller" data-name="Notice to Buyer to Perform" data-desc="Formally notifies the buyer that they have failed to meet a deadline and starts a contractual clock for them to perform or face cancellation.">
+        <div class="form-top">
+          <span class="form-abbr">NBP</span>
+          <span class="form-name">Notice to Buyer to Perform</span>
+        </div>
+        <div class="form-desc">Formally notifies the buyer that they have failed to meet a deadline and starts a contractual clock for them to perform or face cancellation.</div>
+        <div class="form-meta">
+          <span class="tag tag-seller">Seller</span>
+        </div>
+        <div class="form-updated">Updated Jun 2024</div>
+      </div>
+
+      <div class="form-card" data-tags="buyer" data-name="Demand to Close Escrow" data-desc="Issued by the buyer when all conditions have been met but the seller is not completing the sale. Formally puts the seller on notice to close.">
+        <div class="form-top">
+          <span class="form-abbr">DCE</span>
+          <span class="form-name">Demand to Close Escrow</span>
+        </div>
+        <div class="form-desc">Issued by the buyer when all conditions have been met but the seller is not completing the sale. Formally puts the seller on notice to close.</div>
+        <div class="form-meta">
+          <span class="tag tag-buyer">Buyer</span>
+        </div>
+        <div class="form-updated">Updated Dec 2021</div>
+      </div>
+
+      <div class="form-card" data-tags="buyer" data-name="Buyer Investigation Waiver" data-desc="Documents the buyer&#39;s decision to waive specific investigation rights, such as an inspection period, and acknowledges the associated risks.">
+        <div class="form-top">
+          <span class="form-abbr">BIW</span>
+          <span class="form-name">Buyer Investigation Waiver</span>
+        </div>
+        <div class="form-desc">Documents the buyer's decision to waive specific investigation rights, such as an inspection period, and acknowledges the associated risks.</div>
+        <div class="form-meta">
+          <span class="tag tag-buyer">Buyer</span>
+        </div>
+        <div class="form-updated">Updated Jun 2025</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ADVISORIES -->
+  <div class="category-block" data-category="Advisories">
+    <div class="category-header">
+      <h2>Advisories</h2>
+      <span class="cat-count">6 forms</span>
+    </div>
+    <div class="forms-grid">
+
+      <div class="form-card" data-tags="advisory" data-name="Buyer&#39;s Investigation Advisory" data-desc="Advises buyers on the importance of thorough property investigations, including inspections, permits, neighborhood research, and title review.">
+        <div class="form-top">
+          <span class="form-abbr">BIA</span>
+          <span class="form-name">Buyer's Investigation Advisory</span>
+        </div>
+        <div class="form-desc">Advises buyers on the importance of thorough property investigations, including inspections, permits, neighborhood research, and title review.</div>
+        <div class="form-meta">
+          <span class="tag tag-advisory">Advisory</span>
+          <span class="tag tag-buyer">Buyer</span>
+        </div>
+        <div class="form-updated">Updated Jun 2025</div>
+      </div>
+
+      <div class="form-card" data-tags="advisory" data-name="Buyer Homeowner&#39;s Insurance Advisory" data-desc="Advises buyers on obtaining homeowner&#39;s insurance early, including wildfire, earthquake, and flood coverage considerations specific to California.">
+        <div class="form-top">
+          <span class="form-abbr">BHIA</span>
+          <span class="form-name">Buyer Homeowner's Insurance Advisory</span>
+        </div>
+        <div class="form-desc">Advises buyers on obtaining homeowner's insurance early, including wildfire, earthquake, and flood coverage considerations specific to California.</div>
+        <div class="form-meta">
+          <span class="tag tag-advisory">Advisory</span>
+          <span class="tag tag-buyer">Buyer</span>
+        </div>
+        <div class="form-updated">Updated Jun 2024</div>
+      </div>
+
+      <div class="form-card" data-tags="advisory" data-name="Market Conditions Advisory" data-desc="Informs clients about current real estate market conditions and the risks of relying on market data alone when making buying or selling decisions.">
+        <div class="form-top">
+          <span class="form-abbr">MCA</span>
+          <span class="form-name">Market Conditions Advisory</span>
+        </div>
+        <div class="form-desc">Informs clients about current real estate market conditions and the risks of relying on market data alone when making buying or selling decisions.</div>
+        <div class="form-meta">
+          <span class="tag tag-advisory">Advisory</span>
+          <span class="tag tag-both">Buyer &amp; Seller</span>
+        </div>
+        <div class="form-updated">Updated Jun 2024</div>
+      </div>
+
+      <div class="form-card" data-tags="advisory" data-name="Fair Housing and Discrimination Advisory" data-desc="Advises clients and agents of rights and obligations under California and federal fair housing laws, including protected classes and prohibited conduct.">
+        <div class="form-top">
+          <span class="form-abbr">FHDA</span>
+          <span class="form-name">Fair Housing and Discrimination Advisory</span>
+        </div>
+        <div class="form-desc">Advises clients and agents of rights and obligations under California and federal fair housing laws, including protected classes and prohibited conduct.</div>
+        <div class="form-meta">
+          <span class="tag tag-advisory">Advisory</span>
+          <span class="tag tag-both">Buyer &amp; Seller</span>
+        </div>
+        <div class="form-updated">Updated Dec 2024</div>
+      </div>
+
+      <div class="form-card" data-tags="advisory" data-name="New Construction Advisory" data-desc="Advises buyers on the unique considerations when purchasing new construction, including builder contracts, construction defect warranties, and independent inspections.">
+        <div class="form-top">
+          <span class="form-abbr">NCA</span>
+          <span class="form-name">New Construction Advisory</span>
+        </div>
+        <div class="form-desc">Advises buyers on the unique considerations when purchasing new construction, including builder contracts, construction defect warranties, and independent inspections.</div>
+        <div class="form-meta">
+          <span class="tag tag-advisory">Advisory</span>
+          <span class="tag tag-buyer">Buyer</span>
+        </div>
+        <div class="form-updated">Updated Jun 2025</div>
+      </div>
+
+      <div class="form-card" data-tags="advisory" data-name="Trust Advisory" data-desc="Advises clients involved in transactions where a trust holds or is acquiring title to real property, including legal, tax, and title considerations.">
+        <div class="form-top">
+          <span class="form-abbr">TA</span>
+          <span class="form-name">Trust Advisory</span>
+        </div>
+        <div class="form-desc">Advises clients involved in transactions where a trust holds or is acquiring title to real property, including legal, tax, and title considerations.</div>
+        <div class="form-meta">
+          <span class="tag tag-advisory">Advisory</span>
+          <span class="tag tag-both">Buyer &amp; Seller</span>
+        </div>
+        <div class="form-updated">Updated Jun 2025</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROBATE -->
+  <div class="category-block" data-category="Probate">
+    <div class="category-header">
+      <h2>Probate</h2>
+      <span class="cat-count">3 forms</span>
+    </div>
+    <div class="forms-grid">
+
+      <div class="form-card" data-tags="probate" data-name="Probate Advisory" data-desc="Advises buyers and sellers on the unique legal considerations of a probate transaction, including court confirmation, overbidding, and timeline expectations.">
+        <div class="form-top">
+          <span class="form-abbr">PA</span>
+          <span class="form-name">Probate Advisory</span>
+        </div>
+        <div class="form-desc">Advises buyers and sellers on the unique legal considerations of a probate transaction, including court confirmation, overbidding, and timeline expectations.</div>
+        <div class="form-meta">
+          <span class="tag tag-probate">Probate</span>
+          <span class="tag tag-both">Buyer &amp; Seller</span>
+        </div>
+        <div class="form-updated">Updated Jun 2025</div>
+      </div>
+
+      <div class="form-card" data-tags="probate" data-name="Probate Agreement Purchase Addendum" data-desc="Modifies the standard RPA for probate transactions. Addresses court confirmation requirements, overbidding procedures, and probate-specific contract terms.">
+        <div class="form-top">
+          <span class="form-abbr">PAPA</span>
+          <span class="form-name">Probate Agreement Purchase Addendum</span>
+        </div>
+        <div class="form-desc">Modifies the standard RPA for probate transactions. Addresses court confirmation requirements, overbidding procedures, and probate-specific contract terms.</div>
+        <div class="form-meta">
+          <span class="tag tag-probate">Probate</span>
+          <span class="tag tag-both">Buyer &amp; Seller</span>
+        </div>
+        <div class="form-updated">Updated Jul 2024</div>
+      </div>
+
+      <div class="form-card" data-tags="probate" data-name="Probate Listing Addendum" data-desc="Modifies the standard listing agreement for probate sales. Addresses the personal representative&#39;s authority, court requirements, and probate-specific listing terms.">
+        <div class="form-top">
+          <span class="form-abbr">PLA</span>
+          <span class="form-name">Probate Listing Addendum</span>
+        </div>
+        <div class="form-desc">Modifies the standard listing agreement for probate sales. Addresses the personal representative's authority, court requirements, and probate-specific listing terms.</div>
+        <div class="form-meta">
+          <span class="tag tag-probate">Probate</span>
+          <span class="tag tag-seller">Seller / Estate</span>
+        </div>
+        <div class="form-updated">Updated Jul 2024</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- AGENT & BROKERAGE -->
+  <div class="category-block" data-category="Agent and Brokerage">
+    <div class="category-header">
+      <h2>Agent and Brokerage</h2>
+      <span class="cat-count">5 forms</span>
+    </div>
+    <div class="forms-grid">
+
+      <div class="form-card" data-tags="both" data-name="Additional Agent Acknowledgement" data-desc="Documents the involvement and roles of multiple agents from the same brokerage in a single transaction.">
+        <div class="form-top">
+          <span class="form-abbr">AAA</span>
+          <span class="form-name">Additional Agent Acknowledgement</span>
+        </div>
+        <div class="form-desc">Documents the involvement and roles of multiple agents from the same brokerage in a single transaction.</div>
+        <div class="form-meta">
+          <span class="tag tag-both">Buyer &amp; Seller</span>
+        </div>
+        <div class="form-updated">Updated Dec 2025</div>
+      </div>
+
+      <div class="form-card" data-tags="both" data-name="Representative Capacity Signature Disclosure Buyer Representatives" data-desc="Used when a buyer signs on behalf of a trust, LLC, corporation, or estate. Documents the representative capacity in which they are signing.">
+        <div class="form-top">
+          <span class="form-abbr">RCSD-B</span>
+          <span class="form-name">Representative Capacity Signature Disclosure — Buyer</span>
+        </div>
+        <div class="form-desc">Used when a buyer signs on behalf of a trust, LLC, corporation, or estate. Documents the representative capacity in which they are signing.</div>
+        <div class="form-meta">
+          <span class="tag tag-buyer">Buyer</span>
+        </div>
+        <div class="form-updated">Updated Jun 2023</div>
+      </div>
+
+      <div class="form-card" data-tags="both" data-name="Representative Capacity Signature Disclosure Seller Representatives" data-desc="Used when a seller signs on behalf of a trust, LLC, corporation, or estate. Discloses the representative capacity of the signer to all parties.">
+        <div class="form-top">
+          <span class="form-abbr">RCSD-S</span>
+          <span class="form-name">Representative Capacity Signature Disclosure — Seller</span>
+        </div>
+        <div class="form-desc">Used when a seller signs on behalf of a trust, LLC, corporation, or estate. Discloses the representative capacity of the signer to all parties.</div>
+        <div class="form-meta">
+          <span class="tag tag-seller">Seller</span>
+        </div>
+        <div class="form-updated">Updated Jun 2023</div>
+      </div>
+
+      <div class="form-card" data-tags="both" data-name="Modification of Terms Buyer Representation Agreement" data-desc="Amends an existing BRBC to update terms such as the agreement period, compensation amount, property type, or geographic area.">
+        <div class="form-top">
+          <span class="form-abbr">MBRBC</span>
+          <span class="form-name">Modification of Terms — Buyer Representation Agreement</span>
+        </div>
+        <div class="form-desc">Amends an existing BRBC to update terms such as the agreement period, compensation amount, property type, or geographic area.</div>
+        <div class="form-meta">
+          <span class="tag tag-buyer">Buyer</span>
+        </div>
+        <div class="form-updated">Updated Dec 2024</div>
+      </div>
+
+      <div class="form-card" data-tags="seller" data-name="Modification of Terms Listing Agreement" data-desc="Amends an active listing agreement to update terms such as the list price, expiration date, commission structure, or marketing plan.">
+        <div class="form-top">
+          <span class="form-abbr">MRLA</span>
+          <span class="form-name">Modification of Terms — Listing Agreement</span>
+        </div>
+        <div class="form-desc">Amends an active listing agreement to update terms such as the list price, expiration date, commission structure, or marketing plan.</div>
+        <div class="form-meta">
+          <span class="tag tag-seller">Seller</span>
+        </div>
+        <div class="form-updated">Updated Jun 2025</div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<div id="emptyState" class="empty-state hidden">
+  <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+  <p>No forms match your search. Try a different keyword or filter.</p>
+</div>
+
+<script>
+  const searchInput = document.getElementById('search');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const countBar = document.getElementById('countBar');
+  const emptyState = document.getElementById('emptyState');
+  const main = document.getElementById('main');
+
+  let activeFilter = 'all';
+
+  function updateCards() {
+    const query = searchInput.value.toLowerCase().trim();
+    const cards = document.querySelectorAll('.form-card');
+    let visible = 0;
+
+    cards.forEach(card => {
+      const name = (card.dataset.name || '').toLowerCase();
+      const desc = (card.dataset.desc || '').toLowerCase();
+      const tags = (card.dataset.tags || '').toLowerCase();
+
+      const matchesSearch = !query || name.includes(query) || desc.includes(query);
+
+      let matchesFilter = false;
+      if (activeFilter === 'all') {
+        matchesFilter = true;
+      } else if (activeFilter === 'advisory') {
+        matchesFilter = tags.includes('advisory');
+      } else if (activeFilter === 'probate') {
+        matchesFilter = tags.includes('probate');
+      } else if (activeFilter === 'buyer') {
+        matchesFilter = tags.includes('buyer');
+      } else if (activeFilter === 'seller') {
+        matchesFilter = tags.includes('seller');
+      } else if (activeFilter === 'both') {
+        matchesFilter = tags.includes('both');
+      }
+
+      if (matchesSearch && matchesFilter) {
+        card.classList.remove('hidden');
+        visible++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    document.querySelectorAll('.category-block').forEach(block => {
+      const visibleCards = block.querySelectorAll('.form-card:not(.hidden)');
+      block.classList.toggle('hidden', visibleCards.length === 0);
+      const catCount = block.querySelector('.cat-count');
+      if (catCount) catCount.textContent = visibleCards.length + ' form' + (visibleCards.length !== 1 ? 's' : '');
+    });
+
+    countBar.textContent = visible === 41
+      ? 'Showing all 41 forms'
+      : `Showing ${visible} of 41 forms`;
+    emptyState.classList.toggle('hidden', visible > 0);
+    main.classList.toggle('hidden', visible === 0);
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      updateCards();
+    });
+  });
+
+  searchInput.addEventListener('input', updateCards);
+  updateCards();
+</script>
+
+
+</body></html>
