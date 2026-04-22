@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding the Purchase Agreement — Lo Realty Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #9EA58A;
+      --white: #ffffff;
+      --cream: #f5f4f0;
+      --cream-dark: #eeecea;
+      --gold: #92836b;
+      --gold-light: #c9a96e;
+      --border: #e0ddd8;
+      --text-muted: #7a7570;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--black);
+      color: var(--white);
+      padding: 60px 24px 52px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+
+    header h1 {
+      font-family: var(--font-serif);
+      font-size: 44px;
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    header p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.55);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* ── INTRO BAND ── */
+    .intro-band {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .intro {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 36px 24px;
+    }
+
+    .intro-inner {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .intro-icon {
+      font-size: 26px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .intro h2 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 8px;
+      color: var(--black);
+    }
+
+    .intro p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .disclaimer {
+      background: #fdf8f0;
+      border-left: 3px solid var(--gold-light);
+      padding: 14px 18px;
+      margin: 24px 0 0;
+      border-radius: 0 4px 4px 0;
+      font-size: 13px;
+      color: #7a6030;
+      line-height: 1.6;
+    }
+
+    /* ── TOC ── */
+    .toc-band {
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toc {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 28px 24px;
+    }
+
+    .toc-label {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .toc-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .toc-chip {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      padding: 7px 16px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+
+    .toc-chip:hover {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 36px 24px 100px;
+    }
+
+    /* ── TOOLBAR ── */
+    .toolbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .expand-all-btn {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 20px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+      letter-spacing: 0.01em;
+    }
+
+    .expand-all-btn:hover {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    /* ── SECTION ACCORDION ── */
+    .section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      transition: box-shadow 0.18s;
+    }
+
+    .section:hover {
+      box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+    }
+
+    .section.open {
+      box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+    }
+
+    .section-btn {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 22px 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-num {
+      width: 36px;
+      height: 36px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--black);
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+
+    .section.open .section-num {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    .section-title-wrap {
+      flex: 1;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    .section-subtitle {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      letter-spacing: 0.01em;
+    }
+
+    .section-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 7px;
+    }
+
+    .stag {
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+
+    .stag-buyer     { background: #e8f0fb; color: #2a5fa8; }
+    .stag-seller    { background: #fef3e2; color: #9a5f10; }
+    .stag-both      { background: #eaf5ea; color: #2a6e30; }
+    .stag-important { background: #f8ece8; color: #8a2a1a; }
+
+    .chevron {
+      font-size: 20px;
+      color: #ccc;
+      transition: transform 0.2s, color 0.2s;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .section.open .chevron {
+      transform: rotate(180deg);
+      color: var(--black);
+    }
+
+    /* ── SECTION BODY ── */
+    .section-body {
+      display: none;
+      border-top: 1px solid var(--cream-dark);
+      padding: 28px 24px 28px;
+    }
+
+    .section.open .section-body {
+      display: block;
+    }
+
+    .section-body p {
+      font-size: 14px;
+      color: #4a4540;
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    .section-body p:last-child { margin-bottom: 0; }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight-box {
+      background: #fdf8f0;
+      border-left: 3px solid var(--gold-light);
+      border-radius: 0 4px 4px 0;
+      padding: 16px 18px;
+      margin: 18px 0;
+      font-size: 13.5px;
+      color: #5a5040;
+      line-height: 1.65;
+    }
+
+    .highlight-box strong {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--black);
+      display: block;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── WARN BOX ── */
+    .warn-box {
+      background: #fff8ee;
+      border-left: 3px solid #d4901a;
+      border-radius: 0 4px 4px 0;
+      padding: 16px 18px;
+      margin: 18px 0;
+      font-size: 13.5px;
+      color: #7a5510;
+      line-height: 1.65;
+    }
+
+    .warn-box strong {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      color: #a06010;
+      display: block;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── KEY POINTS ── */
+    .key-points {
+      margin: 18px 0;
+      list-style: none;
+    }
+
+    .key-points li {
+      font-size: 14px;
+      color: #4a4540;
+      padding: 9px 0 9px 24px;
+      border-bottom: 1px solid var(--cream-dark);
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .key-points li:last-child { border-bottom: none; }
+
+    .key-points li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    footer .footer-name {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      header { padding: 44px 20px 36px; }
+      header h1 { font-size: 32px; }
+      .section-btn { padding: 18px 18px; }
+      .section-body { padding: 22px 18px; }
+      main { padding-left: 16px; padding-right: 16px; }
+      .toc { padding-left: 16px; padding-right: 16px; }
+      .intro { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Lo Realty Group | Client Resource</div>
+  <h1>Understanding the California Residential Purchase Agreement</h1>
+  <p>A simple guide to help you understand what you're signing and what it means for you.</p>
+</header>
+
+<div class="intro-band">
+  <div class="intro">
+    <div class="intro-inner">
+      <div class="intro-icon">📄</div>
+      <div>
+        <h2>What is the RPA?</h2>
+        <p>The California Residential Purchase Agreement (RPA) is the main contract used in almost every home sale in California. It's 16 pages long and covers everything from price and deposit to inspections, contingencies, and closing. This guide breaks it down section by section in plain language so you always know where you stand.</p>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <strong>Important:</strong> This guide is for informational purposes only and is not legal advice. The RPA is a legally binding contract. Always read the full document and feel free to consult a qualified attorney if you have questions before signing.
+    </div>
+  </div>
+</div>
+
+<div class="toc-band">
+  <div class="toc">
+    <div class="toc-label">Jump to a section</div>
+    <div class="toc-grid">
+      <a class="toc-chip" href="#" onclick="openSection('s1'); return false;">Price &amp; Deposit</a>
+      <a class="toc-chip" href="#" onclick="openSection('s2'); return false;">Close of Escrow</a>
+      <a class="toc-chip" href="#" onclick="openSection('s3'); return false;">Financing &amp; Loan</a>
+      <a class="toc-chip" href="#" onclick="openSection('s4'); return false;">Contingencies</a>
+      <a class="toc-chip" href="#" onclick="openSection('s5'); return false;">Property Condition</a>
+      <a class="toc-chip" href="#" onclick="openSection('s6'); return false;">What's Included</a>
+      <a class="toc-chip" href="#" onclick="openSection('s7'); return false;">Closing Costs</a>
+      <a class="toc-chip" href="#" onclick="openSection('s8'); return false;">Title &amp; Ownership</a>
+      <a class="toc-chip" href="#" onclick="openSection('s9'); return false;">Buyer Investigations</a>
+      <a class="toc-chip" href="#" onclick="openSection('s10'); return false;">Repairs &amp; Requests</a>
+      <a class="toc-chip" href="#" onclick="openSection('s11'); return false;">Possession</a>
+      <a class="toc-chip" href="#" onclick="openSection('s12'); return false;">Seller Disclosures</a>
+      <a class="toc-chip" href="#" onclick="openSection('s13'); return false;">Mediation &amp; Disputes</a>
+      <a class="toc-chip" href="#" onclick="openSection('s14'); return false;">Cancellation</a>
+      <a class="toc-chip" href="#" onclick="openSection('s15'); return false;">The Full Package</a>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <div class="toolbar">
+    <button class="expand-all-btn" id="expandAllBtn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- 1 -->
+  <div class="section" id="s1">
+    <button class="section-btn" onclick="toggle('s1')">
+      <div class="section-num">1</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Purchase Price and Earnest Money Deposit</div>
+        <div class="section-subtitle">Paragraph 3A, 3D — How much you're paying and how the deposit works</div>
+        <div class="section-tags">
+          <span class="stag stag-buyer">Buyer</span>
+          <span class="stag stag-important">Important</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>This is the agreed-upon sale price for the home. It's the number both buyer and seller have committed to and signed off on.</p>
+
+      <div class="highlight-box">
+        <strong>Earnest Money Deposit (EMD)</strong>
+        This is the "good faith" money the buyer puts into escrow to show they're serious about purchasing. By default, the buyer has 3 days after both parties sign to deposit this money. A typical deposit is 1% to 3% of the purchase price, though it can be more in competitive situations.
+      </div>
+
+      <p>The deposit goes into an escrow account. Neither the buyer nor seller can touch it without mutual agreement. As long as you have contingencies in place (more on those in Section 4), this money is generally refundable if something goes wrong during the process.</p>
+
+      <div class="warn-box">
+        <strong>Watch out</strong>
+        If you remove all your contingencies and then back out of the deal without a valid reason, you could lose your deposit. That's why it's important not to remove contingencies until you're truly ready to commit.
+      </div>
+
+      <p>There's also an option for an increased deposit, typically made after contingencies are removed. When the initial deposit is already 3% or higher, an increased deposit is rarely used.</p>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="section" id="s2">
+    <button class="section-btn" onclick="toggle('s2')">
+      <div class="section-num">2</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Close of Escrow</div>
+        <div class="section-subtitle">Paragraph 3B — When the sale officially completes</div>
+        <div class="section-tags">
+          <span class="stag stag-both">Buyer &amp; Seller</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>The close of escrow (COE) is the date the property officially transfers from the seller to the buyer. On this day, the deed records, funds are distributed, and the buyer gets the keys.</p>
+
+      <p>This date is either written as a specific calendar date or as a number of days after the offer is accepted. For example, "30 days after acceptance" means 30 days from the day both parties signed.</p>
+
+      <div class="highlight-box">
+        <strong>Counting Days</strong>
+        In the RPA, Day 0 is the day the contract is signed by both parties. Day 1 begins the following day. Any deadline that falls on a Saturday, Sunday, or legal holiday automatically moves to the next business day.
+      </div>
+
+      <p>The closing date can be extended by mutual agreement if both parties sign an Extension of Time addendum. This is common when a lender needs extra time or there's a delay in the appraisal.</p>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="section" id="s3">
+    <button class="section-btn" onclick="toggle('s3')">
+      <div class="section-num">3</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Financing and Loan Terms</div>
+        <div class="section-subtitle">Paragraph 3E — How the buyer is paying for the home</div>
+        <div class="section-tags">
+          <span class="stag stag-buyer">Buyer</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>This section specifies how the buyer plans to pay for the property — whether that's cash, a conventional loan, FHA, VA, or another financing type. It also states the loan amount being requested.</p>
+
+      <div class="highlight-box">
+        <strong>All-Cash Offers</strong>
+        If the buyer is paying all cash, this box is checked and there is no loan contingency. This makes the offer stronger and faster to close, which sellers generally prefer.
+      </div>
+
+      <p>If a loan is being used, the contract will include a loan contingency (see Section 4) that protects the buyer if their financing falls through. The buyer is expected to apply for their loan promptly and keep the seller updated on the status.</p>
+
+      <p>Seller concessions — where the seller contributes money toward the buyer's closing costs — are also specified here. This reduces the seller's net proceeds but can help a buyer who needs assistance covering upfront costs.</p>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="section" id="s4">
+    <button class="section-btn" onclick="toggle('s4')">
+      <div class="section-num">4</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Contingencies</div>
+        <div class="section-subtitle">Paragraph 3L, 8 — The buyer's built-in exit ramps</div>
+        <div class="section-tags">
+          <span class="stag stag-buyer">Buyer</span>
+          <span class="stag stag-important">Important</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>Contingencies are conditions that must be met for the sale to move forward. If a contingency isn't satisfied, the buyer can cancel the contract and get their deposit back. There are three main contingencies in a standard California purchase:</p>
+
+      <ul class="key-points">
+        <li><strong>Inspection Contingency:</strong> The buyer has a set number of days (typically 17) to investigate the property through inspections, reviews, and research. If anything is unsatisfactory, the buyer can either request repairs or cancel the contract.</li>
+        <li><strong>Loan Contingency:</strong> The buyer's purchase is contingent on receiving loan approval. If the lender denies the loan, the buyer can cancel and recover their deposit.</li>
+        <li><strong>Appraisal Contingency:</strong> The property must appraise at or above the purchase price. If it appraises lower, the buyer can renegotiate, make up the difference in cash, or cancel the contract.</li>
+      </ul>
+
+      <div class="highlight-box">
+        <strong>Sale of Buyer's Property Contingency</strong>
+        Some buyers also include a contingency making their purchase dependent on the successful sale of their current home. Sellers are generally less fond of this contingency because it adds uncertainty, but it's sometimes necessary.
+      </div>
+
+      <div class="warn-box">
+        <strong>Key point for buyers</strong>
+        Once you remove your contingencies in writing, you are committing to purchase the home. If you back out after that without a valid reason, you risk losing your deposit. Don't remove contingencies until you're fully confident.
+      </div>
+
+      <p>Sellers can issue a "Notice to Buyer to Perform" if the buyer is dragging their feet on a deadline. This puts the buyer on a short clock (usually 2 days) to take action or face cancellation.</p>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="section" id="s5">
+    <button class="section-btn" onclick="toggle('s5')">
+      <div class="section-num">5</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Property Condition — "As-Is"</div>
+        <div class="section-subtitle">Paragraph 7B — What the seller is (and isn't) responsible for</div>
+        <div class="section-tags">
+          <span class="stag stag-both">Buyer &amp; Seller</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>Unless otherwise negotiated, the RPA specifies that the property is sold in its current, "as-is" condition. This means the seller is not automatically required to make repairs, give credits, or reduce the price just because something needs fixing.</p>
+
+      <div class="highlight-box">
+        <strong>What "as-is" actually means</strong>
+        The seller is still legally required to disclose all known defects. "As-is" doesn't mean the seller can hide problems — it means they're selling in the current condition without promising to fix things. Buyers still have the right to inspect the property and request repairs as part of negotiation.
+      </div>
+
+      <p>The seller is required to maintain the property, including landscaping and grounds, in substantially the same condition from the time the offer is accepted through the close of escrow. They cannot let it deteriorate.</p>
+
+      <p>The home must also be delivered free of debris and personal property. If items are left behind at close, the buyer can have them removed at the seller's expense after providing written notice.</p>
+
+      <div class="highlight-box">
+        <strong>Cleaning</strong>
+        The contract does not legally require a professional cleaning, but a "broom swept" condition is expected. Many sellers clean the home as a courtesy to buyers.
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="section" id="s6">
+    <button class="section-btn" onclick="toggle('s6')">
+      <div class="section-num">6</div>
+      <div class="section-title-wrap">
+        <div class="section-title">What's Included in the Sale</div>
+        <div class="section-subtitle">Paragraph 3P — Fixtures, appliances, and personal property</div>
+        <div class="section-tags">
+          <span class="stag stag-both">Buyer &amp; Seller</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>This section lists what stays with the home and what the seller is taking with them. Items that are physically attached to the property (fixtures) generally transfer with the home. Items that are not attached (personal property) go with the seller unless specifically included.</p>
+
+      <ul class="key-points">
+        <li>Typically included: built-in appliances, light fixtures, ceiling fans, window coverings, garage door openers, and landscaping</li>
+        <li>Typically excluded: refrigerators, washers/dryers, free-standing shelving, and outdoor furniture — unless specifically listed as included</li>
+        <li>Solar panels are addressed separately. Ask whether the system is owned outright, leased, or financed, as this affects the sale.</li>
+      </ul>
+
+      <div class="warn-box">
+        <strong>Review this section carefully</strong>
+        Misunderstandings about what's included in the sale are one of the most common sources of last-minute disputes. If something matters to you — like the refrigerator, a light fixture, or a garden shed — make sure it's clearly addressed in the contract.
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="section" id="s7">
+    <button class="section-btn" onclick="toggle('s7')">
+      <div class="section-num">7</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Closing Costs and Who Pays What</div>
+        <div class="section-subtitle">Paragraph 3Q — Fees, taxes, and government-required items</div>
+        <div class="section-tags">
+          <span class="stag stag-both">Buyer &amp; Seller</span>
+          <span class="stag stag-important">Important</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>Closing costs are the fees and charges that come due when a real estate transaction closes. This section of the RPA specifies who — buyer or seller — is responsible for each one.</p>
+
+      <ul class="key-points">
+        <li><strong>Escrow fees:</strong> Typically split between buyer and seller, though this is negotiable</li>
+        <li><strong>Title insurance:</strong> The seller usually pays for the owner's title policy. The buyer pays for the lender's policy if they have a loan.</li>
+        <li><strong>Transfer taxes:</strong> Generally paid by the seller</li>
+        <li><strong>Lender fees and loan costs:</strong> Paid by the buyer</li>
+        <li><strong>Property taxes:</strong> Prorated between buyer and seller based on the closing date</li>
+      </ul>
+
+      <div class="warn-box">
+        <strong>Government-Required Point of Sale Items (Paragraph 3Q(6))</strong>
+        Some cities and counties require sellers to make corrections before a property can be sold — things like low-flow plumbing fixtures, seismic retrofitting, or sewer lateral repairs. These can cost tens of thousands of dollars. Review this carefully and ask your agent what's required in the specific city where the property is located.
+      </div>
+
+      <p>Buyers can also ask sellers to contribute toward their closing costs (a "seller concession"). This reduces the seller's net proceeds but can be a helpful negotiating tool when the buyer needs assistance with upfront costs.</p>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="section" id="s8">
+    <button class="section-btn" onclick="toggle('s8')">
+      <div class="section-num">8</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Title and How You'll Hold Ownership</div>
+        <div class="section-subtitle">Paragraph 7C — Vesting and title insurance</div>
+        <div class="section-tags">
+          <span class="stag stag-buyer">Buyer</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>Title is the legal record of who owns a property. This section covers how ownership will be recorded and the title insurance that protects that ownership.</p>
+
+      <div class="highlight-box">
+        <strong>How you hold title matters</strong>
+        The way you take ownership — sole ownership, joint tenancy, community property, through a trust, or via an LLC — has significant legal and tax implications. This is a decision worth discussing with an attorney or tax advisor before closing.
+      </div>
+
+      <p>Title insurance protects you (and your lender) against any undiscovered claims, liens, or disputes about the property's ownership history. The seller typically pays for the owner's title policy, which is a one-time premium paid at closing.</p>
+
+      <p>Choose a reputable title company. The value of the insurance depends on the financial strength and reliability of the company that issues it.</p>
+
+      <p>Note: If the property is being purchased by or sold through a trust, LLC, or estate, additional signature disclosure forms are required to document the representative capacity of the signer.</p>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="section" id="s9">
+    <button class="section-btn" onclick="toggle('s9')">
+      <div class="section-num">9</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Buyer's Right to Investigate the Property</div>
+        <div class="section-subtitle">Paragraph 8C, 12 — Inspections and due diligence</div>
+        <div class="section-tags">
+          <span class="stag stag-buyer">Buyer</span>
+          <span class="stag stag-important">Important</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>During the inspection contingency period (typically 17 days), the buyer has the right — and is strongly encouraged — to thoroughly investigate the property. This goes well beyond just a general home inspection.</p>
+
+      <ul class="key-points">
+        <li>General home inspection (foundation, roof, electrical, plumbing, HVAC, and more)</li>
+        <li>Termite / pest inspection</li>
+        <li>Sewer line inspection (especially for older homes)</li>
+        <li>Roof inspection</li>
+        <li>Pool or spa inspection if applicable</li>
+        <li>Chimney inspection if applicable</li>
+        <li>Review of permits and unpermitted work</li>
+        <li>Review of HOA documents, rules, and financials if applicable</li>
+        <li>Natural hazard and flood zone review</li>
+        <li>Verification of homeowner's insurance availability and cost</li>
+        <li>Survey of the property if boundaries are a concern</li>
+      </ul>
+
+      <div class="highlight-box">
+        <strong>Insurance is a big one in California</strong>
+        Due to wildfire risk, it's increasingly important for buyers to verify that homeowner's insurance is available and affordable for the specific property before removing contingencies. Don't assume coverage will be easy to obtain.
+      </div>
+
+      <p>Buyers have the right to visit the local Planning Department to research zoning, planned developments, nonconforming uses, and any other issues that might affect the property's use or value.</p>
+
+      <p>The buyer can waive specific investigations in writing, but this is only recommended when the buyer fully understands the risks they're accepting.</p>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="section" id="s10">
+    <button class="section-btn" onclick="toggle('s10')">
+      <div class="section-num">10</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Requesting Repairs After Inspections</div>
+        <div class="section-subtitle">Request for Repair form — Negotiating fixes or credits</div>
+        <div class="section-tags">
+          <span class="stag stag-buyer">Buyer</span>
+          <span class="stag stag-seller">Seller</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>After inspections, if the buyer finds issues they want addressed, they can submit a formal Request for Repair (RR) to the seller. This is not a demand — it starts a negotiation.</p>
+
+      <div class="highlight-box">
+        <strong>The seller has three options</strong>
+        1. Agree to make the repairs<br>
+        2. Offer a credit or price reduction instead<br>
+        3. Decline the request entirely
+      </div>
+
+      <p>If the seller declines, the buyer can choose to proceed anyway, counter-negotiate, or cancel the contract within the inspection contingency period and recover their deposit.</p>
+
+      <p>Generally, buyers focus repair requests on health and safety issues and major systems (roof, plumbing, electrical, HVAC, foundation) rather than cosmetic items. Asking for too many small repairs can frustrate negotiations and put the deal at risk.</p>
+
+      <div class="highlight-box">
+        <strong>Credits vs. repairs</strong>
+        A seller credit toward closing costs is often a cleaner solution than asking the seller to manage contractors before closing. The buyer can then use the credit to handle repairs on their own timeline after moving in.
+      </div>
+
+      <p>Any repair agreements must be documented in writing through the proper CAR addendum before contingencies are removed.</p>
+    </div>
+  </div>
+
+  <!-- 11 -->
+  <div class="section" id="s11">
+    <button class="section-btn" onclick="toggle('s11')">
+      <div class="section-num">11</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Possession — When Do You Get the Keys?</div>
+        <div class="section-subtitle">Paragraph 3 — Occupancy timing and tenant situations</div>
+        <div class="section-tags">
+          <span class="stag stag-both">Buyer &amp; Seller</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>Possession is when the buyer officially takes over the property. In most cases, possession transfers on the day escrow closes and funds are recorded — that's the day you get the keys.</p>
+
+      <p>In some situations, the seller may request a "rent-back" — staying in the property for a period after close of escrow. This is negotiated and included in the contract. If a rent-back is agreed to, both parties should clearly define the terms (duration, daily rent, and responsibility for utilities and damage).</p>
+
+      <div class="highlight-box">
+        <strong>Tenant-occupied properties</strong>
+        If the property is currently rented, the buyer should review the existing lease, verify tenant status, and request an estoppel certificate (a document from the tenant confirming the lease terms) during the investigation period. California has strong tenant protection laws — understand what you're inheriting before you close.
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 -->
+  <div class="section" id="s12">
+    <button class="section-btn" onclick="toggle('s12')">
+      <div class="section-num">12</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Seller Disclosures</div>
+        <div class="section-subtitle">TDS, SPQ, and other required disclosures</div>
+        <div class="section-tags">
+          <span class="stag stag-seller">Seller</span>
+          <span class="stag stag-important">Important</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>In California, sellers are required by law to disclose all known material facts about the property. This is not optional. The disclosure package typically includes:</p>
+
+      <ul class="key-points">
+        <li><strong>Transfer Disclosure Statement (TDS):</strong> The seller's written disclosure of the property's known condition, defects, improvements, and features</li>
+        <li><strong>Seller Property Questionnaire (SPQ):</strong> A detailed follow-up questionnaire covering specific systems, permit history, insurance claims, and more</li>
+        <li><strong>Natural Hazard Disclosure (NHD):</strong> A third-party report identifying whether the property is in a fire hazard zone, flood zone, earthquake fault zone, or other designated risk areas</li>
+        <li><strong>Agent Visual Inspection Disclosure (AVID):</strong> The agent's own written account of what they observed during a visual inspection of the property</li>
+      </ul>
+
+      <p>Buyers should read every disclosure carefully. These documents are the seller's and agent's best effort to tell you what they know about the property. If something is unclear, ask before you remove your contingencies.</p>
+
+      <div class="warn-box">
+        <strong>Failure to disclose is a serious legal matter</strong>
+        Sellers who intentionally hide material defects can be held liable even after the sale is complete. If you discover an undisclosed defect after closing, consult a real estate attorney.
+      </div>
+    </div>
+  </div>
+
+  <!-- 13 -->
+  <div class="section" id="s13">
+    <button class="section-btn" onclick="toggle('s13')">
+      <div class="section-num">13</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Mediation and Arbitration</div>
+        <div class="section-subtitle">Paragraphs 30, 31 — What happens if there's a dispute</div>
+        <div class="section-tags">
+          <span class="stag stag-both">Buyer &amp; Seller</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>Even in smooth transactions, disagreements can come up. The RPA includes a structured process for resolving disputes without immediately going to court.</p>
+
+      <div class="highlight-box">
+        <strong>Step 1: Mediation</strong>
+        Before either party can sue or demand arbitration, they must first attempt mediation. A neutral third party (the mediator) facilitates a conversation between the parties to help them reach a mutual agreement. It's less formal, faster, and usually less expensive than going to court. If one party refuses to participate in mediation, they may lose certain legal rights later.
+      </div>
+
+      <div class="highlight-box">
+        <strong>Step 2: Arbitration (if you agreed to it)</strong>
+        The RPA contains an optional arbitration clause. If both parties initial it, disputes that can't be resolved through mediation go to a private arbitrator rather than a court. The arbitrator's decision is binding and final — you give up the right to a jury trial and the ability to appeal. Arbitration can be faster and more private than court, but it's important to understand what you're agreeing to before you initial this section.
+      </div>
+
+      <p>If you have concerns about the mediation or arbitration provisions, this is a good topic to discuss with a real estate attorney before signing.</p>
+    </div>
+  </div>
+
+  <!-- 14 -->
+  <div class="section" id="s14">
+    <button class="section-btn" onclick="toggle('s14')">
+      <div class="section-num">14</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Canceling the Contract</div>
+        <div class="section-subtitle">Cancellation form — How to exit and what happens to the deposit</div>
+        <div class="section-tags">
+          <span class="stag stag-both">Buyer &amp; Seller</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>Not every transaction makes it to close. Here's how cancellation works under the RPA.</p>
+
+      <div class="highlight-box">
+        <strong>During the contingency period</strong>
+        If the buyer cancels for a valid reason tied to an active contingency (inspection, loan, appraisal), the deposit is generally returned in full. This is the buyer's most protected window.
+      </div>
+
+      <div class="warn-box">
+        <strong>After contingencies are removed</strong>
+        Once the buyer has formally removed all contingencies, canceling the contract without a valid reason puts the deposit at risk. The seller may be entitled to keep the deposit as liquidated damages — in most residential transactions, this is capped at 3% of the purchase price.
+      </div>
+
+      <p>To formally cancel, both parties sign a Cancellation of Contract, Release of Deposit, and Cancellation of Escrow form. This specifies how the deposit is divided and instructs escrow to close the file.</p>
+
+      <p>If the parties can't agree on how the deposit is split, the escrow company will hold it until both parties either reach an agreement or the matter is resolved through mediation or arbitration.</p>
+    </div>
+  </div>
+
+  <!-- 15 -->
+  <div class="section" id="s15">
+    <button class="section-btn" onclick="toggle('s15')">
+      <div class="section-num">15</div>
+      <div class="section-title-wrap">
+        <div class="section-title">The Full Signing Package</div>
+        <div class="section-subtitle">Additional forms included with the RPA</div>
+        <div class="section-tags">
+          <span class="stag stag-both">Buyer &amp; Seller</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>When you receive the purchase agreement to sign, it will include several additional documents. The full package is typically around 26 pages. Here's what those additional forms are and why they matter:</p>
+
+      <ul class="key-points">
+        <li><strong>Agency Disclosure (AD):</strong> Explains who your agent represents and the nature of that relationship. Required before you sign anything.</li>
+        <li><strong>Statewide Buyer and Seller Advisory (SBSA):</strong> A comprehensive overview of topics buyers and sellers should be aware of, from inspections to natural hazards to insurance.</li>
+        <li><strong>Fair Housing and Discrimination Advisory:</strong> Affirms the obligation to comply with California and federal fair housing laws — no discrimination based on race, religion, sex, disability, familial status, national origin, and more.</li>
+        <li><strong>Possible Representation of More than One Buyer or Seller:</strong> Discloses that the brokerage may represent other buyers or sellers in competing transactions.</li>
+        <li><strong>Buyer's Investigation Advisory:</strong> Advises buyers on all the investigations they should consider conducting before removing contingencies.</li>
+        <li><strong>Wire Fraud and Electronic Funds Transfer Advisory:</strong> A warning about the growing risk of wire fraud in real estate transactions. Always verify wiring instructions by calling a known, trusted number before sending any funds.</li>
+        <li><strong>California Consumer Privacy Act (CCPA) Advisory:</strong> Informs you of your rights regarding the personal data collected during the transaction.</li>
+        <li><strong>Fair Appraisal Act Addendum:</strong> Promotes fairness and objectivity in the appraisal process.</li>
+      </ul>
+
+      <div class="highlight-box">
+        <strong>Take the time to read everything</strong>
+        It's a lot of pages, but every document serves a purpose. Your signature confirms you've received and reviewed these disclosures. If anything is unclear, ask before you sign.
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-name">Kevin Lo | Lo Realty Group</div>
+  <p><a href="https://www.lorealtygroup.com">lorealtygroup.com</a> &nbsp;·&nbsp; DRE #02008476 &nbsp;·&nbsp; 626.833.8932</p>
+  <p style="margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.25);">This guide is for informational purposes only and does not constitute legal advice. Always read the full contract and consult a qualified professional with questions.</p>
+</footer>
+
+<script>
+  function toggle(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('open');
+  }
+
+  function openSection(id) {
+    const el = document.getElementById(id);
+    el.classList.add('open');
+    setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+
+  let allOpen = false;
+
+  function toggleAll() {
+    const sections = document.querySelectorAll('.section');
+    allOpen = !allOpen;
+    sections.forEach(s => {
+      if (allOpen) s.classList.add('open');
+      else s.classList.remove('open');
+    });
+    document.getElementById('expandAllBtn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+
+</body>
+</html>
