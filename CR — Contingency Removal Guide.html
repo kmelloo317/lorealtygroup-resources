@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding the Contingency Removal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #9EA58A;
+            --white: #ffffff;
+            --cream: #f5f4f0;
+            --cream-dark: #eeecea;
+            --gold: #92836b;
+            --gold-light: #c9a96e;
+            --border: #e0ddd8;
+            --text-muted: #7a7570;
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: #333;
+            background: var(--cream);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: var(--black);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .eyebrow {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        header h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Intro Section */
+        .intro {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border);
+        }
+
+        .intro-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro h2 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .intro p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* TOC and Controls */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .toc {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .toc-chip {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 100px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            color: var(--gold);
+        }
+
+        .toc-chip:hover {
+            background: var(--cream);
+            border-color: var(--gold);
+        }
+
+        .expand-btn {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 100px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .expand-btn:hover {
+            background: var(--cream);
+            border-color: var(--gold);
+        }
+
+        /* Sections */
+        .section {
+            background: var(--white);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            cursor: pointer;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s ease;
+        }
+
+        .section-header:hover {
+            background: var(--cream);
+        }
+
+        .section-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--cream);
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .section.open .section-number {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .section-title-group {
+            flex: 1;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--black);
+            margin-bottom: 0.25rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .section-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: auto;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .tag {
+            background: #f0ebe3;
+            color: var(--gold);
+            padding: 0.35rem 0.8rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Content */
+        .section-content {
+            display: none;
+            padding: 2rem;
+        }
+
+        .section.open .section-content {
+            display: block;
+        }
+
+        .section-content p {
+            margin-bottom: 1.2rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .section-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: #fdf8f0;
+            border-left: 4px solid var(--gold-light);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box h3 {
+            font-family: var(--font-serif);
+            color: var(--black);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: #555;
+        }
+
+        /* Warning Box */
+        .warn-box {
+            background: #fff8ee;
+            border-left: 4px solid #d4901a;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .warn-box h3 {
+            font-family: var(--font-serif);
+            color: #8b5a00;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .warn-box p {
+            margin: 0;
+            color: #555;
+        }
+
+        /* Key Points */
+        .key-points {
+            margin: 1.5rem 0;
+        }
+
+        .key-points li {
+            margin-bottom: 0.8rem;
+            color: #555;
+            list-style: none;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .key-points li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--gold-light);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-name {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .toc {
+                justify-content: center;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-tags {
+                margin-left: 0;
+                margin-top: 1rem;
+                justify-content: flex-start;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="eyebrow">Lo Realty Group | Client Resource</div>
+        <h1>Understanding the Contingency Removal</h1>
+        <p class="header-subtitle">A guide to one of the most important decisions in your home purchase</p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <div class="intro-icon">✅</div>
+            <h2>What is the CR?</h2>
+            <p>The Contingency Removal (CR) is the form a buyer signs to formally release one or more contingencies in the purchase agreement. Once you remove a contingency, you're committing to move forward with the purchase under those terms. It's one of the most consequential decisions in the home buying process — and understanding exactly what you're giving up before you sign is essential.</p>
+        </section>
+
+        <div class="controls">
+            <div class="toc">
+                <div class="toc-chip" onclick="openSection(1)">1. What CR Means</div>
+                <div class="toc-chip" onclick="openSection(2)">2. Three Main Contingencies</div>
+                <div class="toc-chip" onclick="openSection(3)">3. Active vs. Passive</div>
+                <div class="toc-chip" onclick="openSection(4)">4. Inspection Contingency</div>
+                <div class="toc-chip" onclick="openSection(5)">5. Loan Contingency</div>
+                <div class="toc-chip" onclick="openSection(6)">6. Appraisal Contingency</div>
+                <div class="toc-chip" onclick="openSection(7)">7. Partial vs. Full</div>
+            </div>
+            <button class="expand-btn" onclick="toggleAll()">Expand All</button>
+        </div>
+
+        <!-- Section 1 -->
+        <div class="section" id="section-1">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">1</div>
+                <div class="section-title-group">
+                    <div class="section-title">What a Contingency Removal Means</div>
+                    <div class="section-subtitle">The significance of this document</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Buyer</span>
+                    <span class="tag">Important</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>When you sign a Contingency Removal, you are telling the seller — in writing — that you are satisfied with that aspect of the transaction and are prepared to move forward. It's not a casual form. It carries real financial consequences if you later try to back out.</p>
+                <div class="warn-box">
+                    <h3>Once removed, your deposit is at risk</h3>
+                    <p>After you remove contingencies, canceling the contract without a valid reason means the seller may be entitled to keep your deposit as liquidated damages — typically up to 3% of the purchase price. Don't remove contingencies until you are genuinely ready to commit.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section" id="section-2">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">2</div>
+                <div class="section-title-group">
+                    <div class="section-title">The Three Main Contingencies</div>
+                    <div class="section-subtitle">Inspection, loan, and appraisal</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Buyer</span>
+                    <span class="tag">Important</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>The standard California purchase agreement includes three primary contingencies, each of which can be removed separately or together.</p>
+                <ul class="key-points">
+                    <li>Inspection Contingency — Gives you the right to investigate the property and cancel if you find unsatisfactory conditions. Removing this means you accept the property in its current inspected condition.</li>
+                    <li>Loan Contingency — Protects you if your lender denies your loan. Removing this means you're committing to close even if financing falls through — a significant risk if your loan isn't fully approved.</li>
+                    <li>Appraisal Contingency — Protects you if the home appraises below the purchase price. Removing this means you'll cover any gap between the appraised value and your purchase price out of pocket.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="section" id="section-3">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">3</div>
+                <div class="section-title-group">
+                    <div class="section-title">Active vs. Passive Contingency Removal</div>
+                    <div class="section-subtitle">How contingencies can be removed in California</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Buyer</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>In California, contingencies can be removed in two ways — actively by the buyer, or passively through a seller-initiated process.</p>
+                <div class="highlight-box">
+                    <h3>Active removal</h3>
+                    <p>You proactively sign and deliver the Contingency Removal form, releasing one or more contingencies on your own timeline. This is the most straightforward approach.</p>
+                </div>
+                <div class="highlight-box">
+                    <h3>Passive removal via Notice to Perform</h3>
+                    <p>If you miss a contingency deadline, the seller can issue a Notice to Buyer to Perform (NBP), giving you a short window (typically 2 days) to either remove the contingency or cancel. If you don't respond, the seller may have the right to cancel the contract.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="section" id="section-4">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">4</div>
+                <div class="section-title-group">
+                    <div class="section-title">Removing the Inspection Contingency</div>
+                    <div class="section-subtitle">What to have completed before you sign</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Buyer</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>Before removing your inspection contingency, make sure you have completed all investigations you intend to do — and that you're comfortable with what you found.</p>
+                <ul class="key-points">
+                    <li>General home inspection completed and report reviewed</li>
+                    <li>Specialist inspections completed (roof, foundation, sewer, chimney, pool, etc.)</li>
+                    <li>Repair requests submitted and seller's response received and accepted</li>
+                    <li>Permit history reviewed with local building department</li>
+                    <li>HOA documents reviewed if applicable</li>
+                    <li>Homeowner's insurance confirmed as available and affordable</li>
+                </ul>
+                <div class="warn-box">
+                    <h3>Don't remove early to be competitive</h3>
+                    <p>In competitive markets, some buyers feel pressure to remove contingencies quickly to make their offer more attractive. Understand the risks before agreeing to shortened timelines — cutting corners on inspections can lead to costly surprises after closing.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <div class="section" id="section-5">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">5</div>
+                <div class="section-title-group">
+                    <div class="section-title">Removing the Loan Contingency</div>
+                    <div class="section-subtitle">What to confirm before releasing financing protection</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Buyer</span>
+                    <span class="tag">Important</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>The loan contingency is your safety net if your financing falls through. Before removing it, you should have strong confidence that your loan will close.</p>
+                <ul class="key-points">
+                    <li>Full loan approval (not just pre-approval) received from your lender</li>
+                    <li>Appraisal has been ordered and completed if required by your lender</li>
+                    <li>No major changes to your financial situation (new debts, job changes, large purchases)</li>
+                    <li>Closing timeline confirmed with your lender</li>
+                </ul>
+                <div class="highlight-box">
+                    <h3>Pre-approval is not the same as loan approval</h3>
+                    <p>Pre-approval means a lender has reviewed your basic financials and believes you qualify. Full loan approval means the loan has been underwritten and conditionally approved for the specific property. Don't remove your loan contingency based on pre-approval alone.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <div class="section" id="section-6">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">6</div>
+                <div class="section-title-group">
+                    <div class="section-title">Removing the Appraisal Contingency</div>
+                    <div class="section-subtitle">Understanding the financial risk</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Buyer</span>
+                    <span class="tag">Important</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>If you remove the appraisal contingency and the home appraises below your purchase price, you are committed to making up the difference in cash.</p>
+                <p>For example, if you're purchasing a home for $900,000 and it appraises at $860,000, you would need to bring an additional $40,000 to closing beyond your planned down payment. Make sure you have the financial capacity to absorb this before removing this contingency.</p>
+                <div class="highlight-box">
+                    <h3>When removing makes sense</h3>
+                    <p>In competitive markets, buyers sometimes offer to waive or remove the appraisal contingency to make their offer stronger. This strategy makes the most sense when you have significant cash reserves and are willing to pay above appraised value for the right home.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7 -->
+        <div class="section" id="section-7">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">7</div>
+                <div class="section-title-group">
+                    <div class="section-title">Partial vs. Full Contingency Removal</div>
+                    <div class="section-subtitle">You can remove contingencies one at a time</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Buyer</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>You don't have to remove all contingencies at once. The CR form allows you to remove specific contingencies while keeping others in place.</p>
+                <p>For example, you might remove your inspection contingency after completing your due diligence while keeping your loan contingency in place until your lender gives full approval. This is a common and sensible approach that protects you while demonstrating good faith to the seller.</p>
+                <div class="highlight-box">
+                    <h3>Communicate with your agent</h3>
+                    <p>Before signing any Contingency Removal, have a conversation with your agent about what you're giving up and what you're keeping. This is one of the most important decisions in the transaction — take the time to understand it fully.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-name">Kevin Lo | Lo Realty Group</div>
+        <div class="footer-links">
+            <a href="#">lorealtygroup.com</a>
+            <a href="#">DRE #02008476</a>
+            <a href="#">626.833.8932</a>
+        </div>
+    </footer>
+
+    <script>
+        function toggle(header) {
+            const section = header.closest('.section');
+            section.classList.toggle('open');
+        }
+
+        function openSection(num) {
+            const section = document.getElementById(`section-${num}`);
+            if (section) {
+                section.classList.add('open');
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function toggleAll() {
+            const sections = document.querySelectorAll('.section');
+            const allOpen = Array.from(sections).every(s => s.classList.contains('open'));
+
+            sections.forEach(section => {
+                if (allOpen) {
+                    section.classList.remove('open');
+                } else {
+                    section.classList.add('open');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

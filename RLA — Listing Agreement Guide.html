@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding the Listing Agreement — Lo Realty Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #9EA58A;
+      --white: #ffffff;
+      --cream: #f5f4f0;
+      --cream-dark: #eeecea;
+      --gold: #92836b;
+      --gold-light: #c9a96e;
+      --border: #e0ddd8;
+      --text-muted: #7a7570;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    body { font-family: var(--font-sans); background: var(--cream); color: var(--black); line-height: 1.6; }
+    header { background: var(--black); color: var(--white); padding: 60px 24px 52px; text-align: center; }
+    .eyebrow { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); margin-bottom: 18px; }
+    header h1 { font-family: var(--font-serif); font-size: 44px; font-weight: 400; line-height: 1.15; color: var(--white); margin-bottom: 16px; letter-spacing: -0.01em; max-width: 640px; margin-left: auto; margin-right: auto; }
+    header p { font-size: 15px; color: rgba(255,255,255,0.55); max-width: 480px; margin: 0 auto; line-height: 1.65; }
+    .intro-band { background: var(--white); border-bottom: 1px solid var(--border); }
+    .intro { max-width: 760px; margin: 0 auto; padding: 36px 24px; }
+    .intro-inner { display: flex; gap: 18px; align-items: flex-start; }
+    .intro-icon { font-size: 26px; flex-shrink: 0; margin-top: 3px; }
+    .intro h2 { font-family: var(--font-serif); font-size: 22px; font-weight: 400; margin-bottom: 8px; color: var(--black); }
+    .intro p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .disclaimer { background: #fdf8f0; border-left: 3px solid var(--gold-light); padding: 14px 18px; margin: 24px 0 0; border-radius: 0 4px 4px 0; font-size: 13px; color: #7a6030; line-height: 1.6; }
+    .toc-band { background: var(--cream); border-bottom: 1px solid var(--border); }
+    .toc { max-width: 760px; margin: 0 auto; padding: 28px 24px; }
+    .toc-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+    .toc-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .toc-chip { background: var(--white); border: 1.5px solid var(--border); border-radius: 100px; padding: 7px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; transition: all 0.15s; cursor: pointer; }
+    .toc-chip:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+    main { max-width: 760px; margin: 0 auto; padding: 36px 24px 100px; }
+    .toolbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+    .expand-all-btn { background: var(--white); border: 1.5px solid var(--border); border-radius: 100px; padding: 8px 20px; font-size: 13px; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
+    .expand-all-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+    .section { background: var(--white); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 10px; overflow: hidden; transition: box-shadow 0.18s; }
+    .section:hover, .section.open { box-shadow: 0 4px 18px rgba(0,0,0,0.07); }
+    .section-btn { width: 100%; text-align: left; background: none; border: none; padding: 22px 24px; cursor: pointer; display: flex; align-items: center; gap: 16px; }
+    .section-num { width: 36px; height: 36px; background: var(--cream); border: 1px solid var(--border); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 16px; font-weight: 600; color: var(--black); flex-shrink: 0; transition: all 0.15s; }
+    .section.open .section-num { background: var(--black); color: var(--white); border-color: var(--black); }
+    .section-title-wrap { flex: 1; }
+    .section-title { font-family: var(--font-serif); font-size: 18px; font-weight: 600; color: var(--black); line-height: 1.25; letter-spacing: -0.01em; }
+    .section-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .section-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 7px; }
+    .stag { font-size: 11px; letter-spacing: 0.04em; padding: 3px 10px; border-radius: 100px; font-weight: 500; }
+    .stag-seller { background: #fef3e2; color: #9a5f10; }
+    .stag-both { background: #eaf5ea; color: #2a6e30; }
+    .stag-important { background: #f8ece8; color: #8a2a1a; }
+    .chevron { font-size: 20px; color: #ccc; transition: transform 0.2s, color 0.2s; flex-shrink: 0; }
+    .section.open .chevron { transform: rotate(180deg); color: var(--black); }
+    .section-body { display: none; border-top: 1px solid var(--cream-dark); padding: 28px 24px; }
+    .section.open .section-body { display: block; }
+    .section-body p { font-size: 14px; color: #4a4540; margin-bottom: 16px; line-height: 1.7; }
+    .section-body p:last-child { margin-bottom: 0; }
+    .highlight-box { background: #fdf8f0; border-left: 3px solid var(--gold-light); border-radius: 0 4px 4px 0; padding: 16px 18px; margin: 18px 0; font-size: 13.5px; color: #5a5040; line-height: 1.65; }
+    .highlight-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: var(--black); display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .warn-box { background: #fff8ee; border-left: 3px solid #d4901a; border-radius: 0 4px 4px 0; padding: 16px 18px; margin: 18px 0; font-size: 13.5px; color: #7a5510; line-height: 1.65; }
+    .warn-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: #a06010; display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .key-points { margin: 18px 0; list-style: none; }
+    .key-points li { font-size: 14px; color: #4a4540; padding: 9px 0 9px 24px; border-bottom: 1px solid var(--cream-dark); position: relative; line-height: 1.6; }
+    .key-points li:last-child { border-bottom: none; }
+    .key-points li::before { content: "✓"; position: absolute; left: 0; color: var(--gold-light); font-weight: 700; }
+    footer { background: var(--black); color: rgba(255,255,255,0.4); text-align: center; padding: 40px 24px; font-size: 13px; line-height: 1.7; }
+    footer .footer-name { font-family: var(--font-serif); font-size: 18px; font-weight: 400; color: var(--white); margin-bottom: 10px; }
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    @media (max-width: 600px) { header { padding: 44px 20px 36px; } header h1 { font-size: 32px; } .section-btn { padding: 18px; } .section-body { padding: 22px 18px; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Lo Realty Group | Client Resource</div>
+  <h1>Understanding the Residential Listing Agreement</h1>
+  <p>A simple guide to help you understand what you're signing and what it means for you.</p>
+</header>
+
+<div class="intro-band">
+  <div class="intro">
+    <div class="intro-inner">
+      <div class="intro-icon">🏡</div>
+      <div>
+        <h2>What is the RLA?</h2>
+        <p>The Residential Listing Agreement (RLA) is the contract between you and your real estate agent that gives the agent the exclusive right to market and sell your home. It spells out the listing price, how long the agreement lasts, what the agent will do, and how the agent gets paid. This guide walks you through each section so you know exactly what you're committing to before you sign.</p>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <strong>Important:</strong> This guide is for informational purposes only and is not legal advice. The RLA is a legally binding contract. Always read the full document and consult a qualified attorney if you have questions before signing.
+    </div>
+  </div>
+</div>
+
+<div class="toc-band">
+  <div class="toc">
+    <div class="toc-label">Jump to a section</div>
+    <div class="toc-grid">
+      <a class="toc-chip" href="#" onclick="openSection('s1'); return false;">Listing Price</a>
+      <a class="toc-chip" href="#" onclick="openSection('s2'); return false;">Agreement Term</a>
+      <a class="toc-chip" href="#" onclick="openSection('s3'); return false;">Agent's Commission</a>
+      <a class="toc-chip" href="#" onclick="openSection('s4'); return false;">MLS &amp; Marketing</a>
+      <a class="toc-chip" href="#" onclick="openSection('s5'); return false;">Seller's Obligations</a>
+      <a class="toc-chip" href="#" onclick="openSection('s6'); return false;">Agent's Obligations</a>
+      <a class="toc-chip" href="#" onclick="openSection('s7'); return false;">Lockbox &amp; Showings</a>
+      <a class="toc-chip" href="#" onclick="openSection('s8'); return false;">Cancellation</a>
+      <a class="toc-chip" href="#" onclick="openSection('s9'); return false;">Protection Period</a>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="toolbar">
+    <button class="expand-all-btn" id="expandAllBtn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <div class="section" id="s1">
+    <button class="section-btn" onclick="toggle('s1')">
+      <div class="section-num">1</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Listing Price</div>
+        <div class="section-subtitle">The price your home will be marketed at</div>
+        <div class="section-tags"><span class="stag stag-seller">Seller</span><span class="stag stag-important">Important</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>The listing price is the price you and your agent agree to market your home at. It's based on a Comparative Market Analysis (CMA) — a review of recently sold homes similar to yours in the area.</p>
+      <div class="highlight-box">
+        <strong>This is not the final sale price</strong>
+        The listing price is where you start, not where you finish. Buyers may offer more or less, and you have the right to accept, counter, or reject any offer.
+      </div>
+      <p>Setting the right price is one of the most important decisions in selling your home. Pricing too high can cause the home to sit on the market and lose momentum. Pricing too low can leave money on the table. Your agent's job is to help you find the sweet spot based on current market conditions.</p>
+      <div class="warn-box">
+        <strong>You can change the price</strong>
+        If the home isn't getting activity, you and your agent can agree to reduce the price at any time during the listing period by signing a Modification of Terms form.
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="s2">
+    <button class="section-btn" onclick="toggle('s2')">
+      <div class="section-num">2</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Agreement Term</div>
+        <div class="section-subtitle">How long your agent has the exclusive right to sell</div>
+        <div class="section-tags"><span class="stag stag-seller">Seller</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>The listing agreement runs for a specific period of time — typically 30 to 90 days, though it can be longer. During this time, your agent has the exclusive right to market and sell your home.</p>
+      <div class="highlight-box">
+        <strong>Exclusive means exclusive</strong>
+        Even if you find a buyer yourself during the listing period, your agent may still be entitled to their commission. Make sure you understand the terms before signing.
+      </div>
+      <p>If your home hasn't sold by the end of the term, the agreement simply expires. You can then relist with the same agent, switch agents, or take the home off the market entirely — it's your choice.</p>
+      <p>You can also extend the listing period at any time by mutual agreement if more time is needed.</p>
+    </div>
+  </div>
+
+  <div class="section" id="s3">
+    <button class="section-btn" onclick="toggle('s3')">
+      <div class="section-num">3</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Agent's Commission</div>
+        <div class="section-subtitle">How your agent gets paid</div>
+        <div class="section-tags"><span class="stag stag-seller">Seller</span><span class="stag stag-important">Important</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>The commission is the fee paid to your agent for successfully selling your home. It's expressed as a percentage of the final sale price and is paid at closing from your sale proceeds.</p>
+      <div class="highlight-box">
+        <strong>Commission is negotiable</strong>
+        The commission rate is not set by law. It is negotiated between you and your agent and written into the listing agreement. Make sure you understand and agree to the rate before signing.
+      </div>
+      <p>The listing agreement also specifies whether and how much of the commission will be offered to a buyer's agent. Since August 2024, sellers are no longer required to offer compensation to the buyer's agent — but doing so can make your home more attractive to a wider pool of buyers.</p>
+      <div class="warn-box">
+        <strong>Commission is earned at closing</strong>
+        In most cases, the commission is only paid if the home successfully sells. However, there are limited circumstances — such as if you back out of a sale without a valid reason — where you may still owe the commission.
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="s4">
+    <button class="section-btn" onclick="toggle('s4')">
+      <div class="section-num">4</div>
+      <div class="section-title-wrap">
+        <div class="section-title">MLS and Marketing</div>
+        <div class="section-subtitle">How your home will be advertised</div>
+        <div class="section-tags"><span class="stag stag-seller">Seller</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>By signing the listing agreement, you authorize your agent to list your home on the Multiple Listing Service (MLS) — the central database used by all real estate agents in the area to find homes for their buyers.</p>
+      <ul class="key-points">
+        <li>MLS exposure means your home is visible to every active buyer's agent in the market</li>
+        <li>Listings automatically syndicate to major sites like Zillow, Redfin, and Realtor.com</li>
+        <li>Your agent may also market through social media, email campaigns, open houses, and print</li>
+        <li>You can request a delay before going live on MLS — called a "Coming Soon" status — to build anticipation</li>
+      </ul>
+      <div class="highlight-box">
+        <strong>Photography matters</strong>
+        Professional photography is one of the highest-impact marketing tools for your listing. Most buyers form their first impression online, so great photos can directly affect how quickly your home sells and at what price.
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="s5">
+    <button class="section-btn" onclick="toggle('s5')">
+      <div class="section-num">5</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Seller's Obligations</div>
+        <div class="section-subtitle">What you're responsible for during the listing</div>
+        <div class="section-tags"><span class="stag stag-seller">Seller</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>As the seller, you have a few key responsibilities once the listing agreement is signed.</p>
+      <ul class="key-points">
+        <li>Provide accurate information about the property, including any known defects or issues</li>
+        <li>Complete all required disclosure forms honestly and in a timely manner</li>
+        <li>Make the property reasonably available for showings</li>
+        <li>Maintain the home in good condition throughout the listing period</li>
+        <li>Cooperate with the agent's marketing efforts, including photography and open houses</li>
+      </ul>
+      <div class="warn-box">
+        <strong>Disclosure is required by law</strong>
+        California law requires sellers to disclose all known material defects. Failing to disclose known issues — even after the sale closes — can expose you to legal liability. When in doubt, disclose.
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="s6">
+    <button class="section-btn" onclick="toggle('s6')">
+      <div class="section-num">6</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Agent's Obligations</div>
+        <div class="section-subtitle">What your agent is committed to doing</div>
+        <div class="section-tags"><span class="stag stag-seller">Seller</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>Your agent has a fiduciary duty to you — meaning they are legally obligated to act in your best interest at all times. The listing agreement outlines what they'll do to get your home sold.</p>
+      <ul class="key-points">
+        <li>List your home on the MLS and market it to potential buyers</li>
+        <li>Present all offers to you promptly and in writing</li>
+        <li>Advise you on pricing, negotiation strategy, and market conditions</li>
+        <li>Complete an Agent Visual Inspection Disclosure (AVID) of the property</li>
+        <li>Keep your personal information and motivations confidential from buyers</li>
+        <li>Communicate regularly with updates on showings, feedback, and market activity</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section" id="s7">
+    <button class="section-btn" onclick="toggle('s7')">
+      <div class="section-num">7</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Lockbox and Showings</div>
+        <div class="section-subtitle">How buyers will access your home</div>
+        <div class="section-tags"><span class="stag stag-seller">Seller</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>The listing agreement includes your authorization for how buyers and their agents can access your home for showings.</p>
+      <div class="highlight-box">
+        <strong>Lockbox authorization</strong>
+        A lockbox is a secure device placed on your door that holds a key to your home. Licensed agents can access it using their MLS credentials. You have the right to approve or decline the use of a lockbox — but having one generally makes showings easier to schedule and increases the number of buyers who can see your home.
+      </div>
+      <p>You can set showing preferences — such as requiring 24-hour notice, limiting certain days or times, or requiring you to be present. Your agent will communicate these preferences to all showing agents.</p>
+      <p>Every time a showing is scheduled, you should receive a notification. Feedback from showings is valuable information that can help guide pricing and presentation decisions.</p>
+    </div>
+  </div>
+
+  <div class="section" id="s8">
+    <button class="section-btn" onclick="toggle('s8')">
+      <div class="section-num">8</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Cancelling the Listing Agreement</div>
+        <div class="section-subtitle">Your options if you change your mind</div>
+        <div class="section-tags"><span class="stag stag-seller">Seller</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>Life changes. If you decide you no longer want to sell, you may be able to cancel the listing agreement — but the terms depend on your specific agreement and agent.</p>
+      <div class="highlight-box">
+        <strong>Talk to your agent first</strong>
+        Most agents will allow a cancellation if your circumstances genuinely change. A simple conversation is usually the best first step.
+      </div>
+      <div class="warn-box">
+        <strong>You may still owe a commission</strong>
+        If your agent has already produced a ready, willing, and able buyer at your listing price and you refuse to sell, you may still be liable for the commission. Review your agreement carefully and consult an attorney if you have concerns.
+      </div>
+      <p>Any cancellation should be documented in writing and signed by both you and your agent to avoid any future disputes.</p>
+    </div>
+  </div>
+
+  <div class="section" id="s9">
+    <button class="section-btn" onclick="toggle('s9')">
+      <div class="section-num">9</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Protection Period</div>
+        <div class="section-subtitle">What happens after the listing expires</div>
+        <div class="section-tags"><span class="stag stag-seller">Seller</span><span class="stag stag-important">Important</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>Most listing agreements include a protection period — typically 30 to 90 days after the listing expires. During this window, if you sell your home to someone who was introduced to it during the listing period, your agent may still be entitled to their commission.</p>
+      <div class="highlight-box">
+        <strong>Why this exists</strong>
+        The protection period prevents a buyer and seller from waiting for the listing to expire and then cutting the agent out of the deal to avoid paying commission — even though the agent did the work of bringing them together.
+      </div>
+      <p>Your agent is required to provide you with a list of buyers who were shown or made aware of the property during the listing period. If you sell to someone on that list within the protection period, the commission applies.</p>
+      <p>If you relist with a new agent and that agent procures the sale, the protection period from your previous agent generally does not apply.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-name">Kevin Lo | Lo Realty Group</div>
+  <p><a href="https://www.lorealtygroup.com">lorealtygroup.com</a> &nbsp;·&nbsp; DRE #02008476 &nbsp;·&nbsp; 626.833.8932</p>
+  <p style="margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.25);">This guide is for informational purposes only and does not constitute legal advice. Always read the full contract and consult a qualified professional with questions.</p>
+</footer>
+
+<script>
+  function toggle(id) { document.getElementById(id).classList.toggle('open'); }
+  function openSection(id) { const el = document.getElementById(id); el.classList.add('open'); setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50); }
+  let allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    document.querySelectorAll('.section').forEach(s => allOpen ? s.classList.add('open') : s.classList.remove('open'));
+    document.getElementById('expandAllBtn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+</body>
+</html>

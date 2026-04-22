@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding the Transfer Disclosure Statement — Lo Realty Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black: #9EA58A; --white: #ffffff; --cream: #f5f4f0; --cream-dark: #eeecea; --gold: #92836b; --gold-light: #c9a96e; --border: #e0ddd8; --text-muted: #7a7570; --font-serif: 'Cormorant Garamond', Georgia, serif; --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { font-family: var(--font-sans); background: var(--cream); color: var(--black); line-height: 1.6; }
+    header { background: var(--black); color: var(--white); padding: 60px 24px 52px; text-align: center; }
+    .eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); margin-bottom: 18px; }
+    header h1 { font-family: var(--font-serif); font-size: 44px; font-weight: 400; line-height: 1.15; color: var(--white); margin-bottom: 16px; max-width: 640px; margin-left: auto; margin-right: auto; }
+    header p { font-size: 15px; color: rgba(255,255,255,0.55); max-width: 480px; margin: 0 auto; line-height: 1.65; }
+    .intro-band { background: var(--white); border-bottom: 1px solid var(--border); }
+    .intro { max-width: 760px; margin: 0 auto; padding: 36px 24px; }
+    .intro-inner { display: flex; gap: 18px; align-items: flex-start; }
+    .intro-icon { font-size: 26px; flex-shrink: 0; margin-top: 3px; }
+    .intro h2 { font-family: var(--font-serif); font-size: 22px; font-weight: 400; margin-bottom: 8px; color: var(--black); }
+    .intro p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .disclaimer { background: #fdf8f0; border-left: 3px solid var(--gold-light); padding: 14px 18px; margin: 24px 0 0; border-radius: 0 4px 4px 0; font-size: 13px; color: #7a6030; line-height: 1.6; }
+    .toc-band { background: var(--cream); border-bottom: 1px solid var(--border); }
+    .toc { max-width: 760px; margin: 0 auto; padding: 28px 24px; }
+    .toc-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+    .toc-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .toc-chip { background: var(--white); border: 1.5px solid var(--border); border-radius: 100px; padding: 7px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; transition: all 0.15s; cursor: pointer; }
+    .toc-chip:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+    main { max-width: 760px; margin: 0 auto; padding: 36px 24px 100px; }
+    .toolbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+    .expand-all-btn { background: var(--white); border: 1.5px solid var(--border); border-radius: 100px; padding: 8px 20px; font-size: 13px; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
+    .expand-all-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+    .section { background: var(--white); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 10px; overflow: hidden; transition: box-shadow 0.18s; }
+    .section:hover, .section.open { box-shadow: 0 4px 18px rgba(0,0,0,0.07); }
+    .section-btn { width: 100%; text-align: left; background: none; border: none; padding: 22px 24px; cursor: pointer; display: flex; align-items: center; gap: 16px; }
+    .section-num { width: 36px; height: 36px; background: var(--cream); border: 1px solid var(--border); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 16px; font-weight: 600; color: var(--black); flex-shrink: 0; transition: all 0.15s; }
+    .section.open .section-num { background: var(--black); color: var(--white); border-color: var(--black); }
+    .section-title-wrap { flex: 1; }
+    .section-title { font-family: var(--font-serif); font-size: 18px; font-weight: 600; color: var(--black); line-height: 1.25; }
+    .section-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .section-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 7px; }
+    .stag { font-size: 11px; letter-spacing: 0.04em; padding: 3px 10px; border-radius: 100px; font-weight: 500; }
+    .stag-seller { background: #fef3e2; color: #9a5f10; }
+    .stag-buyer { background: #e8f0fb; color: #2a5fa8; }
+    .stag-both { background: #eaf5ea; color: #2a6e30; }
+    .stag-important { background: #f8ece8; color: #8a2a1a; }
+    .chevron { font-size: 20px; color: #ccc; transition: transform 0.2s, color 0.2s; flex-shrink: 0; }
+    .section.open .chevron { transform: rotate(180deg); color: var(--black); }
+    .section-body { display: none; border-top: 1px solid var(--cream-dark); padding: 28px 24px; }
+    .section.open .section-body { display: block; }
+    .section-body p { font-size: 14px; color: #4a4540; margin-bottom: 16px; line-height: 1.7; }
+    .section-body p:last-child { margin-bottom: 0; }
+    .highlight-box { background: #fdf8f0; border-left: 3px solid var(--gold-light); border-radius: 0 4px 4px 0; padding: 16px 18px; margin: 18px 0; font-size: 13.5px; color: #5a5040; line-height: 1.65; }
+    .highlight-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: var(--black); display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .warn-box { background: #fff8ee; border-left: 3px solid #d4901a; border-radius: 0 4px 4px 0; padding: 16px 18px; margin: 18px 0; font-size: 13.5px; color: #7a5510; line-height: 1.65; }
+    .warn-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: #a06010; display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .key-points { margin: 18px 0; list-style: none; }
+    .key-points li { font-size: 14px; color: #4a4540; padding: 9px 0 9px 24px; border-bottom: 1px solid var(--cream-dark); position: relative; line-height: 1.6; }
+    .key-points li:last-child { border-bottom: none; }
+    .key-points li::before { content: "✓"; position: absolute; left: 0; color: var(--gold-light); font-weight: 700; }
+    footer { background: var(--black); color: rgba(255,255,255,0.4); text-align: center; padding: 40px 24px; font-size: 13px; line-height: 1.7; }
+    footer .footer-name { font-family: var(--font-serif); font-size: 18px; font-weight: 400; color: var(--white); margin-bottom: 10px; }
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    @media (max-width: 600px) { header { padding: 44px 20px 36px; } header h1 { font-size: 32px; } .section-btn { padding: 18px; } .section-body { padding: 22px 18px; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Lo Realty Group | Client Resource</div>
+  <h1>Understanding the Transfer Disclosure Statement</h1>
+  <p>A simple guide to help you understand what you're signing and what it means for you.</p>
+</header>
+
+<div class="intro-band">
+  <div class="intro">
+    <div class="intro-inner">
+      <div class="intro-icon">📋</div>
+      <div>
+        <h2>What is the TDS?</h2>
+        <p>The Real Estate Transfer Disclosure Statement (TDS) is one of the most important documents in a California home sale. Required by law for most residential transactions, it's the seller's written disclosure of everything they know about the condition of the property — defects, improvements, features, and more. As a buyer, reading this carefully can save you from major surprises after you move in.</p>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <strong>Important:</strong> This guide is for informational purposes only and is not legal advice. Always read the full TDS carefully and consult a qualified attorney or inspector if you have concerns about any disclosures.
+    </div>
+  </div>
+</div>
+
+<div class="toc-band">
+  <div class="toc">
+    <div class="toc-label">Jump to a section</div>
+    <div class="toc-grid">
+      <a class="toc-chip" href="#" onclick="openSection('s1'); return false;">Why It's Required</a>
+      <a class="toc-chip" href="#" onclick="openSection('s2'); return false;">What Sellers Must Disclose</a>
+      <a class="toc-chip" href="#" onclick="openSection('s3'); return false;">Agent's Inspection</a>
+      <a class="toc-chip" href="#" onclick="openSection('s4'); return false;">Reading the TDS</a>
+      <a class="toc-chip" href="#" onclick="openSection('s5'); return false;">Red Flags to Watch</a>
+      <a class="toc-chip" href="#" onclick="openSection('s6'); return false;">Your Rights as a Buyer</a>
+      <a class="toc-chip" href="#" onclick="openSection('s7'); return false;">After Closing</a>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="toolbar">
+    <button class="expand-all-btn" id="expandAllBtn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <div class="section" id="s1">
+    <button class="section-btn" onclick="toggle('s1')">
+      <div class="section-num">1</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Why the TDS Is Required</div>
+        <div class="section-subtitle">California law and the seller's duty to disclose</div>
+        <div class="section-tags"><span class="stag stag-both">Buyer &amp; Seller</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>California Civil Code requires sellers of residential property (1-4 units) to provide a TDS to buyers before the sale closes. This is not optional — it's the law.</p>
+      <div class="highlight-box">
+        <strong>The purpose of the TDS</strong>
+        California follows a "buyer beware" principle, but with an important exception — sellers must proactively disclose what they know. The TDS is the mechanism for doing that. It protects buyers from hidden surprises and protects sellers from claims of fraud or concealment after the sale.
+      </div>
+      <p>There are limited exemptions — such as REO (bank-owned) properties, court-ordered sales, and certain probate transactions. In those cases, an Exempt Seller Disclosure (ESD) is used instead.</p>
+    </div>
+  </div>
+
+  <div class="section" id="s2">
+    <button class="section-btn" onclick="toggle('s2')">
+      <div class="section-num">2</div>
+      <div class="section-title-wrap">
+        <div class="section-title">What Sellers Are Required to Disclose</div>
+        <div class="section-subtitle">The scope of the seller's disclosure obligation</div>
+        <div class="section-tags"><span class="stag stag-seller">Seller</span><span class="stag stag-important">Important</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>The TDS asks sellers to disclose all known material facts about the property — anything that could affect the value or desirability of the home in the eyes of a reasonable buyer.</p>
+      <ul class="key-points">
+        <li>Known defects in the structure, roof, foundation, plumbing, electrical, or HVAC systems</li>
+        <li>Any unpermitted additions, conversions, or improvements</li>
+        <li>Presence of water damage, mold, or pest infestations</li>
+        <li>History of insurance claims or significant repairs</li>
+        <li>Neighborhood nuisances such as noise, odors, or encroachments</li>
+        <li>HOA membership, fees, and any pending special assessments</li>
+        <li>Any legal disputes, liens, or easements affecting the property</li>
+        <li>Deaths on the property within the past three years (with limited exceptions)</li>
+      </ul>
+      <div class="warn-box">
+        <strong>Sellers must disclose what they know</strong>
+        Sellers are not required to investigate issues they're unaware of — but they cannot intentionally hide known problems. If a seller discovers an issue and fails to disclose it, they can be held legally liable even years after the sale.
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="s3">
+    <button class="section-btn" onclick="toggle('s3')">
+      <div class="section-num">3</div>
+      <div class="section-title-wrap">
+        <div class="section-title">The Agent's Visual Inspection</div>
+        <div class="section-subtitle">What the agent adds to the TDS</div>
+        <div class="section-tags"><span class="stag stag-both">Both Agents</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>The TDS includes a section completed by the listing agent based on their own visual inspection of the property. Both the listing agent and the buyer's agent are required under California Civil Code to conduct and document a visual inspection of accessible areas.</p>
+      <div class="highlight-box">
+        <strong>Agent Visual Inspection Disclosure (AVID)</strong>
+        The AVID is a separate form where agents document what they observed during their walkthrough. This is in addition to the seller's TDS and provides an independent layer of disclosure from the agent's perspective.
+      </div>
+      <p>Agents are not home inspectors and are not expected to identify issues that require specialized knowledge. Their job is to note what's visible and reasonably apparent during a normal walkthrough.</p>
+    </div>
+  </div>
+
+  <div class="section" id="s4">
+    <button class="section-btn" onclick="toggle('s4')">
+      <div class="section-num">4</div>
+      <div class="section-title-wrap">
+        <div class="section-title">How to Read the TDS</div>
+        <div class="section-subtitle">What to look for when reviewing disclosures</div>
+        <div class="section-tags"><span class="stag stag-buyer">Buyer</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>When you receive the TDS, read every section carefully — don't just skim it. Pay particular attention to any "Yes" answers or written explanations, as these flag areas that warrant follow-up.</p>
+      <ul class="key-points">
+        <li>Look for any items checked "Yes" in the defects section and read the explanation</li>
+        <li>Note any systems or features the seller marks as unknown — this may mean they haven't maintained them</li>
+        <li>Cross-reference the TDS with the Seller Property Questionnaire (SPQ) for a more complete picture</li>
+        <li>Take note of anything the seller writes in the additional comments section</li>
+        <li>Compare what the seller discloses with what you observed during your showing</li>
+      </ul>
+      <div class="highlight-box">
+        <strong>Ask questions before removing contingencies</strong>
+        If anything in the TDS is unclear or concerning, ask your agent to get clarification from the seller before you remove your inspection contingency. Once contingencies are removed, your options become more limited.
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="s5">
+    <button class="section-btn" onclick="toggle('s5')">
+      <div class="section-num">5</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Red Flags to Watch For</div>
+        <div class="section-subtitle">Common disclosures that deserve extra attention</div>
+        <div class="section-tags"><span class="stag stag-buyer">Buyer</span><span class="stag stag-important">Important</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>Some disclosures are more serious than others. These are the ones that typically warrant additional investigation or expert review.</p>
+      <ul class="key-points">
+        <li><strong>Foundation issues:</strong> Cracks, settling, or movement can be expensive to repair and affect the structural integrity of the home</li>
+        <li><strong>Water intrusion or mold:</strong> Past or ongoing moisture problems can signal deeper issues and potential health concerns</li>
+        <li><strong>Unpermitted work:</strong> Additions or conversions done without permits may need to be permitted retroactively — or removed</li>
+        <li><strong>Roof age or damage:</strong> A roof near end of life can mean significant costs shortly after purchase</li>
+        <li><strong>Neighborhood disputes or encroachments:</strong> Ongoing disputes with neighbors can become your problem after you close</li>
+        <li><strong>HOA issues:</strong> Pending special assessments, litigation, or financial problems with the HOA can affect your costs and the property's value</li>
+      </ul>
+      <p>None of these are necessarily deal-breakers — but each one deserves a closer look, often from a licensed specialist.</p>
+    </div>
+  </div>
+
+  <div class="section" id="s6">
+    <button class="section-btn" onclick="toggle('s6')">
+      <div class="section-num">6</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Your Rights as a Buyer</div>
+        <div class="section-subtitle">What you can do after receiving the TDS</div>
+        <div class="section-tags"><span class="stag stag-buyer">Buyer</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>Once you receive the TDS, you have the right to investigate the disclosed items further before committing to the purchase.</p>
+      <div class="highlight-box">
+        <strong>3-day right to cancel</strong>
+        In California, buyers have 3 days after receiving the TDS (or 5 days if delivered by mail) to cancel the contract for any reason related to the disclosures — even if you've already signed the purchase agreement. This right exists regardless of your other contingency periods.
+      </div>
+      <p>You can also use the TDS disclosures as the basis for a Request for Repair (RR) — asking the seller to fix issues, provide credits, or reduce the price in response to what was disclosed.</p>
+      <p>If you have concerns about specific systems or areas of the home, this is also the time to schedule specialist inspections — roof, foundation, sewer, chimney, and so on.</p>
+    </div>
+  </div>
+
+  <div class="section" id="s7">
+    <button class="section-btn" onclick="toggle('s7')">
+      <div class="section-num">7</div>
+      <div class="section-title-wrap">
+        <div class="section-title">What Happens If Issues Are Found After Closing</div>
+        <div class="section-subtitle">Your options if a seller failed to disclose</div>
+        <div class="section-tags"><span class="stag stag-buyer">Buyer</span><span class="stag stag-important">Important</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>If you discover a material defect after closing that was not disclosed and that the seller knew about, you may have legal recourse.</p>
+      <div class="warn-box">
+        <strong>Document everything</strong>
+        If you discover an undisclosed defect, document it thoroughly with photos, contractor estimates, and any evidence suggesting the seller was aware of it. This documentation will be essential if you pursue a legal claim.
+      </div>
+      <p>California law allows buyers to seek damages from sellers who knowingly failed to disclose material defects. The statute of limitations varies, so if you believe you have a claim, consult a real estate attorney promptly.</p>
+      <p>Keep in mind that not every post-closing discovery is grounds for a claim. If an issue was visible during inspections or could have been discovered through reasonable due diligence, it may be harder to hold the seller responsible.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-name">Kevin Lo | Lo Realty Group</div>
+  <p><a href="https://www.lorealtygroup.com">lorealtygroup.com</a> &nbsp;·&nbsp; DRE #02008476 &nbsp;·&nbsp; 626.833.8932</p>
+  <p style="margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.25);">This guide is for informational purposes only and does not constitute legal advice. Always read the full contract and consult a qualified professional with questions.</p>
+</footer>
+
+<script>
+  function toggle(id) { document.getElementById(id).classList.toggle('open'); }
+  function openSection(id) { const el = document.getElementById(id); el.classList.add('open'); setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50); }
+  let allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    document.querySelectorAll('.section').forEach(s => allOpen ? s.classList.add('open') : s.classList.remove('open'));
+    document.getElementById('expandAllBtn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+</body>
+</html>

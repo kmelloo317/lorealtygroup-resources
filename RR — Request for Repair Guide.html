@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding the Request for Repair</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #9EA58A;
+            --white: #ffffff;
+            --cream: #f5f4f0;
+            --cream-dark: #eeecea;
+            --gold: #92836b;
+            --gold-light: #c9a96e;
+            --border: #e0ddd8;
+            --text-muted: #7a7570;
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: #333;
+            background: var(--cream);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: var(--black);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .eyebrow {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        header h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Intro Section */
+        .intro {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border);
+        }
+
+        .intro-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro h2 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .intro p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* TOC and Controls */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .toc {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .toc-chip {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 100px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            color: var(--gold);
+        }
+
+        .toc-chip:hover {
+            background: var(--cream);
+            border-color: var(--gold);
+        }
+
+        .expand-btn {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 100px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .expand-btn:hover {
+            background: var(--cream);
+            border-color: var(--gold);
+        }
+
+        /* Sections */
+        .section {
+            background: var(--white);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            cursor: pointer;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s ease;
+        }
+
+        .section-header:hover {
+            background: var(--cream);
+        }
+
+        .section-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--cream);
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .section.open .section-number {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .section-title-group {
+            flex: 1;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--black);
+            margin-bottom: 0.25rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .section-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: auto;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .tag {
+            background: #f0ebe3;
+            color: var(--gold);
+            padding: 0.35rem 0.8rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Content */
+        .section-content {
+            display: none;
+            padding: 2rem;
+        }
+
+        .section.open .section-content {
+            display: block;
+        }
+
+        .section-content p {
+            margin-bottom: 1.2rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .section-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: #fdf8f0;
+            border-left: 4px solid var(--gold-light);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box h3 {
+            font-family: var(--font-serif);
+            color: var(--black);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: #555;
+        }
+
+        /* Warning Box */
+        .warn-box {
+            background: #fff8ee;
+            border-left: 4px solid #d4901a;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .warn-box h3 {
+            font-family: var(--font-serif);
+            color: #8b5a00;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .warn-box p {
+            margin: 0;
+            color: #555;
+        }
+
+        /* Key Points */
+        .key-points {
+            margin: 1.5rem 0;
+        }
+
+        .key-points li {
+            margin-bottom: 0.8rem;
+            color: #555;
+            list-style: none;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .key-points li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--gold-light);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-name {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .toc {
+                justify-content: center;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-tags {
+                margin-left: 0;
+                margin-top: 1rem;
+                justify-content: flex-start;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="eyebrow">Lo Realty Group | Client Resource</div>
+        <h1>Understanding the Request for Repair</h1>
+        <p class="header-subtitle">A guide to negotiating repairs after your inspection</p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <div class="intro-icon">🔧</div>
+            <h2>What is the RR?</h2>
+            <p>The Request for Repair (RR) is the form a buyer uses to formally ask the seller to address issues discovered during the inspection period. It's not an ultimatum — it's the start of a negotiation. Understanding how to use this form strategically, and what to expect in return, can make a significant difference in the outcome of your transaction.</p>
+        </section>
+
+        <div class="controls">
+            <div class="toc">
+                <div class="toc-chip" onclick="openSection(1)">1. When to Submit</div>
+                <div class="toc-chip" onclick="openSection(2)">2. What to Include</div>
+                <div class="toc-chip" onclick="openSection(3)">3. What You Can Request</div>
+                <div class="toc-chip" onclick="openSection(4)">4. Seller's Response</div>
+                <div class="toc-chip" onclick="openSection(5)">5. Negotiating</div>
+                <div class="toc-chip" onclick="openSection(6)">6. Documentation</div>
+                <div class="toc-chip" onclick="openSection(7)">7. Final Walkthrough</div>
+            </div>
+            <button class="expand-btn" onclick="toggleAll()">Expand All</button>
+        </div>
+
+        <!-- Section 1 -->
+        <div class="section" id="section-1">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">1</div>
+                <div class="section-title-group">
+                    <div class="section-title">When to Submit a Request for Repair</div>
+                    <div class="section-subtitle">Timing within the inspection contingency period</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Buyer</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>The Request for Repair must be submitted while your inspection contingency is still active — typically within the first 17 days of the contract. Submitting it early gives both parties time to negotiate without the pressure of an expiring deadline.</p>
+                <div class="highlight-box">
+                    <h3>Don't wait until the last minute</h3>
+                    <p>Submitting a repair request one or two days before your contingency expires leaves very little time for the seller to respond and for you to consider your options. Plan to submit your request as soon as you've completed your inspections and reviewed the results.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section" id="section-2">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">2</div>
+                <div class="section-title-group">
+                    <div class="section-title">What to Include in a Repair Request</div>
+                    <div class="section-subtitle">How to frame your requests effectively</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Buyer</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>The most effective repair requests are clear, specific, and focused on legitimate concerns rather than wish lists.</p>
+                <ul class="key-points">
+                    <li>Reference the specific inspection report and item number where possible</li>
+                    <li>Describe the issue clearly — what it is, where it is, and why it matters</li>
+                    <li>Specify what you're asking for — a repair, a credit, or a price reduction</li>
+                    <li>Attach relevant inspection report pages to support your request</li>
+                    <li>Focus on health, safety, and major systems rather than cosmetic items</li>
+                </ul>
+                <div class="warn-box">
+                    <h3>Avoid overreaching</h3>
+                    <p>Requesting too many small or cosmetic repairs can frustrate the seller and put the deal at risk. Focus on the issues that genuinely matter — structural concerns, safety hazards, and major system failures.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="section" id="section-3">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">3</div>
+                <div class="section-title-group">
+                    <div class="section-title">What You Can Request</div>
+                    <div class="section-subtitle">Repairs, credits, or price reductions</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Buyer</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>Buyers have three basic options when submitting a repair request — and the right choice depends on the situation.</p>
+                <div class="highlight-box">
+                    <h3>Option 1: Repairs</h3>
+                    <p>You ask the seller to fix specific items before closing. The seller hires contractors and completes the work. Best for issues where the fix is straightforward and you want it resolved before you move in.</p>
+                </div>
+                <div class="highlight-box">
+                    <h3>Option 2: Credit</h3>
+                    <p>The seller gives you a credit at closing — either toward your closing costs or as a reduction in the purchase price — instead of making repairs. Best when you'd prefer to choose your own contractors or handle repairs on your own timeline after moving in.</p>
+                </div>
+                <div class="highlight-box">
+                    <h3>Option 3: Price Reduction</h3>
+                    <p>You ask the seller to lower the purchase price to account for the cost of repairs. Similar to a credit but structured differently and requires a contract amendment.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="section" id="section-4">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">4</div>
+                <div class="section-title-group">
+                    <div class="section-title">The Seller's Response Options</div>
+                    <div class="section-subtitle">What to expect after you submit</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Both</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>Once you submit a Request for Repair, the seller has several ways to respond — and no legal obligation to agree to any of your requests.</p>
+                <ul class="key-points">
+                    <li>Agree to all requests — the seller agrees to make all requested repairs or provide the requested credits</li>
+                    <li>Agree to some requests — the seller accepts certain items and declines others</li>
+                    <li>Counter with a lesser credit — the seller offers a smaller credit than requested</li>
+                    <li>Decline entirely — the seller refuses to make any repairs or offer any credits</li>
+                </ul>
+                <p>If the seller declines, you still have options. You can accept the property as-is, counter-negotiate, or cancel the contract and recover your deposit — as long as your inspection contingency is still active.</p>
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <div class="section" id="section-5">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">5</div>
+                <div class="section-title-group">
+                    <div class="section-title">Negotiating After the Seller Responds</div>
+                    <div class="section-subtitle">How to approach the back and forth</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Both</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>A repair negotiation is exactly that — a negotiation. It's rare for the first request to be the final agreement. Approach it with flexibility and keep the big picture in mind.</p>
+                <div class="highlight-box">
+                    <h3>Keep the deal in perspective</h3>
+                    <p>If you've found a home you love in a competitive market, consider what truly matters to you in the repair negotiation. Fighting over small items can damage goodwill and put the entire transaction at risk over things that cost very little to fix yourself after moving in.</p>
+                </div>
+                <p>Your agent will help you evaluate the seller's response and advise on a reasonable counter. The goal is to reach an agreement that both parties can accept — not to "win" the negotiation.</p>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <div class="section" id="section-6">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">6</div>
+                <div class="section-title-group">
+                    <div class="section-title">Documenting the Agreement</div>
+                    <div class="section-subtitle">Getting it in writing</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Both</span>
+                    <span class="tag">Important</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>Any repair agreement reached between buyer and seller must be documented in writing — either through the seller's formal response form or an addendum to the purchase agreement.</p>
+                <div class="warn-box">
+                    <h3>Verbal agreements don't count</h3>
+                    <p>If the seller verbally agrees to make repairs but you don't have it in writing before you remove your contingencies, you have no recourse if the work isn't done at closing. Always document repair agreements formally before signing the Contingency Removal.</p>
+                </div>
+                <p>Before closing, you have the right to do a final walkthrough to verify that agreed-upon repairs were completed. If they were not, you have the right to address this before releasing funds.</p>
+            </div>
+        </div>
+
+        <!-- Section 7 -->
+        <div class="section" id="section-7">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">7</div>
+                <div class="section-title-group">
+                    <div class="section-title">Final Walkthrough and Verification</div>
+                    <div class="section-subtitle">Confirming repairs before you close</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Buyer</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>Within 5 days of closing (or sooner if agreed), you have the right to do a final walkthrough of the property to confirm its condition and verify that any agreed-upon repairs were completed.</p>
+                <ul class="key-points">
+                    <li>Walk through every room and inspect all systems that were repaired</li>
+                    <li>Request receipts and permits for any work that was done</li>
+                    <li>If repairs were not completed as agreed, notify your agent immediately — do not simply close and hope for the best</li>
+                    <li>If issues are found, you may be able to negotiate a credit at closing, delay closing, or in some cases cancel the transaction</li>
+                </ul>
+                <div class="highlight-box">
+                    <h3>The walkthrough is not a second inspection</h3>
+                    <p>The final walkthrough is not an opportunity to identify new issues or renegotiate the deal. It's specifically to confirm that the property is in the agreed-upon condition and that repair commitments have been fulfilled.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-name">Kevin Lo | Lo Realty Group</div>
+        <div class="footer-links">
+            <a href="#">lorealtygroup.com</a>
+            <a href="#">DRE #02008476</a>
+            <a href="#">626.833.8932</a>
+        </div>
+    </footer>
+
+    <script>
+        function toggle(header) {
+            const section = header.closest('.section');
+            section.classList.toggle('open');
+        }
+
+        function openSection(num) {
+            const section = document.getElementById(`section-${num}`);
+            if (section) {
+                section.classList.add('open');
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function toggleAll() {
+            const sections = document.querySelectorAll('.section');
+            const allOpen = Array.from(sections).every(s => s.classList.contains('open'));
+
+            sections.forEach(section => {
+                if (allOpen) {
+                    section.classList.remove('open');
+                } else {
+                    section.classList.add('open');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

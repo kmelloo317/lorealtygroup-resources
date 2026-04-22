@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding the Buyer Representation Agreement — Lo Realty Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black: #9EA58A; --white: #ffffff; --cream: #f5f4f0; --cream-dark: #eeecea; --gold: #92836b; --gold-light: #c9a96e; --border: #e0ddd8; --text-muted: #7a7570; --font-serif: 'Cormorant Garamond', Georgia, serif; --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { font-family: var(--font-sans); background: var(--cream); color: var(--black); line-height: 1.6; }
+    header { background: var(--black); color: var(--white); padding: 60px 24px 52px; text-align: center; }
+    .eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); margin-bottom: 18px; }
+    header h1 { font-family: var(--font-serif); font-size: 44px; font-weight: 400; line-height: 1.15; color: var(--white); margin-bottom: 16px; max-width: 640px; margin-left: auto; margin-right: auto; }
+    header p { font-size: 15px; color: rgba(255,255,255,0.55); max-width: 480px; margin: 0 auto; line-height: 1.65; }
+    .intro-band { background: var(--white); border-bottom: 1px solid var(--border); }
+    .intro { max-width: 760px; margin: 0 auto; padding: 36px 24px; }
+    .intro-inner { display: flex; gap: 18px; align-items: flex-start; }
+    .intro-icon { font-size: 26px; flex-shrink: 0; margin-top: 3px; }
+    .intro h2 { font-family: var(--font-serif); font-size: 22px; font-weight: 400; margin-bottom: 8px; color: var(--black); }
+    .intro p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .disclaimer { background: #fdf8f0; border-left: 3px solid var(--gold-light); padding: 14px 18px; margin: 24px 0 0; border-radius: 0 4px 4px 0; font-size: 13px; color: #7a6030; line-height: 1.6; }
+    .toc-band { background: var(--cream); border-bottom: 1px solid var(--border); }
+    .toc { max-width: 760px; margin: 0 auto; padding: 28px 24px; }
+    .toc-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+    .toc-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .toc-chip { background: var(--white); border: 1.5px solid var(--border); border-radius: 100px; padding: 7px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; transition: all 0.15s; cursor: pointer; }
+    .toc-chip:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+    main { max-width: 760px; margin: 0 auto; padding: 36px 24px 100px; }
+    .toolbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+    .expand-all-btn { background: var(--white); border: 1.5px solid var(--border); border-radius: 100px; padding: 8px 20px; font-size: 13px; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
+    .expand-all-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+    .section { background: var(--white); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 10px; overflow: hidden; transition: box-shadow 0.18s; }
+    .section:hover, .section.open { box-shadow: 0 4px 18px rgba(0,0,0,0.07); }
+    .section-btn { width: 100%; text-align: left; background: none; border: none; padding: 22px 24px; cursor: pointer; display: flex; align-items: center; gap: 16px; }
+    .section-num { width: 36px; height: 36px; background: var(--cream); border: 1px solid var(--border); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 16px; font-weight: 600; color: var(--black); flex-shrink: 0; transition: all 0.15s; }
+    .section.open .section-num { background: var(--black); color: var(--white); border-color: var(--black); }
+    .section-title-wrap { flex: 1; }
+    .section-title { font-family: var(--font-serif); font-size: 18px; font-weight: 600; color: var(--black); line-height: 1.25; }
+    .section-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .section-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 7px; }
+    .stag { font-size: 11px; letter-spacing: 0.04em; padding: 3px 10px; border-radius: 100px; font-weight: 500; }
+    .stag-buyer { background: #e8f0fb; color: #2a5fa8; }
+    .stag-important { background: #f8ece8; color: #8a2a1a; }
+    .chevron { font-size: 20px; color: #ccc; transition: transform 0.2s, color 0.2s; flex-shrink: 0; }
+    .section.open .chevron { transform: rotate(180deg); color: var(--black); }
+    .section-body { display: none; border-top: 1px solid var(--cream-dark); padding: 28px 24px; }
+    .section.open .section-body { display: block; }
+    .section-body p { font-size: 14px; color: #4a4540; margin-bottom: 16px; line-height: 1.7; }
+    .section-body p:last-child { margin-bottom: 0; }
+    .highlight-box { background: #fdf8f0; border-left: 3px solid var(--gold-light); border-radius: 0 4px 4px 0; padding: 16px 18px; margin: 18px 0; font-size: 13.5px; color: #5a5040; line-height: 1.65; }
+    .highlight-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: var(--black); display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .warn-box { background: #fff8ee; border-left: 3px solid #d4901a; border-radius: 0 4px 4px 0; padding: 16px 18px; margin: 18px 0; font-size: 13.5px; color: #7a5510; line-height: 1.65; }
+    .warn-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: #a06010; display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .key-points { margin: 18px 0; list-style: none; }
+    .key-points li { font-size: 14px; color: #4a4540; padding: 9px 0 9px 24px; border-bottom: 1px solid var(--cream-dark); position: relative; line-height: 1.6; }
+    .key-points li:last-child { border-bottom: none; }
+    .key-points li::before { content: "✓"; position: absolute; left: 0; color: var(--gold-light); font-weight: 700; }
+    footer { background: var(--black); color: rgba(255,255,255,0.4); text-align: center; padding: 40px 24px; font-size: 13px; line-height: 1.7; }
+    footer .footer-name { font-family: var(--font-serif); font-size: 18px; font-weight: 400; color: var(--white); margin-bottom: 10px; }
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    @media (max-width: 600px) { header { padding: 44px 20px 36px; } header h1 { font-size: 32px; } .section-btn { padding: 18px; } .section-body { padding: 22px 18px; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Lo Realty Group | Client Resource</div>
+  <h1>Understanding the Buyer Representation Agreement</h1>
+  <p>A simple guide to help you understand what you're signing and what it means for you.</p>
+</header>
+
+<div class="intro-band">
+  <div class="intro">
+    <div class="intro-inner">
+      <div class="intro-icon">🤝</div>
+      <div>
+        <h2>What is the BRBC?</h2>
+        <p>The Buyer Representation and Broker Compensation Agreement (BRBC) is the contract that formalizes the relationship between you and your buyer's agent. Required by California law since August 2024, it must be signed before your agent shows you any homes or submits an offer on your behalf. It outlines what your agent will do for you, how they get paid, and what you're agreeing to as a buyer.</p>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <strong>Important:</strong> This guide is for informational purposes only and is not legal advice. The BRBC is a legally binding contract. Always read the full document and consult a qualified attorney if you have questions before signing.
+    </div>
+  </div>
+</div>
+
+<div class="toc-band">
+  <div class="toc">
+    <div class="toc-label">Jump to a section</div>
+    <div class="toc-grid">
+      <a class="toc-chip" href="#" onclick="openSection('s1'); return false;">Why It's Required</a>
+      <a class="toc-chip" href="#" onclick="openSection('s2'); return false;">Agreement Term</a>
+      <a class="toc-chip" href="#" onclick="openSection('s3'); return false;">Agent Compensation</a>
+      <a class="toc-chip" href="#" onclick="openSection('s4'); return false;">What Your Agent Does</a>
+      <a class="toc-chip" href="#" onclick="openSection('s5'); return false;">Your Obligations</a>
+      <a class="toc-chip" href="#" onclick="openSection('s6'); return false;">Exclusivity</a>
+      <a class="toc-chip" href="#" onclick="openSection('s7'); return false;">Cancellation</a>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="toolbar">
+    <button class="expand-all-btn" id="expandAllBtn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <div class="section" id="s1">
+    <button class="section-btn" onclick="toggle('s1')">
+      <div class="section-num">1</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Why This Agreement Is Now Required</div>
+        <div class="section-subtitle">The NAR settlement and what changed in 2024</div>
+        <div class="section-tags"><span class="stag stag-buyer">Buyer</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>As of August 2024, California law requires that buyers sign a written representation agreement before a real estate agent can show them homes or submit offers on their behalf. This change came as part of a nationwide settlement involving the National Association of Realtors.</p>
+      <div class="highlight-box">
+        <strong>What changed</strong>
+        Previously, buyer's agents were typically compensated through a portion of the seller's commission — and buyers rarely had to think about it. Now, buyer agent compensation must be agreed upon in writing upfront, creating more transparency for everyone involved.
+      </div>
+      <p>This is actually a positive development for buyers. It ensures you know exactly what your agent is being paid, creates a formal commitment from your agent to represent your interests, and protects both parties throughout the transaction.</p>
+    </div>
+  </div>
+
+  <div class="section" id="s2">
+    <button class="section-btn" onclick="toggle('s2')">
+      <div class="section-num">2</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Agreement Term</div>
+        <div class="section-subtitle">How long the agreement lasts</div>
+        <div class="section-tags"><span class="stag stag-buyer">Buyer</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>The BRBC runs for a specific period of time agreed upon by you and your agent. This is typically the expected duration of your home search — anywhere from 30 days to several months.</p>
+      <div class="highlight-box">
+        <strong>Geographic scope</strong>
+        The agreement also defines the geographic area and property type you're searching for. For example, it might cover single-family homes in specific cities within a price range. If your search expands, the agreement can be modified.
+      </div>
+      <p>If you haven't found a home by the end of the term, you can renew the agreement with the same agent or move on. The agreement does not lock you into purchasing a home — it simply defines the working relationship during your search.</p>
+    </div>
+  </div>
+
+  <div class="section" id="s3">
+    <button class="section-btn" onclick="toggle('s3')">
+      <div class="section-num">3</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Agent Compensation</div>
+        <div class="section-subtitle">How your agent gets paid and who pays them</div>
+        <div class="section-tags"><span class="stag stag-buyer">Buyer</span><span class="stag stag-important">Important</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>The BRBC specifies the compensation your agent will receive when you successfully purchase a home. This is expressed as a percentage of the purchase price or a flat fee.</p>
+      <div class="highlight-box">
+        <strong>Who actually pays</strong>
+        In many transactions, the seller offers compensation to the buyer's agent as part of the deal — meaning you may not pay anything out of pocket. The BRBC simply establishes the agreed-upon rate. If the seller offers less than that amount, the difference may be negotiated or covered by you.
+      </div>
+      <div class="warn-box">
+        <strong>Always ask upfront</strong>
+        Before signing, make sure you understand the compensation amount and under what circumstances you would be responsible for paying it directly. This varies by transaction.
+      </div>
+      <p>Compensation is only earned if you successfully close on a home. If you don't buy, your agent generally does not get paid.</p>
+    </div>
+  </div>
+
+  <div class="section" id="s4">
+    <button class="section-btn" onclick="toggle('s4')">
+      <div class="section-num">4</div>
+      <div class="section-title-wrap">
+        <div class="section-title">What Your Agent Is Committed to Doing</div>
+        <div class="section-subtitle">Your agent's duties and obligations to you</div>
+        <div class="section-tags"><span class="stag stag-buyer">Buyer</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>By signing the BRBC, your agent formally commits to representing your interests throughout the home search and purchase process. This creates a fiduciary relationship — meaning your agent is legally obligated to put your interests first.</p>
+      <ul class="key-points">
+        <li>Search for properties that match your needs, budget, and timeline</li>
+        <li>Schedule and accompany you on showings</li>
+        <li>Provide comparative market analysis to help you make informed offers</li>
+        <li>Prepare and submit offers on your behalf</li>
+        <li>Negotiate price, terms, and repairs in your favor</li>
+        <li>Guide you through inspections, contingencies, and closing</li>
+        <li>Keep your financial situation and motivations confidential from sellers</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section" id="s5">
+    <button class="section-btn" onclick="toggle('s5')">
+      <div class="section-num">5</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Your Obligations as a Buyer</div>
+        <div class="section-subtitle">What you're agreeing to</div>
+        <div class="section-tags"><span class="stag stag-buyer">Buyer</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>The BRBC is a two-way commitment. In exchange for your agent's dedicated representation, you agree to work exclusively with them during the agreement period and to compensate them if you purchase a home.</p>
+      <ul class="key-points">
+        <li>Work with your agent in good faith throughout the search process</li>
+        <li>Notify your agent of any properties you find independently (open houses, online listings, etc.)</li>
+        <li>Provide accurate information about your needs, budget, and timeline</li>
+        <li>Get pre-approved for financing so you're ready to move when the right home comes along</li>
+      </ul>
+      <div class="highlight-box">
+        <strong>Found a home on your own?</strong>
+        If you visit an open house or contact a listing agent directly during your agreement period, let your agent know right away. Your representation agreement still applies, and your agent should be the one submitting your offer.
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="s6">
+    <button class="section-btn" onclick="toggle('s6')">
+      <div class="section-num">6</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Exclusivity</div>
+        <div class="section-subtitle">Can you work with more than one agent?</div>
+        <div class="section-tags"><span class="stag stag-buyer">Buyer</span><span class="stag stag-important">Important</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>The BRBC is typically an exclusive agreement — meaning you agree to work with one agent for the duration of the term within the defined geographic area and property type.</p>
+      <div class="warn-box">
+        <strong>Working with multiple agents can cost you</strong>
+        If you sign representation agreements with more than one agent and purchase a home, you could potentially owe compensation to both agents. Always be upfront about any existing agreements before signing with someone new.
+      </div>
+      <p>If you're not happy with your agent, the right approach is to have a conversation and, if needed, formally cancel the agreement before working with someone else. Most agents will release you if the relationship isn't working — just ask.</p>
+    </div>
+  </div>
+
+  <div class="section" id="s7">
+    <button class="section-btn" onclick="toggle('s7')">
+      <div class="section-num">7</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Cancelling the Agreement</div>
+        <div class="section-subtitle">How to end the relationship if needed</div>
+        <div class="section-tags"><span class="stag stag-buyer">Buyer</span></div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>If your circumstances change — you decide not to buy, you're relocating to a different area, or the relationship with your agent isn't working — you can request to cancel the BRBC.</p>
+      <div class="highlight-box">
+        <strong>Start with a conversation</strong>
+        Most agents will agree to cancel if you have a genuine reason. A good agent wants to work with motivated, committed buyers — not hold someone hostage to a contract.
+      </div>
+      <p>Any cancellation should be documented in writing and signed by both parties. Once cancelled, you are free to work with a new agent — though be aware of any protection period that may still apply for properties you were already introduced to.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-name">Kevin Lo | Lo Realty Group</div>
+  <p><a href="https://www.lorealtygroup.com">lorealtygroup.com</a> &nbsp;·&nbsp; DRE #02008476 &nbsp;·&nbsp; 626.833.8932</p>
+  <p style="margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.25);">This guide is for informational purposes only and does not constitute legal advice. Always read the full contract and consult a qualified professional with questions.</p>
+</footer>
+
+<script>
+  function toggle(id) { document.getElementById(id).classList.toggle('open'); }
+  function openSection(id) { const el = document.getElementById(id); el.classList.add('open'); setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50); }
+  let allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    document.querySelectorAll('.section').forEach(s => allOpen ? s.classList.add('open') : s.classList.remove('open'));
+    document.getElementById('expandAllBtn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+</body>
+</html>

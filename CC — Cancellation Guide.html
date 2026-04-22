@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding the Cancellation of Contract</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #9EA58A;
+            --white: #ffffff;
+            --cream: #f5f4f0;
+            --cream-dark: #eeecea;
+            --gold: #92836b;
+            --gold-light: #c9a96e;
+            --border: #e0ddd8;
+            --text-muted: #7a7570;
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: #333;
+            background: var(--cream);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: var(--black);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .eyebrow {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        header h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Intro Section */
+        .intro {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border);
+        }
+
+        .intro-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro h2 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .intro p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* TOC and Controls */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .toc {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .toc-chip {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 100px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            color: var(--gold);
+        }
+
+        .toc-chip:hover {
+            background: var(--cream);
+            border-color: var(--gold);
+        }
+
+        .expand-btn {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 100px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .expand-btn:hover {
+            background: var(--cream);
+            border-color: var(--gold);
+        }
+
+        /* Sections */
+        .section {
+            background: var(--white);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            cursor: pointer;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s ease;
+        }
+
+        .section-header:hover {
+            background: var(--cream);
+        }
+
+        .section-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--cream);
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .section.open .section-number {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .section-title-group {
+            flex: 1;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--black);
+            margin-bottom: 0.25rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .section-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: auto;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .tag {
+            background: #f0ebe3;
+            color: var(--gold);
+            padding: 0.35rem 0.8rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Content */
+        .section-content {
+            display: none;
+            padding: 2rem;
+        }
+
+        .section.open .section-content {
+            display: block;
+        }
+
+        .section-content p {
+            margin-bottom: 1.2rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .section-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: #fdf8f0;
+            border-left: 4px solid var(--gold-light);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box h3 {
+            font-family: var(--font-serif);
+            color: var(--black);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: #555;
+        }
+
+        /* Warning Box */
+        .warn-box {
+            background: #fff8ee;
+            border-left: 4px solid #d4901a;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .warn-box h3 {
+            font-family: var(--font-serif);
+            color: #8b5a00;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .warn-box p {
+            margin: 0;
+            color: #555;
+        }
+
+        /* Key Points */
+        .key-points {
+            margin: 1.5rem 0;
+        }
+
+        .key-points li {
+            margin-bottom: 0.8rem;
+            color: #555;
+            list-style: none;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .key-points li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--gold-light);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-name {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .toc {
+                justify-content: center;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-tags {
+                margin-left: 0;
+                margin-top: 1rem;
+                justify-content: flex-start;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="eyebrow">Lo Realty Group | Client Resource</div>
+        <h1>Understanding the Cancellation of Contract</h1>
+        <p class="header-subtitle">A guide to ending your real estate transaction</p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <div class="intro-icon">📁</div>
+            <h2>What is the CC?</h2>
+            <p>The Cancellation of Contract, Release of Deposit, and Cancellation of Escrow (CC) is the form used to formally end a real estate transaction before it closes. It specifies how the earnest money deposit is handled, instructs the escrow company to close the file, and releases both parties from their obligations. Understanding when you can cancel — and what happens to your deposit — is one of the most important things a buyer or seller can know.</p>
+        </section>
+
+        <div class="controls">
+            <div class="toc">
+                <div class="toc-chip" onclick="openSection(1)">1. When Cancellation Is an Option</div>
+                <div class="toc-chip" onclick="openSection(2)">2. The Deposit</div>
+                <div class="toc-chip" onclick="openSection(3)">3. Liquidated Damages</div>
+                <div class="toc-chip" onclick="openSection(4)">4. Seller-Initiated</div>
+                <div class="toc-chip" onclick="openSection(5)">5. Mutual Cancellation</div>
+                <div class="toc-chip" onclick="openSection(6)">6. What Happens to Escrow</div>
+                <div class="toc-chip" onclick="openSection(7)">7. Protecting Yourself</div>
+            </div>
+            <button class="expand-btn" onclick="toggleAll()">Expand All</button>
+        </div>
+
+        <!-- Section 1 -->
+        <div class="section" id="section-1">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">1</div>
+                <div class="section-title-group">
+                    <div class="section-title">When Cancellation Is an Option</div>
+                    <div class="section-subtitle">Your right to exit the contract</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Both</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>Either party can initiate a cancellation, but the circumstances determine whether it's clean and cost-free or complicated and potentially expensive. The key factor is whether the buyer still has active contingencies in place.</p>
+                <div class="highlight-box">
+                    <h3>During the contingency period</h3>
+                    <p>While active contingencies remain, a buyer can cancel for any reason tied to those contingencies and generally receive their full deposit back. This is the buyer's most protected window in the transaction.</p>
+                </div>
+                <div class="warn-box">
+                    <h3>After contingencies are removed</h3>
+                    <p>Once the buyer has formally removed all contingencies, canceling without a valid legal reason puts the deposit at risk. The seller may be entitled to keep it as liquidated damages.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section" id="section-2">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">2</div>
+                <div class="section-title-group">
+                    <div class="section-title">The Deposit — Who Gets It?</div>
+                    <div class="section-subtitle">How the earnest money is handled at cancellation</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Both</span>
+                    <span class="tag">Important</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>The CC form includes a section where both parties indicate how the deposit should be released. This is often the most contentious part of any cancellation.</p>
+                <ul class="key-points">
+                    <li>If the buyer cancels during the contingency period for a valid contingency reason — deposit is returned to the buyer</li>
+                    <li>If the seller defaults or fails to perform — deposit is typically returned to the buyer</li>
+                    <li>If the buyer cancels after removing contingencies without a valid reason — seller may be entitled to keep the deposit as liquidated damages (capped at 3% of purchase price in most residential transactions)</li>
+                    <li>If both parties can't agree on the split — escrow holds the deposit until the dispute is resolved</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="section" id="section-3">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">3</div>
+                <div class="section-title-group">
+                    <div class="section-title">Liquidated Damages</div>
+                    <div class="section-subtitle">What this means for buyers and sellers</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Both</span>
+                    <span class="tag">Important</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>The California Residential Purchase Agreement includes a liquidated damages clause, which means that if the buyer defaults after removing contingencies, the seller's remedy is limited to keeping the deposit — up to 3% of the purchase price.</p>
+                <div class="highlight-box">
+                    <h3>A cap, not a guarantee</h3>
+                    <p>Liquidated damages limit the seller's recovery — they generally cannot sue the buyer for additional damages beyond the deposit in a standard residential transaction. For buyers, it means your maximum exposure is your deposit amount (up to 3% of the price).</p>
+                </div>
+                <p>Both buyer and seller must have initialed the liquidated damages clause in the purchase agreement for it to apply. If it wasn't initialed, the seller may have broader legal remedies.</p>
+            </div>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="section" id="section-4">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">4</div>
+                <div class="section-title-group">
+                    <div class="section-title">Seller-Initiated Cancellation</div>
+                    <div class="section-subtitle">When the seller wants out</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Seller</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>Sellers can also initiate a cancellation — but they have fewer clean exit options than buyers during the contingency period.</p>
+                <p>A seller can cancel if the buyer fails to perform after a Notice to Buyer to Perform (NBP) has been issued and the buyer does not respond within the required timeframe. Outside of that, sellers generally cannot cancel simply because they've changed their mind or received a better offer after signing.</p>
+                <div class="warn-box">
+                    <h3>Sellers who cancel without cause face risk</h3>
+                    <p>If a seller backs out of a valid contract without legal justification, the buyer may be entitled to pursue specific performance — a legal remedy that forces the seller to complete the sale — in addition to recovering their deposit.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <div class="section" id="section-5">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">5</div>
+                <div class="section-title-group">
+                    <div class="section-title">Mutual Cancellation</div>
+                    <div class="section-subtitle">When both sides agree to walk away</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Both</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>The cleanest cancellation is a mutual one — where both buyer and seller agree in writing to end the transaction, release the deposit, and move on. This avoids disputes and allows both parties to move forward quickly.</p>
+                <div class="highlight-box">
+                    <h3>Document everything in writing</h3>
+                    <p>Even when a cancellation is amicable, it must be documented in writing on the official CC form and signed by both parties. A verbal agreement to cancel is not sufficient — escrow will not release funds or close the file without signed documentation.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <div class="section" id="section-6">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">6</div>
+                <div class="section-title-group">
+                    <div class="section-title">What Happens to Escrow</div>
+                    <div class="section-subtitle">Closing the file after cancellation</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Both</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>Once the CC is signed by all parties, it is delivered to the escrow company with instructions on how to release the deposit. The escrow company then closes the file.</p>
+                <ul class="key-points">
+                    <li>Escrow will release the deposit per the instructions in the CC form</li>
+                    <li>Any escrow fees incurred up to the point of cancellation are typically split between the parties or specified in the CC</li>
+                    <li>The transaction is formally concluded — no further obligations exist for either party under the purchase agreement</li>
+                </ul>
+                <p>If the deposit is being disputed and both parties cannot agree, escrow is required by law to hold the funds until the matter is resolved — through mediation, arbitration, or legal action.</p>
+            </div>
+        </div>
+
+        <!-- Section 7 -->
+        <div class="section" id="section-7">
+            <div class="section-header" onclick="toggle(this)">
+                <div class="section-number">7</div>
+                <div class="section-title-group">
+                    <div class="section-title">Protecting Yourself</div>
+                    <div class="section-subtitle">Best practices before and during cancellation</div>
+                </div>
+                <div class="section-tags">
+                    <span class="tag">Both</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <p>Whether you're a buyer or seller, a few simple steps can protect your interests if a transaction falls apart.</p>
+                <ul class="key-points">
+                    <li>Never cancel verbally — always use the official CC form and get signatures from all parties</li>
+                    <li>Don't release your contingencies until you're truly ready to commit</li>
+                    <li>If you're a seller, don't accept a new offer until the CC is fully signed and the prior transaction is formally cancelled</li>
+                    <li>Consult your agent and potentially an attorney before cancelling in complex situations</li>
+                    <li>Keep copies of all signed documents related to the cancellation for your records</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-name">Kevin Lo | Lo Realty Group</div>
+        <div class="footer-links">
+            <a href="#">lorealtygroup.com</a>
+            <a href="#">DRE #02008476</a>
+            <a href="#">626.833.8932</a>
+        </div>
+    </footer>
+
+    <script>
+        function toggle(header) {
+            const section = header.closest('.section');
+            section.classList.toggle('open');
+        }
+
+        function openSection(num) {
+            const section = document.getElementById(`section-${num}`);
+            if (section) {
+                section.classList.add('open');
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function toggleAll() {
+            const sections = document.querySelectorAll('.section');
+            const allOpen = Array.from(sections).every(s => s.classList.contains('open'));
+
+            sections.forEach(section => {
+                if (allOpen) {
+                    section.classList.remove('open');
+                } else {
+                    section.classList.add('open');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
