@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Understanding the Notice to Buyer to Perform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --black: #9EA58A; --white: #ffffff; --cream: #f5f4f0; --cream-dark: #eeecea; --gold: #92836b; --gold-light: #c9a96e; --border: #e0ddd8; --text-muted: #7a7570; --font-serif: 'Cormorant Garamond', Georgia, serif; --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: var(--cream); color: var(--black); line-height: 1.6; }
+    header { background: var(--black); color: var(--white); padding: 60px 24px 52px; text-align: center; }
+    .eyebrow { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); margin-bottom: 18px; }
+    header h1 { font-family: var(--font-serif); font-size: 44px; font-weight: 400; line-height: 1.15; color: var(--white); margin-bottom: 16px; letter-spacing: -0.01em; max-width: 640px; margin-left: auto; margin-right: auto; }
+    header p { font-size: 15px; color: rgba(255,255,255,0.55); max-width: 480px; margin: 0 auto; line-height: 1.65; }
+    .intro-band { background: var(--white); border-bottom: 1px solid var(--border); }
+    .intro { max-width: 760px; margin: 0 auto; padding: 36px 24px; }
+    .intro-inner { display: flex; gap: 18px; align-items: flex-start; }
+    .intro-icon { font-size: 26px; flex-shrink: 0; margin-top: 3px; }
+    .intro h2 { font-family: var(--font-serif); font-size: 22px; font-weight: 400; margin-bottom: 8px; color: var(--black); }
+    .intro p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .disclaimer { background: #fdf8f0; border-left: 3px solid var(--gold-light); padding: 14px 18px; margin: 24px 0 0; border-radius: 0 4px 4px 0; font-size: 13px; color: #7a6030; line-height: 1.6; }
+    .toc-band { background: var(--cream); border-bottom: 1px solid var(--border); }
+    .toc { max-width: 760px; margin: 0 auto; padding: 28px 24px; }
+    .toc-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+    .toc-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .toc-chip { background: var(--white); border: 1.5px solid var(--border); border-radius: 100px; padding: 7px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; transition: all 0.15s; cursor: pointer; }
+    .toc-chip:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+    main { max-width: 760px; margin: 0 auto; padding: 36px 24px 100px; }
+    .toolbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+    .expand-all-btn { background: var(--white); border: 1.5px solid var(--border); border-radius: 100px; padding: 8px 20px; font-size: 13px; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
+    .expand-all-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+    .section { background: var(--white); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 10px; overflow: hidden; transition: box-shadow 0.18s; }
+    .section:hover, .section.open { box-shadow: 0 4px 18px rgba(0,0,0,0.07); }
+    .section-btn { width: 100%; text-align: left; background: none; border: none; padding: 22px 24px; cursor: pointer; display: flex; align-items: center; gap: 16px; }
+    .section-num { width: 36px; height: 36px; background: var(--cream); border: 1px solid var(--border); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 16px; font-weight: 600; color: var(--black); flex-shrink: 0; transition: all 0.15s; }
+    .section.open .section-num { background: var(--black); color: var(--white); border-color: var(--black); }
+    .section-title-wrap { flex: 1; }
+    .section-title { font-family: var(--font-serif); font-size: 18px; font-weight: 600; color: var(--black); line-height: 1.25; letter-spacing: -0.01em; }
+    .section-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .section-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 7px; }
+    .stag { font-size: 11px; letter-spacing: 0.04em; padding: 3px 10px; border-radius: 100px; font-weight: 500; }
+    .stag-buyer { background: #e8f0fb; color: #2a5fa8; }
+    .stag-seller { background: #fef3e2; color: #9a5f10; }
+    .stag-both { background: #eaf5ea; color: #2a6e30; }
+    .stag-important { background: #f8ece8; color: #8a2a1a; }
+    .chevron { font-size: 20px; color: #ccc; transition: transform 0.2s, color 0.2s; flex-shrink: 0; }
+    .section.open .chevron { transform: rotate(180deg); color: var(--black); }
+    .section-body { display: none; border-top: 1px solid var(--cream-dark); padding: 28px 24px; }
+    .section.open .section-body { display: block; }
+    .section-body p { font-size: 14px; color: #4a4540; margin-bottom: 16px; line-height: 1.7; }
+    .section-body p:last-child { margin-bottom: 0; }
+    .highlight-box { background: #fdf8f0; border-left: 3px solid var(--gold-light); border-radius: 0 4px 4px 0; padding: 16px 18px; margin: 18px 0; font-size: 13.5px; color: #5a5040; line-height: 1.65; }
+    .highlight-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: var(--black); display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .warn-box { background: #fff8ee; border-left: 3px solid #d4901a; border-radius: 0 4px 4px 0; padding: 16px 18px; margin: 18px 0; font-size: 13.5px; color: #7a5510; line-height: 1.65; }
+    .warn-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: #a06010; display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .key-points { margin: 18px 0; list-style: none; }
+    .key-points li { font-size: 14px; color: #4a4540; padding: 9px 0 9px 24px; border-bottom: 1px solid var(--cream-dark); position: relative; line-height: 1.6; }
+    .key-points li:last-child { border-bottom: none; }
+    .key-points li::before { content: "✓"; position: absolute; left: 0; color: var(--gold-light); font-weight: 700; }
+    footer { background: var(--black); color: rgba(255,255,255,0.4); text-align: center; padding: 40px 24px; font-size: 13px; line-height: 1.7; }
+    footer .footer-name { font-family: var(--font-serif); font-size: 18px; font-weight: 400; color: var(--white); margin-bottom: 10px; }
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    @media (max-width: 600px) { header { padding: 44px 20px 36px; } header h1 { font-size: 32px; } .section-btn { padding: 18px; } .section-body { padding: 22px 18px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">Lo Realty Group | Client Resource</div>
+    <h1>Understanding the Notice to Buyer to Perform</h1>
+    <p>A simple guide to help you understand what you're signing and what it means for you.</p>
+  </header>
+
+  <div class="intro-band">
+    <div class="intro">
+      <div class="intro-inner">
+        <div class="intro-icon">⏰</div>
+        <div>
+          <h2>What is the NBP?</h2>
+          <p>The Notice to Buyer to Perform (NBP) is a formal written notice that tells you, the buyer, that you've missed a deadline in your purchase agreement. The seller sends this notice when you haven't completed an action by the agreed-upon date, like removing contingencies, depositing earnest money, or getting your loan approval. It's essentially a "catch up now or lose the deal" message that gives you a short window to get back on track.</p>
+        </div>
+      </div>
+      <div class="disclaimer">
+        <strong>Important:</strong> This guide is for informational purposes only and is not legal advice. The NBP is a legally binding notice. Always read the full document and consult a qualified attorney if you have questions before signing or responding.
+      </div>
+    </div>
+  </div>
+
+  <div class="toc-band">
+    <div class="toc">
+      <div class="toc-label">In This Guide</div>
+      <div class="toc-grid">
+        <a class="toc-chip" href="#" onclick="openSection('s1'); return false;">What the NBP Is</a>
+        <a class="toc-chip" href="#" onclick="openSection('s2'); return false;">When Sellers Use It</a>
+        <a class="toc-chip" href="#" onclick="openSection('s3'); return false;">The 2-Day Clock</a>
+        <a class="toc-chip" href="#" onclick="openSection('s4'); return false;">What Buyers Should Do</a>
+        <a class="toc-chip" href="#" onclick="openSection('s5'); return false;">If You Don't Perform</a>
+        <a class="toc-chip" href="#" onclick="openSection('s6'); return false;">How to Avoid One</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div class="toolbar">
+      <button class="expand-all-btn" id="expandAllBtn" onclick="toggleAll()">Expand All</button>
+    </div>
+
+    <div class="section" id="s1">
+      <button class="section-btn" onclick="toggle('s1')">
+        <div class="section-num">1</div>
+        <div class="section-title-wrap">
+          <div class="section-title">What the NBP Is</div>
+          <div class="section-subtitle">Paragraph 14D — What this notice means for the transaction</div>
+          <div class="section-tags">
+            <span class="stag stag-buyer">Buyer</span>
+            <span class="stag stag-important">Important</span>
+          </div>
+        </div>
+        <span class="chevron">›</span>
+      </button>
+      <div class="section-body">
+        <p>The Notice to Buyer to Perform is a formal legal document that your seller has sent because you haven't completed something you agreed to do in your purchase agreement. This isn't a casual reminder — it's an official notice that puts the transaction in jeopardy.</p>
+        <div class="highlight-box">
+          <strong>KEY POINT</strong>
+          When you receive an NBP, your seller is saying "You're not meeting your obligations. Fix this now or the deal is off." It's a legal step that signals the seller is serious and ready to cancel if you don't respond.
+        </div>
+        <p>The NBP is governed by California Real Estate laws and the terms of your Purchase Agreement. It's filed in the transaction file and creates a documented timeline of the issue. The document will specify exactly what you failed to do and give you a set number of days (usually 2 business days) to complete it.</p>
+        <ul class="key-points">
+          <li>It's a legally binding notice that starts a clock running</li>
+          <li>It creates a record of your failure to perform and the seller's response</li>
+          <li>It puts your contract at risk of cancellation</li>
+          <li>You have very little time to respond</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section" id="s2">
+      <button class="section-btn" onclick="toggle('s2')">
+        <div class="section-num">2</div>
+        <div class="section-title-wrap">
+          <div class="section-title">When Sellers Use It</div>
+          <div class="section-subtitle">Paragraph 14D — The deadlines that most commonly trigger this notice</div>
+          <div class="section-tags">
+            <span class="stag stag-seller">Seller</span>
+          </div>
+        </div>
+        <span class="chevron">›</span>
+      </button>
+      <div class="section-body">
+        <p>A seller will send an NBP when you miss a key deadline in your purchase agreement. Here are the most common situations where this happens.</p>
+        <div class="highlight-box">
+          <strong>COMMON TRIGGERS FOR NBP</strong>
+          Removing inspection contingencies, providing proof of loan preapproval or qualification, depositing earnest money within the agreed timeframe, removing appraisal contingencies, providing homeowners insurance quote, submitting clear to close before the deadline, or completing the final walkthrough as scheduled.
+        </div>
+        <p>The seller sends this notice because they want to move forward, and your delays are holding up the transaction. After receiving the NBP, you'll have a very short window (usually 2 business days) to get the required action done. If you don't, the seller has the right to cancel the contract and keep your earnest money, depending on the terms of your agreement.</p>
+        <p>Some contingencies have built-in timelines (for example, the inspection contingency might be 17 days). If you haven't removed that contingency by the deadline, the seller can send an NBP to force the issue. This is why keeping track of all your deadlines is so critical.</p>
+      </div>
+    </div>
+
+    <div class="section" id="s3">
+      <button class="section-btn" onclick="toggle('s3')">
+        <div class="section-num">3</div>
+        <div class="section-title-wrap">
+          <div class="section-title">The 2-Day Clock</div>
+          <div class="section-subtitle">Paragraph 14D — What happens once the seller sends the notice</div>
+          <div class="section-tags">
+            <span class="stag stag-buyer">Buyer</span>
+            <span class="stag stag-important">Important</span>
+          </div>
+        </div>
+        <span class="chevron">›</span>
+      </button>
+      <div class="section-body">
+        <p>Once the seller sends you an NBP, the clock starts ticking. You typically have 2 business days to perform the action specified in the notice. This is not a long timeframe, and it's critical that you act immediately.</p>
+        <div class="warn-box">
+          <strong>WATCH OUT</strong>
+          Business days do not include weekends or holidays. If the seller sends the NBP on a Friday, your 2-day deadline will likely extend into the following week. Count carefully and mark your calendar. Missing this deadline can result in automatic cancellation of your contract.
+        </div>
+        <p>The clock technically begins when the seller delivers the notice to you. Delivery can happen through email, personal delivery, overnight mail, or fax, depending on what your contract specifies. Some transactions use a neutral third party (like a title company) to deliver official notices.</p>
+        <ul class="key-points">
+          <li>You have exactly 2 business days to act (unless your contract specifies a different timeframe)</li>
+          <li>Weekends and holidays do not count as business days</li>
+          <li>The deadline clock starts when you receive the notice, not when it's sent</li>
+          <li>Completing the action on the deadline is cutting it very close — aim for the first business day if possible</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section" id="s4">
+      <button class="section-btn" onclick="toggle('s4')">
+        <div class="section-num">4</div>
+        <div class="section-title-wrap">
+          <div class="section-title">What Buyers Should Do</div>
+          <div class="section-subtitle">Paragraph 14 — How to respond and what options you have</div>
+          <div class="section-tags">
+            <span class="stag stag-buyer">Buyer</span>
+          </div>
+        </div>
+        <span class="chevron">›</span>
+      </button>
+      <div class="section-body">
+        <p>If you receive an NBP, your first step is to read it carefully and understand exactly what action the seller is demanding. Then take action immediately. Do not wait until the last day.</p>
+        <div class="highlight-box">
+          <strong>YOUR ACTION PLAN</strong>
+          Call your real estate agent or attorney right away. Confirm the deadline. Get the specific item the seller needs (loan approval, contingency removal, earnest money deposit, etc.). Complete the action and provide written proof to your seller or their agent within 2 business days. Document everything with timestamps.
+        </div>
+        <p>You have three realistic options when you receive an NBP: First, perform the action exactly as specified in the notice within the 2-day window. This gets you back on track. Second, if you cannot perform, you can request that the seller agree to an extension. This requires negotiation and the seller's written consent. Third, if you cannot or will not perform, you can release the seller from the contract, which usually means losing your earnest money.</p>
+        <p>The worst option is to do nothing. Silence is not a defense. If you don't respond and don't perform within 2 business days, the seller can automatically cancel the contract, and you'll lose your earnest money deposit. Your agent can help you understand which option makes sense for your situation.</p>
+        <ul class="key-points">
+          <li>Contact your agent or attorney immediately upon receiving the NBP</li>
+          <li>Confirm exactly what the seller is asking for</li>
+          <li>Work with your lender or inspector to get the required documentation or action completed</li>
+          <li>Deliver proof of performance to the seller before the 2-day deadline expires</li>
+          <li>Keep copies of everything you send — proof of delivery, email confirmations, written acknowledgments</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section" id="s5">
+      <button class="section-btn" onclick="toggle('s5')">
+        <div class="section-num">5</div>
+        <div class="section-title-wrap">
+          <div class="section-title">If You Don't Perform</div>
+          <div class="section-subtitle">Paragraph 14D — The seller's right to cancel</div>
+          <div class="section-tags">
+            <span class="stag stag-buyer">Buyer</span>
+            <span class="stag stag-important">Important</span>
+          </div>
+        </div>
+        <span class="chevron">›</span>
+      </button>
+      <div class="section-body">
+        <p>If you don't perform within the 2-day window and the seller doesn't agree to an extension, the seller can automatically cancel the purchase agreement. This cancellation is binding and final.</p>
+        <div class="warn-box">
+          <strong>WATCH OUT</strong>
+          When the seller cancels due to your failure to perform, you will almost always lose your entire earnest money deposit. Depending on what you failed to do and the contract language, the seller can keep that money as liquidated damages or to offset their losses. You may also be responsible for costs the seller incurred while the contract was active, like carrying costs or holding the property off the market.
+        </div>
+        <p>The consequences go beyond losing your deposit. A failed contract can affect your ability to qualify for another loan on this or any home in the near term. It also damages your reputation with the seller's agent and could affect how other sellers and agents view future offers you make. The real estate community is small, and people talk.</p>
+        <p>Additionally, if you've already paid for inspections or appraisals, that money is gone. You won't get refunds for work already completed, and some of those fees are non-refundable once the work has begun.</p>
+        <ul class="key-points">
+          <li>The seller can cancel the contract after 2 business days of non-performance</li>
+          <li>You will lose your earnest money deposit</li>
+          <li>You may owe the seller additional damages or costs</li>
+          <li>This failure becomes part of your transaction history</li>
+          <li>It can affect your ability to qualify for loans on future purchases</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section" id="s6">
+      <button class="section-btn" onclick="toggle('s6')">
+        <div class="section-num">6</div>
+        <div class="section-title-wrap">
+          <div class="section-title">How to Avoid Getting One</div>
+          <div class="section-subtitle">Paragraph 14 — Staying on top of deadlines during escrow</div>
+          <div class="section-tags">
+            <span class="stag stag-buyer">Buyer</span>
+          </div>
+        </div>
+        <span class="chevron">›</span>
+      </button>
+      <div class="section-body">
+        <p>The best way to deal with an NBP is to never receive one in the first place. This requires staying organized and communicating proactively with your agent, lender, and other professionals involved in your transaction.</p>
+        <div class="highlight-box">
+          <strong>PREVENTION STRATEGY</strong>
+          Get a complete timeline of all deadlines from your agent on day one. Mark every single deadline on your calendar with a reminder for 3 days before. Check in with your lender weekly about your loan status. Confirm inspection dates 48 hours before they're scheduled. Return all documents and forms to your agent the same day you receive them. Communicate any delays or problems immediately, not at the deadline.
+        </div>
+        <p>Your real estate agent has a responsibility to track all deadlines and remind you, but you also have a responsibility to stay on top of your obligations. The best practice is to establish a system with your agent where you get written confirmation of each deadline and you check in weekly about progress on loan approval, inspections, and appraisals.</p>
+        <p>Problems almost always come up during a transaction. Loans take longer than expected. Inspections reveal issues. Appraisals come in low. The time to deal with these is when they happen, not when a deadline has passed. If you know you're going to be late on something, tell your seller immediately and negotiate for an extension before the deadline passes. Most sellers will work with a buyer who communicates honestly and asks for help. Sellers become frustrated with buyers who go silent and then scramble at the last minute.</p>
+        <ul class="key-points">
+          <li>Get a written list of all deadlines from your agent within the first few days</li>
+          <li>Set calendar reminders for 3 to 5 days before each deadline</li>
+          <li>Respond to document requests the same day you receive them</li>
+          <li>Stay in weekly contact with your lender about your loan status</li>
+          <li>Communicate problems early — never wait until a deadline is about to pass</li>
+          <li>Ask for an extension before a deadline expires, not after</li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-name">Kevin Lo | Lo Realty Group</div>
+    <p><a href="https://www.lorealtygroup.com">lorealtygroup.com</a> &nbsp;·&nbsp; DRE #02008476 &nbsp;·&nbsp; 626.833.8932</p>
+    <p style="margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.25);">This guide is for informational purposes only and does not constitute legal advice. Always read the full contract and consult a qualified professional with questions.</p>
+  </footer>
+
+  <script>
+    function toggle(id) { document.getElementById(id).classList.toggle('open'); }
+    function openSection(id) {
+      const el = document.getElementById(id);
+      el.classList.add('open');
+      setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+    let allOpen = false;
+    function toggleAll() {
+      allOpen = !allOpen;
+      document.querySelectorAll('.section').forEach(s => allOpen ? s.classList.add('open') : s.classList.remove('open'));
+      document.getElementById('expandAllBtn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+    }
+  </script>
+</body>
+</html>
