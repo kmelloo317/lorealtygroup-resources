@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Buying Roadmap — Lo Realty Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #9EA58A;
+      --white: #ffffff;
+      --cream: #f5f4f0;
+      --cream-dark: #eeecea;
+      --gold: #92836b;
+      --gold-light: #c9a96e;
+      --border: #e0ddd8;
+      --text-muted: #7a7570;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body { font-family: var(--font-sans); background: var(--cream); color: var(--black); line-height: 1.6; }
+
+    /* HEADER */
+    header { background: var(--black); color: var(--white); padding: 60px 24px 52px; text-align: center; }
+    .eyebrow { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); margin-bottom: 18px; }
+    header h1 { font-family: var(--font-serif); font-size: 44px; font-weight: 400; line-height: 1.15; color: var(--white); margin-bottom: 16px; letter-spacing: -0.01em; max-width: 640px; margin-left: auto; margin-right: auto; }
+    header p { font-size: 15px; color: rgba(255,255,255,0.55); max-width: 480px; margin: 0 auto; line-height: 1.65; }
+
+    /* INTRO */
+    .intro-band { background: var(--white); border-bottom: 1px solid var(--border); }
+    .intro { max-width: 760px; margin: 0 auto; padding: 36px 24px; }
+    .intro-inner { display: flex; gap: 18px; align-items: flex-start; }
+    .intro-icon { font-size: 26px; flex-shrink: 0; margin-top: 3px; }
+    .intro h2 { font-family: var(--font-serif); font-size: 22px; font-weight: 400; margin-bottom: 8px; color: var(--black); }
+    .intro p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .disclaimer { background: #fdf8f0; border-left: 3px solid var(--gold-light); padding: 14px 18px; margin: 24px 0 0; border-radius: 0 4px 4px 0; font-size: 13px; color: #7a6030; line-height: 1.6; }
+
+    /* MAIN */
+    main { max-width: 760px; margin: 0 auto; padding: 40px 24px 100px; }
+
+    /* TIMELINE */
+    .timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
+    .timeline::before { content: ''; position: absolute; left: 23px; top: 24px; bottom: 24px; width: 2px; background: var(--border); }
+
+    /* PHASE */
+    .phase { display: flex; gap: 18px; align-items: flex-start; position: relative; cursor: pointer; }
+    .phase + .phase { margin-top: 10px; }
+
+    .phase-dot { width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--border); background: var(--cream); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; position: relative; z-index: 1; }
+    .phase-dot span { font-family: var(--font-serif); font-size: 18px; font-weight: 600; color: var(--text-muted); transition: color 0.2s; }
+
+    .phase-card { flex: 1; background: var(--white); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; transition: border-color 0.18s, box-shadow 0.18s; min-width: 0; }
+    .phase-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 22px; }
+    .phase-meta { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+    .phase-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    .phase-name { font-family: var(--font-serif); font-size: 20px; font-weight: 600; color: var(--black); line-height: 1.2; letter-spacing: -0.01em; }
+    .phase-timing { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
+    .phase-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 5px; }
+    .badge { display: inline-block; font-size: 11px; letter-spacing: 0.04em; padding: 3px 10px; border-radius: 100px; font-weight: 500; }
+    .badge-escrow { background: #fef3e2; color: #9a5f10; }
+    .badge-closing { background: #eaf5ea; color: #2a6e30; }
+    .chevron { font-size: 20px; color: #ccc; transition: transform 0.2s, color 0.2s; flex-shrink: 0; line-height: 1; }
+
+    /* PHASE BODY */
+    .phase-body { display: none; border-top: 1px solid var(--cream-dark); padding: 22px 22px 26px; }
+    .phase-body p { font-size: 14px; color: #4a4540; line-height: 1.7; margin-bottom: 14px; }
+    .phase-body p:last-child { margin-bottom: 0; }
+
+    .step-list { list-style: none; display: flex; flex-direction: column; gap: 0; margin-bottom: 0; }
+    .step-list li { font-size: 14px; color: #4a4540; padding: 10px 0 10px 26px; border-bottom: 1px solid var(--cream-dark); position: relative; line-height: 1.55; }
+    .step-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .step-list li::before { content: "✓"; position: absolute; left: 0; top: 10px; color: var(--gold-light); font-weight: 700; font-size: 13px; }
+
+    .highlight-box { background: #fdf8f0; border-left: 3px solid var(--gold-light); border-radius: 0 4px 4px 0; padding: 14px 16px; margin: 16px 0; font-size: 13.5px; color: #5a5040; line-height: 1.65; }
+    .highlight-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: var(--black); display: block; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .warn-box { background: #fff8ee; border-left: 3px solid #d4901a; border-radius: 0 4px 4px 0; padding: 14px 16px; margin: 16px 0; font-size: 13.5px; color: #7a5510; line-height: 1.65; }
+    .warn-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: #a06010; display: block; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* TIMELINE DIAGRAM */
+    .tl-diagram { background: var(--cream); border: 1px solid var(--border); border-radius: 4px; padding: 18px 20px; margin: 16px 0; }
+    .tl-diagram-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+    .tl-track { position: relative; }
+    .tl-line { height: 2px; background: var(--border); border-radius: 2px; position: relative; margin: 20px 0 10px; }
+    .tl-dots { display: flex; justify-content: space-between; position: absolute; top: -6px; left: 0; right: 0; }
+    .tl-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--white); border: 2px solid var(--border); flex-shrink: 0; }
+    .tl-dot.accent { background: var(--black); border-color: var(--black); }
+    .tl-dot.gold { background: var(--gold-light); border-color: var(--gold-light); }
+    .tl-item-labels { display: flex; justify-content: space-between; margin-top: 10px; }
+    .tl-item { display: flex; flex-direction: column; align-items: center; flex: 1; }
+    .tl-item-text { font-size: 11px; color: var(--text-muted); text-align: center; line-height: 1.3; max-width: 64px; }
+    .tl-item-text.accent { color: var(--black); font-weight: 600; }
+    .tl-brackets { position: relative; height: 28px; margin-top: 12px; }
+    .tl-bracket { position: absolute; height: 10px; border: 1.5px solid; border-bottom: none; border-radius: 2px 2px 0 0; top: 0; }
+    .tl-bracket-gold { border-color: var(--gold-light); }
+    .tl-bracket-muted { border-color: var(--border); }
+    .tl-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px; }
+    .tl-legend-item { font-size: 11px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+    .tl-legend-line { width: 12px; height: 2px; border-radius: 1px; }
+    .tl-legend-line-gold { background: var(--gold-light); }
+    .tl-legend-line-muted { background: var(--border); }
+
+    /* ACTIVE STATE */
+    .phase.active .phase-dot { border-color: var(--black); background: var(--black); }
+    .phase.active .phase-dot span { color: var(--white); }
+    .phase.active .phase-card { border-color: var(--black); box-shadow: 0 4px 18px rgba(0,0,0,0.07); }
+    .phase.active .chevron { transform: rotate(180deg); color: var(--black); }
+    .phase.active .phase-body { display: block; }
+
+    .phase:hover:not(.active) .phase-dot { border-color: var(--gold); }
+    .phase:hover:not(.active) .phase-card { border-color: var(--gold); }
+
+    /* FOOTER */
+    footer { background: var(--black); color: rgba(255,255,255,0.4); text-align: center; padding: 40px 24px; font-size: 13px; line-height: 1.7; }
+    footer .footer-name { font-family: var(--font-serif); font-size: 18px; font-weight: 400; color: var(--white); margin-bottom: 10px; }
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      header { padding: 44px 20px 36px; }
+      header h1 { font-size: 32px; }
+      main { padding: 28px 16px 80px; }
+      .timeline::before { left: 19px; }
+      .phase-dot { width: 40px; height: 40px; }
+      .phase-dot span { font-size: 15px; }
+      .phase-header { padding: 14px 16px; }
+      .phase-body { padding: 18px 16px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Lo Realty Group | Client Resource</div>
+  <h1>Your Home Buying Roadmap</h1>
+  <p>A step-by-step guide to every phase of the home buying process, from your first conversation to closing day.</p>
+</header>
+
+<div class="intro-band">
+  <div class="intro">
+    <div class="intro-inner">
+      <div class="intro-icon">🏡</div>
+      <div>
+        <h2>Know exactly where you are at every step.</h2>
+        <p>Buying a home is one of the biggest decisions you'll ever make. This roadmap breaks the process into six clear phases so you always know what's happening, what's coming next, and what you need to do. Click any phase to expand it.</p>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <strong>Note:</strong> Timelines are typical for a standard California residential purchase with financing. Your specific transaction may vary based on the terms of your offer, lender, and escrow company.
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="timeline">
+
+    <!-- PHASE 1 -->
+    <div class="phase active" onclick="toggle(this)">
+      <div class="phase-dot"><span>1</span></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-meta">
+            <span class="phase-eyebrow">Phase 1</span>
+            <span class="phase-name">Prepare</span>
+            <span class="phase-timing">Before you start searching</span>
+          </div>
+          <span class="chevron">›</span>
+        </div>
+        <div class="phase-body">
+          <p>Everything before you walk into your first showing. Getting this right sets the foundation for a smooth process and a stronger offer when the time comes.</p>
+          <ul class="step-list">
+            <li>Connect with us and sign the Buyer Representation Agreement (BRBC)</li>
+            <li>Understand your financing options: pre-qualification, pre-approval, or fully underwritten approval</li>
+            <li>Get fully pre-approved — have your income, assets, and credit fully verified by a lender</li>
+            <li>Set your true budget: down payment, monthly PITI (principal, interest, taxes, insurance), and closing costs (budget 1.5 to 2% of the purchase price on top of your down payment)</li>
+            <li>Define your must-haves vs. nice-to-haves — location, size, condition, commute</li>
+          </ul>
+          <div class="highlight-box">
+            <strong>The stronger your approval, the stronger your offer</strong>
+            A fully underwritten approval means your lender has already reviewed your complete file. This allows you to waive or shorten your loan contingency, which makes your offer far more competitive with sellers.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase" onclick="toggle(this)">
+      <div class="phase-dot"><span>2</span></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-meta">
+            <span class="phase-eyebrow">Phase 2</span>
+            <span class="phase-name">Search</span>
+            <span class="phase-timing">Weeks to months, depending on the market</span>
+          </div>
+          <span class="chevron">›</span>
+        </div>
+        <div class="phase-body">
+          <p>The house hunting phase. This is about more than browsing Zillow — we have access to MLS listings, off-market properties, and pocket listings that never hit the public portals.</p>
+          <ul class="step-list">
+            <li>Tour homes on the MLS, off-market, and through pocket listings</li>
+            <li>Research neighborhoods: schools, commute, walkability, noise, and traffic patterns</li>
+            <li>Check fire hazard zones, flood zones, and natural hazard maps for any home you're serious about</li>
+            <li>Start getting homeowner's insurance quotes early — in California, availability and cost vary significantly by location and can affect your decision</li>
+            <li>Review available disclosures on any home before moving forward with an offer</li>
+          </ul>
+          <div class="warn-box">
+            <strong>Insurance is a big deal in California</strong>
+            Wildfire risk has made homeowner's insurance harder to obtain in many parts of Southern California. Before falling in love with a property, verify that coverage is available and affordable. We can help you flag high-risk areas early.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase" onclick="toggle(this)">
+      <div class="phase-dot"><span>3</span></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-meta">
+            <span class="phase-eyebrow">Phase 3</span>
+            <span class="phase-name">Offer</span>
+            <span class="phase-timing">Days to negotiate and go under contract</span>
+          </div>
+          <span class="chevron">›</span>
+        </div>
+        <div class="phase-body">
+          <p>You've found the home. Now it's time to make your move. How you structure your offer matters as much as the price — sellers look at the whole picture.</p>
+          <ul class="step-list">
+            <li>Review a Comparative Market Analysis (CMA) with us to determine the right offer price</li>
+            <li>Structure your offer: purchase price, earnest money deposit, contingencies, and escrow length</li>
+            <li>Submit the California Residential Purchase Agreement (RPA)</li>
+            <li>Negotiate terms — price, credits, repairs, closing date — until both sides agree</li>
+            <li>Sign the accepted offer and open escrow</li>
+            <li>Deposit your earnest money (EMD) within 3 business days of acceptance</li>
+          </ul>
+          <div class="highlight-box">
+            <strong>What makes an offer competitive</strong>
+            A shorter escrow period, a larger deposit, and fewer or shorter contingencies all signal to a seller that you're a serious, low-risk buyer. We will help you find the right balance between strength and protection based on the specific property and market conditions.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase" onclick="toggle(this)">
+      <div class="phase-dot"><span>4</span></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-meta">
+            <span class="phase-eyebrow">Phase 4</span>
+            <span class="phase-name">Due diligence</span>
+            <span class="phase-timing">Typically 17 days — your window to investigate</span>
+            <div class="phase-badges">
+              <span class="badge badge-escrow">In escrow</span>
+            </div>
+          </div>
+          <span class="chevron">›</span>
+        </div>
+        <div class="phase-body">
+          <p>The contingency period is your protected window to investigate the property thoroughly. You can cancel and get your deposit back if anything is unsatisfactory — but once contingencies are removed, you are committed.</p>
+
+          <div class="tl-diagram">
+            <p class="tl-diagram-label">Escrow timeline — standard offer with pre-approval</p>
+            <div class="tl-track">
+              <div class="tl-line">
+                <div class="tl-dots">
+                  <div class="tl-dot accent"></div>
+                  <div class="tl-dot gold"></div>
+                  <div class="tl-dot"></div>
+                  <div class="tl-dot gold"></div>
+                  <div class="tl-dot"></div>
+                  <div class="tl-dot"></div>
+                  <div class="tl-dot accent"></div>
+                </div>
+              </div>
+              <div class="tl-item-labels">
+                <div class="tl-item"><span class="tl-item-text accent">Under contract</span></div>
+                <div class="tl-item"><span class="tl-item-text">EMD due (3 days)</span></div>
+                <div class="tl-item"><span class="tl-item-text">Inspections</span></div>
+                <div class="tl-item"><span class="tl-item-text">Contingency removal</span></div>
+                <div class="tl-item"><span class="tl-item-text">Loan approval</span></div>
+                <div class="tl-item"><span class="tl-item-text">Sign loan docs</span></div>
+                <div class="tl-item"><span class="tl-item-text accent">Closing day</span></div>
+              </div>
+              <div class="tl-brackets">
+                <div class="tl-bracket tl-bracket-gold" style="left: 0%; width: 43%;"></div>
+                <div class="tl-bracket tl-bracket-muted" style="left: 0%; width: 100%;"></div>
+              </div>
+              <div class="tl-legend">
+                <span class="tl-legend-item"><span class="tl-legend-line tl-legend-line-gold"></span>Contingency period — typically 17 days</span>
+                <span class="tl-legend-item"><span class="tl-legend-line tl-legend-line-muted"></span>Escrow — typically 30 days</span>
+              </div>
+            </div>
+          </div>
+
+          <ul class="step-list">
+            <li>Order a general home inspection — foundation, roof, electrical, plumbing, HVAC</li>
+            <li>Order a pest and termite inspection</li>
+            <li>Order a sewer line inspection (especially important for older homes)</li>
+            <li>Schedule additional inspections as needed: roof, pool, chimney, or other systems</li>
+            <li>Review all seller disclosures: Transfer Disclosure Statement (TDS), Seller Property Questionnaire (SPQ), and Statewide Buyer and Seller Advisory (SBSA)</li>
+            <li>Review the preliminary title report for any liens, easements, or clouds on title</li>
+            <li>Lender orders the appraisal — confirms the home's value supports the loan amount</li>
+            <li>Stay responsive to your lender and submit any requested documents promptly</li>
+            <li>Submit a Request for Repair if inspections uncover issues you want addressed</li>
+            <li>Once fully satisfied with inspections, disclosures, title, and financing — sign the Contingency Removal form together with us to formally release your contingencies</li>
+          </ul>
+          <div class="warn-box">
+            <strong>Contingencies don't disappear automatically</strong>
+            Contingencies are not removed by the passage of time. Both you and the seller must agree and sign the Contingency Removal form for contingencies to be formally released. Until that form is signed, your protections remain in place.
+          </div>
+          <div class="warn-box">
+            <strong>Even after removal, you have a safety valve</strong>
+            If you are in breach of contract — for example, you miss a deadline — the seller cannot immediately cancel the deal. They are first required to serve you with a Notice to Perform, which gives you 2 days (by default) to take action before they have the right to cancel. We will always make sure you are aware of any deadlines before they become an issue.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 5 -->
+    <div class="phase" onclick="toggle(this)">
+      <div class="phase-dot"><span>5</span></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-meta">
+            <span class="phase-eyebrow">Phase 5</span>
+            <span class="phase-name">Almost there</span>
+            <span class="phase-timing">Final days before closing</span>
+            <div class="phase-badges">
+              <span class="badge badge-escrow">In escrow</span>
+            </div>
+          </div>
+          <span class="chevron">›</span>
+        </div>
+        <div class="phase-body">
+          <p>Contingencies are removed and the finish line is in sight. A few important steps remain before the keys are yours.</p>
+          <ul class="step-list">
+            <li>Confirm homeowner's insurance is bound and in place before closing</li>
+            <li>Complete your final walkthrough — verify the property's condition and that any agreed repairs were completed</li>
+            <li>Review and sign your loan documents with the notary (typically 1 to 2 days before closing)</li>
+            <li>Wire your down payment and closing costs to escrow — always call escrow directly to verify wire instructions before sending funds</li>
+            <li>Set up utilities to transfer into your name on closing day</li>
+          </ul>
+          <div class="warn-box">
+            <strong>Wire fraud is real — verify before you wire</strong>
+            Fraudsters target real estate transactions by sending fake wire instructions that look like they came from your escrow company. Always call escrow using a number you looked up yourself — not one from an email — to verbally confirm the wire instructions before transferring any money.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 6 -->
+    <div class="phase" onclick="toggle(this)">
+      <div class="phase-dot"><span>6</span></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-meta">
+            <span class="phase-eyebrow">Phase 6</span>
+            <span class="phase-name">Closing day</span>
+            <span class="phase-timing">The finish line</span>
+            <div class="phase-badges">
+              <span class="badge badge-closing">You own it</span>
+            </div>
+          </div>
+          <span class="chevron">›</span>
+        </div>
+        <div class="phase-body">
+          <p>The deed records with the county, funds are distributed to the seller, and the home is officially yours. Here's what happens on closing day:</p>
+          <ul class="step-list">
+            <li>Escrow confirms all funds have been received and all conditions are met</li>
+            <li>The deed is recorded with the county — you are now the legal owner</li>
+            <li>Escrow releases proceeds to the seller</li>
+            <li>Your agent coordinates key handoff</li>
+            <li>Celebrate — you bought a home</li>
+          </ul>
+          <div class="highlight-box">
+            <strong>After closing</strong>
+            Save all your closing documents in a safe place — you will need them at tax time and whenever you sell the home in the future. Your agent is still a resource after closing for referrals, market updates, and any questions that come up.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-name">Kevin Lo | Lo Realty Group</div>
+  <p><a href="https://www.lorealtygroup.com">lorealtygroup.com</a> &nbsp;·&nbsp; DRE #02008476 &nbsp;·&nbsp; 626.833.8932</p>
+  <p style="margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.25);">This guide is for informational purposes only and does not constitute legal or financial advice. Please consult a qualified professional with any questions specific to your transaction.</p>
+</footer>
+
+<script>
+  function toggle(el) {
+    const wasActive = el.classList.contains('active');
+    document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
+    if (!wasActive) el.classList.add('active');
+  }
+</script>
+
+</body>
+</html>

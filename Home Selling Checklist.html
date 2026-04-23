@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Selling Roadmap — Lo Realty Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #9EA58A;
+      --white: #ffffff;
+      --cream: #f5f4f0;
+      --cream-dark: #eeecea;
+      --gold: #92836b;
+      --gold-light: #c9a96e;
+      --border: #e0ddd8;
+      --text-muted: #7a7570;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body { font-family: var(--font-sans); background: var(--cream); color: var(--black); line-height: 1.6; }
+
+    /* HEADER */
+    header { background: var(--black); color: var(--white); padding: 60px 24px 52px; text-align: center; }
+    .eyebrow { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); margin-bottom: 18px; }
+    header h1 { font-family: var(--font-serif); font-size: 44px; font-weight: 400; line-height: 1.15; color: var(--white); margin-bottom: 16px; letter-spacing: -0.01em; max-width: 640px; margin-left: auto; margin-right: auto; }
+    header p { font-size: 15px; color: rgba(255,255,255,0.55); max-width: 480px; margin: 0 auto; line-height: 1.65; }
+
+    /* INTRO */
+    .intro-band { background: var(--white); border-bottom: 1px solid var(--border); }
+    .intro { max-width: 760px; margin: 0 auto; padding: 36px 24px; }
+    .intro-inner { display: flex; gap: 18px; align-items: flex-start; }
+    .intro-icon { font-size: 26px; flex-shrink: 0; margin-top: 3px; }
+    .intro h2 { font-family: var(--font-serif); font-size: 22px; font-weight: 400; margin-bottom: 8px; color: var(--black); }
+    .intro p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .disclaimer { background: #fdf8f0; border-left: 3px solid var(--gold-light); padding: 14px 18px; margin: 24px 0 0; border-radius: 0 4px 4px 0; font-size: 13px; color: #7a6030; line-height: 1.6; }
+
+    /* MAIN */
+    main { max-width: 760px; margin: 0 auto; padding: 40px 24px 100px; }
+
+    /* TIMELINE */
+    .timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
+    .timeline::before { content: ''; position: absolute; left: 23px; top: 24px; bottom: 24px; width: 2px; background: var(--border); }
+
+    /* PHASE */
+    .phase { display: flex; gap: 18px; align-items: flex-start; position: relative; cursor: pointer; }
+    .phase + .phase { margin-top: 10px; }
+
+    .phase-dot { width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--border); background: var(--cream); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; position: relative; z-index: 1; }
+    .phase-dot span { font-family: var(--font-serif); font-size: 18px; font-weight: 600; color: var(--text-muted); transition: color 0.2s; }
+
+    .phase-card { flex: 1; background: var(--white); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; transition: border-color 0.18s, box-shadow 0.18s; min-width: 0; }
+    .phase-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 22px; }
+    .phase-meta { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+    .phase-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    .phase-name { font-family: var(--font-serif); font-size: 20px; font-weight: 600; color: var(--black); line-height: 1.2; letter-spacing: -0.01em; }
+    .phase-timing { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
+    .phase-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 5px; }
+    .badge { display: inline-block; font-size: 11px; letter-spacing: 0.04em; padding: 3px 10px; border-radius: 100px; font-weight: 500; }
+    .badge-active { background: #e8f0fb; color: #2a5fa8; }
+    .badge-contract { background: #fef3e2; color: #9a5f10; }
+    .badge-sold { background: #eaf5ea; color: #2a6e30; }
+    .chevron { font-size: 20px; color: #ccc; transition: transform 0.2s, color 0.2s; flex-shrink: 0; line-height: 1; }
+
+    /* PHASE BODY */
+    .phase-body { display: none; border-top: 1px solid var(--cream-dark); padding: 22px 22px 26px; }
+    .phase-body p { font-size: 14px; color: #4a4540; line-height: 1.7; margin-bottom: 14px; }
+    .phase-body p:last-child { margin-bottom: 0; }
+
+    .step-list { list-style: none; display: flex; flex-direction: column; gap: 0; margin-bottom: 0; }
+    .step-list li { font-size: 14px; color: #4a4540; padding: 10px 0 10px 26px; border-bottom: 1px solid var(--cream-dark); position: relative; line-height: 1.55; }
+    .step-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .step-list li::before { content: "✓"; position: absolute; left: 0; top: 10px; color: var(--gold-light); font-weight: 700; font-size: 13px; }
+
+    .highlight-box { background: #fdf8f0; border-left: 3px solid var(--gold-light); border-radius: 0 4px 4px 0; padding: 14px 16px; margin: 16px 0; font-size: 13.5px; color: #5a5040; line-height: 1.65; }
+    .highlight-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: var(--black); display: block; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .warn-box { background: #fff8ee; border-left: 3px solid #d4901a; border-radius: 0 4px 4px 0; padding: 14px 16px; margin: 16px 0; font-size: 13.5px; color: #7a5510; line-height: 1.65; }
+    .warn-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: #a06010; display: block; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* SUBSECTION LABEL */
+    .subsection-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin: 18px 0 8px; }
+
+    /* ACTIVE STATE */
+    .phase.active .phase-dot { border-color: var(--black); background: var(--black); }
+    .phase.active .phase-dot span { color: var(--white); }
+    .phase.active .phase-card { border-color: var(--black); box-shadow: 0 4px 18px rgba(0,0,0,0.07); }
+    .phase.active .chevron { transform: rotate(180deg); color: var(--black); }
+    .phase.active .phase-body { display: block; }
+
+    .phase:hover:not(.active) .phase-dot { border-color: var(--gold); }
+    .phase:hover:not(.active) .phase-card { border-color: var(--gold); }
+
+    /* FOOTER */
+    footer { background: var(--black); color: rgba(255,255,255,0.4); text-align: center; padding: 40px 24px; font-size: 13px; line-height: 1.7; }
+    footer .footer-name { font-family: var(--font-serif); font-size: 18px; font-weight: 400; color: var(--white); margin-bottom: 10px; }
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      header { padding: 44px 20px 36px; }
+      header h1 { font-size: 32px; }
+      main { padding: 28px 16px 80px; }
+      .timeline::before { left: 19px; }
+      .phase-dot { width: 40px; height: 40px; }
+      .phase-dot span { font-size: 15px; }
+      .phase-header { padding: 14px 16px; }
+      .phase-body { padding: 18px 16px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Lo Realty Group | Client Resource</div>
+  <h1>Your Home Selling Roadmap</h1>
+  <p>A step-by-step guide to every phase of the home selling process, from the decision to sell all the way to closing day.</p>
+</header>
+
+<div class="intro-band">
+  <div class="intro">
+    <div class="intro-inner">
+      <div class="intro-icon">🏡</div>
+      <div>
+        <h2>Sell with confidence at every step.</h2>
+        <p>Selling a home involves a lot of moving parts — pricing, preparation, marketing, negotiations, disclosures, and escrow. This roadmap breaks the process into four clear phases so you always know where you are, what's happening, and what comes next. Click any phase to expand it.</p>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <strong>Note:</strong> Timelines are typical for a standard California residential sale. Your specific transaction may vary based on the terms of your listing agreement, buyer financing, and escrow company.
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="timeline">
+
+    <!-- PHASE 1 -->
+    <div class="phase active" onclick="toggle(this)">
+      <div class="phase-dot"><span>1</span></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-meta">
+            <span class="phase-eyebrow">Phase 1</span>
+            <span class="phase-name">Pre-listing</span>
+            <span class="phase-timing">Weeks before going to market</span>
+          </div>
+          <span class="chevron">›</span>
+        </div>
+        <div class="phase-body">
+          <p>Everything that happens before your home hits the market. The work done in this phase directly affects how quickly your home sells and at what price. Preparation is not optional — it is strategy.</p>
+
+          <p class="subsection-label">Connect and plan</p>
+          <ul class="step-list">
+            <li>Connect with us for a home selling consultation — we will walk you through the full process and answer every question</li>
+            <li>Review our pre-listing package and discuss your goals, timeline, and priorities</li>
+            <li>Sign the Residential Listing Agreement (RLA) to officially engage us as your listing agent</li>
+            <li>Discuss and agree on a pricing strategy based on a Comparative Market Analysis (CMA)</li>
+            <li>Understand your net proceeds — factor in mortgage payoff, agent commission, closing costs, and any agreed repairs</li>
+          </ul>
+
+          <p class="subsection-label">Prepare the home</p>
+          <ul class="step-list">
+            <li>Declutter and depersonalize — buyers need to picture themselves living there</li>
+            <li>Complete any minor repairs that could hurt your first impression: touch-up paint, fix leaky faucets, replace burnt-out bulbs</li>
+            <li>Consider professional staging — staged homes typically sell faster and for more money</li>
+            <li>Deep clean the entire home, including windows, carpets, and exterior</li>
+            <li>Improve curb appeal: fresh landscaping, a clean driveway, a welcoming front door</li>
+          </ul>
+
+          <p class="subsection-label">Complete disclosures</p>
+          <ul class="step-list">
+            <li>Complete the Transfer Disclosure Statement (TDS) — required by California law for most residential sales</li>
+            <li>Complete the Seller Property Questionnaire (SPQ) — a detailed supplement covering permits, repairs, systems, and known issues</li>
+            <li>Order any reports that will be provided to buyers upfront: natural hazard report, pest inspection, home inspection if desired</li>
+          </ul>
+
+          <div class="highlight-box">
+            <strong>Disclose everything</strong>
+            California law requires sellers to disclose all known material defects. Disclosing upfront — even things that feel minor — protects you legally and builds buyer confidence. Surprises discovered during escrow can kill deals or expose you to liability after closing. When in doubt, disclose.
+          </div>
+
+          <div class="warn-box">
+            <strong>Pricing is the most important decision you will make</strong>
+            A home priced right from day one attracts the most attention and the strongest offers. Homes that sit on the market often end up selling for less than they would have if priced correctly at launch. We will help you find the right number based on current market conditions — not wishful thinking.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase" onclick="toggle(this)">
+      <div class="phase-dot"><span>2</span></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-meta">
+            <span class="phase-eyebrow">Phase 2</span>
+            <span class="phase-name">Active listing</span>
+            <span class="phase-timing">Days to weeks on the market</span>
+            <div class="phase-badges">
+              <span class="badge badge-active">On market</span>
+            </div>
+          </div>
+          <span class="chevron">›</span>
+        </div>
+        <div class="phase-body">
+          <p>Your home is live and buyers are looking. This phase is about maximizing exposure, making a strong first impression, and staying ready to move quickly when the right offer comes in.</p>
+
+          <p class="subsection-label">Marketing and exposure</p>
+          <ul class="step-list">
+            <li>Professional photography and video — the majority of buyers form their first impression online, so quality visuals are essential</li>
+            <li>Listed on the MLS — giving every active buyer's agent in the market access to your home</li>
+            <li>Syndicated to major real estate portals: Zillow, Redfin, Realtor.com, and others</li>
+            <li>Marketing through social media, email campaigns, and our buyer network</li>
+            <li>Optional "Coming Soon" status on MLS to build anticipation before going live</li>
+          </ul>
+
+          <p class="subsection-label">Showings and open houses</p>
+          <ul class="step-list">
+            <li>Set your showing preferences: required notice, available days and times, lockbox or appointment only</li>
+            <li>Keep the home clean and show-ready at all times during the listing period</li>
+            <li>Host open houses to maximize buyer exposure on weekends</li>
+            <li>We will collect feedback from every showing and keep you updated on activity and interest levels</li>
+          </ul>
+
+          <p class="subsection-label">Receiving and reviewing offers</p>
+          <ul class="step-list">
+            <li>We present all offers to you promptly and in writing — you will never be kept in the dark</li>
+            <li>Review each offer carefully: purchase price, deposit amount, contingencies, escrow length, and financing type</li>
+            <li>Consider issuing a Seller Counter Offer (SCO) if the terms need adjustment</li>
+            <li>In multiple-offer situations, we can issue a Seller Multiple Counter Offer (SMCO) to negotiate with several buyers simultaneously</li>
+            <li>Accept the strongest offer and open escrow</li>
+          </ul>
+
+          <div class="highlight-box">
+            <strong>The best offer is not always the highest price</strong>
+            A buyer with a shorter escrow, a larger deposit, fewer contingencies, and strong financing can be far more valuable than a buyer offering more money with weaker terms. We will help you evaluate the full picture of every offer.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase" onclick="toggle(this)">
+      <div class="phase-dot"><span>3</span></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-meta">
+            <span class="phase-eyebrow">Phase 3</span>
+            <span class="phase-name">Under contract</span>
+            <span class="phase-timing">Typically 17 to 30 days in escrow</span>
+            <div class="phase-badges">
+              <span class="badge badge-contract">In escrow</span>
+            </div>
+          </div>
+          <span class="chevron">›</span>
+        </div>
+        <div class="phase-body">
+          <p>You have an accepted offer and escrow is open. Now the buyer goes through their due diligence period while you manage your obligations on the seller side. Most of the heavy lifting in this phase belongs to the buyer — but there are important things to stay on top of.</p>
+
+          <p class="subsection-label">Early escrow</p>
+          <ul class="step-list">
+            <li>Escrow is opened and the buyer deposits their earnest money within 3 business days</li>
+            <li>Deliver all disclosures to the buyer promptly — TDS, SPQ, and any reports you have ordered</li>
+            <li>The buyer's agent will schedule inspections — provide reasonable access to the property</li>
+            <li>The lender orders an appraisal — an appraiser will visit the home to confirm its value</li>
+          </ul>
+
+          <p class="subsection-label">Negotiations and requests</p>
+          <ul class="step-list">
+            <li>After inspections, the buyer may submit a Request for Repair (RR) — you can agree to repairs, offer a credit, reduce the price, or decline</li>
+            <li>If the home appraises below the purchase price, expect a renegotiation — we will help you evaluate your options</li>
+            <li>If the buyer is not meeting deadlines, we can issue a Notice to Buyer to Perform (NBP) — giving them 2 days to take action before you have the right to cancel</li>
+            <li>Once the buyer is satisfied, they sign the Contingency Removal form — this is when your deal becomes much more secure</li>
+          </ul>
+
+          <p class="subsection-label">Seller responsibilities</p>
+          <ul class="step-list">
+            <li>Maintain the property in the same condition as when the offer was accepted — do not let it deteriorate</li>
+            <li>Complete any repairs you agreed to in writing — keep all receipts and documentation</li>
+            <li>Begin coordinating your move so you are ready to vacate by the close of escrow date</li>
+            <li>Keep utilities on through closing day</li>
+          </ul>
+
+          <div class="warn-box">
+            <strong>Contingency removal is a milestone, not the finish line</strong>
+            Once the buyer removes contingencies, they are fully committed — backing out without a valid reason means they risk losing their deposit. The deal is much more secure at this point, but it is not closed until the deed records. Stay focused through the finish.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase" onclick="toggle(this)">
+      <div class="phase-dot"><span>4</span></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-meta">
+            <span class="phase-eyebrow">Phase 4</span>
+            <span class="phase-name">Closing</span>
+            <span class="phase-timing">Final days and closing day</span>
+            <div class="phase-badges">
+              <span class="badge badge-sold">Home sold</span>
+            </div>
+          </div>
+          <span class="chevron">›</span>
+        </div>
+        <div class="phase-body">
+          <p>The finish line. The buyer's loan is approved, funds are on their way, and the deed is about to record. A few final steps and the sale is complete.</p>
+
+          <p class="subsection-label">Final days</p>
+          <ul class="step-list">
+            <li>Buyer completes their final walkthrough — typically 1 to 5 days before closing to confirm the property's condition and that agreed repairs are done</li>
+            <li>Buyer signs their loan documents with the notary</li>
+            <li>Buyer wires their down payment and closing costs to escrow</li>
+            <li>Escrow prepares the closing statement — review it carefully and confirm the numbers match your expectations</li>
+            <li>Leave the home clean, remove all personal property, and hand over all keys, garage remotes, and access codes</li>
+          </ul>
+
+          <p class="subsection-label">Closing day</p>
+          <ul class="step-list">
+            <li>Lender funds the buyer's loan</li>
+            <li>The deed is recorded with the county — ownership officially transfers to the buyer</li>
+            <li>Escrow releases your net proceeds, typically wired to your bank account the same day or the next business day</li>
+            <li>We coordinate key handoff with the buyer's agent</li>
+          </ul>
+
+          <div class="highlight-box">
+            <strong>After closing</strong>
+            Keep all of your closing documents — the settlement statement, deed, and any disclosures — in a safe place. You will need them for your taxes and to calculate your capital gains if applicable. We are always available after closing for referrals, questions, or help with your next move.
+          </div>
+
+          <div class="warn-box">
+            <strong>Cancel your homeowner's insurance after closing — not before</strong>
+            Do not cancel your homeowner's insurance policy until after the deed has officially recorded. Until title transfers, you are still financially responsible for the property. A fire, flood, or accident on closing morning could cost you dearly if you cancelled too early.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-name">Kevin Lo | Lo Realty Group</div>
+  <p><a href="https://www.lorealtygroup.com">lorealtygroup.com</a> &nbsp;·&nbsp; DRE #02008476 &nbsp;·&nbsp; 626.833.8932</p>
+  <p style="margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.25);">This guide is for informational purposes only and does not constitute legal or financial advice. Please consult a qualified professional with any questions specific to your transaction.</p>
+</footer>
+
+<script>
+  function toggle(el) {
+    const wasActive = el.classList.contains('active');
+    document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
+    if (!wasActive) el.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
