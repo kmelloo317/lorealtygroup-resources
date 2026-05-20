@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SFLS — Square Footage and Lot Size Advisory | Lo Realty Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --black: #9EA58A;
+  --white: #ffffff;
+  --cream: #f5f4f0;
+  --cream-dark: #eeecea;
+  --gold: #92836b;
+  --gold-light: #c9a96e;
+  --border: #e0ddd8;
+  --text-muted: #7a7570;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); background: var(--cream); color: var(--black); line-height: 1.6; }
+header { background: var(--black); color: var(--white); padding: 60px 24px 52px; text-align: center; }
+.eyebrow { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); margin-bottom: 18px; }
+header h1 { font-family: var(--font-serif); font-size: 44px; font-weight: 400; line-height: 1.15; color: var(--white); margin-bottom: 16px; letter-spacing: -0.01em; max-width: 640px; margin-left: auto; margin-right: auto; }
+header p { font-size: 15px; color: rgba(255,255,255,0.55); max-width: 480px; margin: 0 auto; line-height: 1.65; }
+.intro-band { background: var(--white); border-bottom: 1px solid var(--border); }
+.intro { max-width: 760px; margin: 0 auto; padding: 36px 24px; }
+.intro-inner { display: flex; gap: 18px; align-items: flex-start; }
+.intro-icon { font-size: 26px; flex-shrink: 0; margin-top: 3px; }
+.intro h2 { font-family: var(--font-serif); font-size: 22px; font-weight: 400; margin-bottom: 8px; color: var(--black); }
+.intro p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+.disclaimer { background: #fdf8f0; border-left: 3px solid var(--gold-light); padding: 14px 18px; margin: 24px 0 0; border-radius: 0 4px 4px 0; font-size: 13px; color: #7a6030; line-height: 1.6; }
+.toc-band { background: var(--cream); border-bottom: 1px solid var(--border); }
+.toc { max-width: 760px; margin: 0 auto; padding: 28px 24px; }
+.toc-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+.toc-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc-chip { background: var(--white); border: 1.5px solid var(--border); border-radius: 100px; padding: 7px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; transition: all 0.15s; cursor: pointer; }
+.toc-chip:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+main { max-width: 760px; margin: 0 auto; padding: 36px 24px 100px; }
+.toolbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+.expand-all-btn { background: var(--white); border: 1.5px solid var(--border); border-radius: 100px; padding: 8px 20px; font-size: 13px; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
+.expand-all-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+.section { background: var(--white); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 10px; overflow: hidden; transition: box-shadow 0.18s; }
+.section:hover, .section.open { box-shadow: 0 4px 18px rgba(0,0,0,0.07); }
+.section-btn { width: 100%; text-align: left; background: none; border: none; padding: 22px 24px; cursor: pointer; display: flex; align-items: center; gap: 16px; }
+.section-num { width: 36px; height: 36px; background: var(--cream); border: 1px solid var(--border); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 16px; font-weight: 600; color: var(--black); flex-shrink: 0; transition: all 0.15s; }
+.section.open .section-num { background: var(--black); color: var(--white); border-color: var(--black); }
+.section-title-wrap { flex: 1; }
+.section-title { font-family: var(--font-serif); font-size: 18px; font-weight: 600; color: var(--black); line-height: 1.25; letter-spacing: -0.01em; }
+.section-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+.section-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 7px; }
+.stag { font-size: 11px; letter-spacing: 0.04em; padding: 3px 10px; border-radius: 100px; font-weight: 500; }
+.stag-buyer { background: #e8f0fb; color: #2a5fa8; }
+.stag-seller { background: #fef3e2; color: #9a5f10; }
+.stag-both { background: #eaf5ea; color: #2a6e30; }
+.stag-important { background: #f8ece8; color: #8a2a1a; }
+.chevron { font-size: 20px; color: #ccc; transition: transform 0.2s, color 0.2s; flex-shrink: 0; }
+.section.open .chevron { transform: rotate(180deg); color: var(--black); }
+.section-body { display: none; border-top: 1px solid var(--cream-dark); padding: 28px 24px; }
+.section.open .section-body { display: block; }
+.section-body p { font-size: 14px; color: #4a4540; margin-bottom: 16px; line-height: 1.7; }
+.section-body p:last-child { margin-bottom: 0; }
+.highlight-box { background: #fdf8f0; border-left: 3px solid var(--gold-light); border-radius: 0 4px 4px 0; padding: 16px 18px; margin: 18px 0; font-size: 13.5px; color: #5a5040; line-height: 1.65; }
+.highlight-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: var(--black); display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+.warn-box { background: #fff8ee; border-left: 3px solid #d4901a; border-radius: 0 4px 4px 0; padding: 16px 18px; margin: 18px 0; font-size: 13.5px; color: #7a5510; line-height: 1.65; }
+.warn-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: #a06010; display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+.key-points { margin: 18px 0; list-style: none; }
+.key-points li { font-size: 14px; color: #4a4540; padding: 9px 0 9px 24px; border-bottom: 1px solid var(--cream-dark); position: relative; line-height: 1.6; }
+.key-points li:last-child { border-bottom: none; }
+.key-points li::before { content: "✓"; position: absolute; left: 0; color: var(--gold-light); font-weight: 700; }
+/* sources table */
+.sources-table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 13px; }
+.sources-table th { background: var(--cream); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); padding: 10px 12px; text-align: left; border-bottom: 2px solid var(--border); }
+.sources-table td { padding: 10px 12px; border-bottom: 1px solid var(--cream-dark); color: #4a4540; vertical-align: top; }
+.sources-table tr:last-child td { border-bottom: none; }
+footer { background: var(--black); color: rgba(255,255,255,0.4); text-align: center; padding: 40px 24px; font-size: 13px; line-height: 1.7; }
+footer .footer-name { font-family: var(--font-serif); font-size: 18px; font-weight: 400; color: var(--white); margin-bottom: 10px; }
+footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+@media (max-width: 600px) { header { padding: 44px 20px 36px; } header h1 { font-size: 32px; } .section-btn { padding: 18px; } .section-body { padding: 22px 18px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Lo Realty Group | Client Resource</div>
+  <h1>Understanding the Square Footage and Lot Size Advisory</h1>
+  <p>A simple guide to help you understand what you're signing and what it means for you.</p>
+</header>
+
+<div class="intro-band">
+  <div class="intro">
+    <div class="intro-inner">
+      <div class="intro-icon">📐</div>
+      <div>
+        <h2>What is the SFLS?</h2>
+        <p>The Square Footage and Lot Size Advisory and Disclosure (C.A.R. Form SFLS, Revised 12/24) is a one-page form that puts buyers and sellers on notice that square footage and lot size figures in real estate listings are not always accurate. There is no single official source and no standard method for measuring these numbers. The form discloses whatever figures are available and where they came from, and strongly advises buyers to verify independently rather than rely on the listing.</p>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <strong>Important:</strong> This guide is for informational purposes only and is not legal advice. The SFLS is part of your legally binding transaction documents. Always read the full document and consult a qualified attorney if you have questions before signing.
+    </div>
+  </div>
+</div>
+
+<div class="toc-band">
+  <div class="toc">
+    <div class="toc-label">Jump to a section</div>
+    <div class="toc-grid">
+      <a class="toc-chip" href="#" onclick="openSection('s1'); return false;">Square Footage Sources</a>
+      <a class="toc-chip" href="#" onclick="openSection('s2'); return false;">Lot Size and Boundaries</a>
+      <a class="toc-chip" href="#" onclick="openSection('s3'); return false;">What We Can and Can't Do</a>
+      <a class="toc-chip" href="#" onclick="openSection('s4'); return false;">The Measurements Disclosure Table</a>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="toolbar">
+    <button class="expand-all-btn" id="expandAllBtn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section" id="s1">
+    <button class="section-btn" onclick="toggle('s1')">
+      <div class="section-num">1</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Square Footage Sources</div>
+        <div class="section-subtitle">Paragraph 1 — Why advertised square footage figures vary and why you shouldn't rely on them alone</div>
+        <div class="section-tags">
+          <span class="stag stag-buyer">Buyer</span>
+          <span class="stag stag-important">Important</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>The SFLS opens with a straightforward statement: measurements of structures vary from source to source, data is often contradictory, and there is no one official size or standard method for calculating square footage. This isn't a problem unique to any one property. It's a structural issue across the industry.</p>
+      <div class="highlight-box">
+        <strong>Common Sources and Their Limitations</strong>
+        Public Record / County Assessor: May be based on older permit data or estimates that were never field-verified. Multiple Listing Service (MLS): Often copied from prior listings or county records without independent verification. Seller's Own Measurement: Based on whatever method the seller or their contractor used, which may not match appraisal standards. Appraisal: Typically the most reliable, as appraisers follow standard measurement guidelines and measure in person. Survey, Architectural Drawings, Condo Map: Highly accurate for what they measure, but may not reflect subsequent changes.
+      </div>
+      <p>The form is direct about what this means for buyers: do not rely on any advertised or disclosed square footage figure. If square footage matters to your decision or your price-per-square-foot calculations, retain your own expert, such as a licensed appraiser, to verify it during your investigation period.</p>
+      <div class="warn-box">
+        <strong>Price Per Square Foot</strong>
+        The form specifically calls out that price-per-square-foot calculations are broad estimates that can vary significantly by location, property type, and amenities. If you are using this figure to evaluate price, have the square footage independently verified first. An error of even 100 to 150 square feet can meaningfully change your analysis.
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section" id="s2">
+    <button class="section-btn" onclick="toggle('s2')">
+      <div class="section-num">2</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Lot Size, Dimensions, and Boundaries</div>
+        <div class="section-subtitle">Paragraph 2 — Why fences and markers may not reflect actual property lines</div>
+        <div class="section-tags">
+          <span class="stag stag-buyer">Buyer</span>
+          <span class="stag stag-important">Important</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>Lot size carries the same reliability problem as home square footage. Fences, hedges, walls, and retaining walls are visual markers, but they often don't align with legally defined property boundaries. Existing structures or amenities may also fall outside the actual property lines or violate local setback requirements without either party knowing.</p>
+      <div class="warn-box">
+        <strong>When Lot Size Really Matters</strong>
+        If the size or configuration of the lot is important to your decision, or if you're planning to build an ADU, add a pool, expand the structure, or use specific areas of the property, the form advises you to hire a licensed surveyor. A licensed surveyor is the only professional who can legally and accurately determine lot dimensions, boundary locations, and acreage. Do not rely on listing data or county records alone for any plan that depends on a specific lot dimension.
+      </div>
+      <ul class="key-points">
+        <li>Fences and walls may not follow legal property lines</li>
+        <li>Improvements like sheds, pools, or additions may not be within the actual property boundaries</li>
+        <li>Easements for utilities, drainage, or neighboring access can reduce your usable area without being visible on site</li>
+        <li>Only a licensed surveyor can provide a legally accurate determination of boundaries and acreage</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section" id="s3">
+    <button class="section-btn" onclick="toggle('s3')">
+      <div class="section-num">3</div>
+      <div class="section-title-wrap">
+        <div class="section-title">What We Can and Can't Do</div>
+        <div class="section-subtitle">Paragraph 3 — Our obligations as brokers regarding square footage and lot size</div>
+        <div class="section-tags">
+          <span class="stag stag-both">Buyer &amp; Seller</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>The SFLS is clear on this point: brokers and agents do not have expertise in determining exact square footage and lot size. We have not and will not verify the accuracy of any numerical statements regarding square footage, room dimensions, lot size, or the location of property boundaries.</p>
+      <p>This isn't a limitation we've chosen — it's a professional boundary that exists because the accurate determination of these figures requires specialized expertise (licensed appraisers for square footage, licensed surveyors for lot boundaries) that is outside the scope of real estate practice.</p>
+      <div class="highlight-box">
+        <strong>What We Will Do</strong>
+        We can help you understand what figures are available and where they come from. We can recommend qualified professionals to verify the numbers. We can also flag situations where a discrepancy between sources is significant enough that you should investigate before removing contingencies. What we cannot do is independently verify or guarantee any figure.
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section" id="s4">
+    <button class="section-btn" onclick="toggle('s4')">
+      <div class="section-num">4</div>
+      <div class="section-title-wrap">
+        <div class="section-title">The Measurements Disclosure Table</div>
+        <div class="section-subtitle">Paragraph 4 — How square footage and lot size figures are reported and what your signature confirms</div>
+        <div class="section-tags">
+          <span class="stag stag-both">Buyer &amp; Seller</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>Paragraph 4 is where the form discloses the actual numbers. Any square footage or lot size figures are entered alongside the source they came from. The form lists up to ten possible sources, and any figures are noted as approximations only. Other figures from other sources may also exist.</p>
+
+      <table class="sources-table">
+        <thead>
+          <tr>
+            <th>Source</th>
+            <th>What It Means</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Public Record</td><td>County assessor data, often the least current and may not reflect additions or remodels</td></tr>
+          <tr><td>Multiple Listing Service</td><td>What was published in the MLS, typically pulled from public record or a prior listing</td></tr>
+          <tr><td>Seller</td><td>The seller's own measurement or knowledge; source must be specified</td></tr>
+          <tr><td>Appraisal #1 / #2</td><td>From a formal appraisal report; typically the most reliable field measurement</td></tr>
+          <tr><td>Condominium Map/Plan</td><td>From recorded condo documents; accurate for the unit as originally built</td></tr>
+          <tr><td>Architectural Drawings</td><td>Design plans; may not reflect as-built conditions if changes were made during construction</td></tr>
+          <tr><td>Floor Plan/Drawings</td><td>Similar to architectural drawings; useful but not legally definitive</td></tr>
+          <tr><td>Survey</td><td>From a licensed land surveyor; most reliable for lot size and boundary determination</td></tr>
+        </tbody>
+      </table>
+
+      <div class="warn-box">
+        <strong>What Buyer's Signature Confirms</strong>
+        By signing, you acknowledge that you read and received the SFLS. The form includes a strong caution in capital letters: if any measurement is material to your decision and you do not independently verify it, you are acting against the advice of your brokers and agents. Do not sign and then assume the listed figures are accurate. Investigate during the contingency period, not after closing.
+      </div>
+      <p>The seller's signature confirms they are not aware of any other measurements of the property beyond what is disclosed in the table, and that they have read and received their copy of the form.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-name">Kevin Lo | Lo Realty Group</div>
+  <p><a href="https://www.lorealtygroup.com">lorealtygroup.com</a> &nbsp;·&nbsp; DRE #02008476 &nbsp;·&nbsp; 626.833.8932</p>
+  <p style="margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.25);">This guide is for informational purposes only and does not constitute legal advice. Always read the full contract and consult a qualified professional with questions.</p>
+</footer>
+
+<script>
+  function toggle(id) { document.getElementById(id).classList.toggle('open'); }
+  function openSection(id) {
+    const el = document.getElementById(id);
+    el.classList.add('open');
+    setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+  let allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    document.querySelectorAll('.section').forEach(s => allOpen ? s.classList.add('open') : s.classList.remove('open'));
+    document.getElementById('expandAllBtn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MCA — Market Conditions Advisory | Lo Realty Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --black: #9EA58A;
+  --white: #ffffff;
+  --cream: #f5f4f0;
+  --cream-dark: #eeecea;
+  --gold: #92836b;
+  --gold-light: #c9a96e;
+  --border: #e0ddd8;
+  --text-muted: #7a7570;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); background: var(--cream); color: var(--black); line-height: 1.6; }
+header { background: var(--black); color: var(--white); padding: 60px 24px 52px; text-align: center; }
+.eyebrow { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); margin-bottom: 18px; }
+header h1 { font-family: var(--font-serif); font-size: 44px; font-weight: 400; line-height: 1.15; color: var(--white); margin-bottom: 16px; letter-spacing: -0.01em; max-width: 640px; margin-left: auto; margin-right: auto; }
+header p { font-size: 15px; color: rgba(255,255,255,0.55); max-width: 480px; margin: 0 auto; line-height: 1.65; }
+.intro-band { background: var(--white); border-bottom: 1px solid var(--border); }
+.intro { max-width: 760px; margin: 0 auto; padding: 36px 24px; }
+.intro-inner { display: flex; gap: 18px; align-items: flex-start; }
+.intro-icon { font-size: 26px; flex-shrink: 0; margin-top: 3px; }
+.intro h2 { font-family: var(--font-serif); font-size: 22px; font-weight: 400; margin-bottom: 8px; color: var(--black); }
+.intro p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+.disclaimer { background: #fdf8f0; border-left: 3px solid var(--gold-light); padding: 14px 18px; margin: 24px 0 0; border-radius: 0 4px 4px 0; font-size: 13px; color: #7a6030; line-height: 1.6; }
+.toc-band { background: var(--cream); border-bottom: 1px solid var(--border); }
+.toc { max-width: 760px; margin: 0 auto; padding: 28px 24px; }
+.toc-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+.toc-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc-chip { background: var(--white); border: 1.5px solid var(--border); border-radius: 100px; padding: 7px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; transition: all 0.15s; cursor: pointer; }
+.toc-chip:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+main { max-width: 760px; margin: 0 auto; padding: 36px 24px 100px; }
+.toolbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+.expand-all-btn { background: var(--white); border: 1.5px solid var(--border); border-radius: 100px; padding: 8px 20px; font-size: 13px; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
+.expand-all-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+.section { background: var(--white); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 10px; overflow: hidden; transition: box-shadow 0.18s; }
+.section:hover, .section.open { box-shadow: 0 4px 18px rgba(0,0,0,0.07); }
+.section-btn { width: 100%; text-align: left; background: none; border: none; padding: 22px 24px; cursor: pointer; display: flex; align-items: center; gap: 16px; }
+.section-num { width: 36px; height: 36px; background: var(--cream); border: 1px solid var(--border); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 16px; font-weight: 600; color: var(--black); flex-shrink: 0; transition: all 0.15s; }
+.section.open .section-num { background: var(--black); color: var(--white); border-color: var(--black); }
+.section-title-wrap { flex: 1; }
+.section-title { font-family: var(--font-serif); font-size: 18px; font-weight: 600; color: var(--black); line-height: 1.25; letter-spacing: -0.01em; }
+.section-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+.section-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 7px; }
+.stag { font-size: 11px; letter-spacing: 0.04em; padding: 3px 10px; border-radius: 100px; font-weight: 500; }
+.stag-buyer { background: #e8f0fb; color: #2a5fa8; }
+.stag-seller { background: #fef3e2; color: #9a5f10; }
+.stag-both { background: #eaf5ea; color: #2a6e30; }
+.stag-important { background: #f8ece8; color: #8a2a1a; }
+.chevron { font-size: 20px; color: #ccc; transition: transform 0.2s, color 0.2s; flex-shrink: 0; }
+.section.open .chevron { transform: rotate(180deg); color: var(--black); }
+.section-body { display: none; border-top: 1px solid var(--cream-dark); padding: 28px 24px; }
+.section.open .section-body { display: block; }
+.section-body p { font-size: 14px; color: #4a4540; margin-bottom: 16px; line-height: 1.7; }
+.section-body p:last-child { margin-bottom: 0; }
+.highlight-box { background: #fdf8f0; border-left: 3px solid var(--gold-light); border-radius: 0 4px 4px 0; padding: 16px 18px; margin: 18px 0; font-size: 13.5px; color: #5a5040; line-height: 1.65; }
+.highlight-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: var(--black); display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+.warn-box { background: #fff8ee; border-left: 3px solid #d4901a; border-radius: 0 4px 4px 0; padding: 16px 18px; margin: 18px 0; font-size: 13.5px; color: #7a5510; line-height: 1.65; }
+.warn-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: #a06010; display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+.key-points { margin: 18px 0; list-style: none; }
+.key-points li { font-size: 14px; color: #4a4540; padding: 9px 0 9px 24px; border-bottom: 1px solid var(--cream-dark); position: relative; line-height: 1.6; }
+.key-points li:last-child { border-bottom: none; }
+.key-points li::before { content: "✓"; position: absolute; left: 0; color: var(--gold-light); font-weight: 700; }
+footer { background: var(--black); color: rgba(255,255,255,0.4); text-align: center; padding: 40px 24px; font-size: 13px; line-height: 1.7; }
+footer .footer-name { font-family: var(--font-serif); font-size: 18px; font-weight: 400; color: var(--white); margin-bottom: 10px; }
+footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+@media (max-width: 600px) { header { padding: 44px 20px 36px; } header h1 { font-size: 32px; } .section-btn { padding: 18px; } .section-body { padding: 22px 18px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Lo Realty Group | Client Resource</div>
+  <h1>Understanding the Market Conditions Advisory</h1>
+  <p>A simple guide to help you understand what you're signing and what it means for you.</p>
+</header>
+
+<div class="intro-band">
+  <div class="intro">
+    <div class="intro-inner">
+      <div class="intro-icon">📊</div>
+      <div>
+        <h2>What is the MCA?</h2>
+        <p>The Market Conditions Advisory (C.A.R. Form MCA, Revised 6/24) is a two-page disclosure that explains the risks of buying or selling real estate in a changing market. It covers how hot and cool markets work, the risks of waiving contingencies, and what it means to write offers on multiple properties. Both buyers and sellers sign it to confirm they received and understood this information before moving forward.</p>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <strong>Important:</strong> This guide is for informational purposes only and is not legal advice. The MCA is a legally binding acknowledgment. Always read the full document and consult a qualified attorney if you have questions before signing.
+    </div>
+  </div>
+</div>
+
+<div class="toc-band">
+  <div class="toc">
+    <div class="toc-label">Jump to a section</div>
+    <div class="toc-grid">
+      <a class="toc-chip" href="#" onclick="openSection('s1'); return false;">How Markets Work</a>
+      <a class="toc-chip" href="#" onclick="openSection('s2'); return false;">Your Offering Price</a>
+      <a class="toc-chip" href="#" onclick="openSection('s3'); return false;">Non-Contingent Offers</a>
+      <a class="toc-chip" href="#" onclick="openSection('s4'); return false;">Broker's Recommendation</a>
+      <a class="toc-chip" href="#" onclick="openSection('s5'); return false;">Writing Multiple Offers</a>
+      <a class="toc-chip" href="#" onclick="openSection('s6'); return false;">Seller Considerations</a>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="toolbar">
+    <button class="expand-all-btn" id="expandAllBtn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section" id="s1">
+    <button class="section-btn" onclick="toggle('s1')">
+      <div class="section-num">1</div>
+      <div class="section-title-wrap">
+        <div class="section-title">How Markets Work</div>
+        <div class="section-subtitle">Paragraph 1 — Why real estate markets shift and what that means for your transaction</div>
+        <div class="section-tags">
+          <span class="stag stag-both">Buyer &amp; Seller</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>The MCA opens by explaining something most people know instinctively but don't always factor into their decisions: real estate markets are cyclical. They go up, they go down, and nobody can predict with accuracy where they'll be in six months.</p>
+      <div class="highlight-box">
+        <strong>Hot Market vs. Cool Market</strong>
+        In a "hot" market there are more buyers than sellers. Competition drives prices up and buyers often offer over asking price or waive contingencies to win. In a "cool" market there are more sellers than buyers, prices can level off or drop, and buyers have more negotiating power.
+      </div>
+      <p>The form also notes that foreclosures and short sales (called "distressed" properties) are factored into how brokers and appraisers value other homes in the area. If distressed sales are happening nearby, they can push comparable values down even for non-distressed homes.</p>
+      <div class="warn-box">
+        <strong>Key Takeaway for Buyers</strong>
+        The value of the home you purchase may not increase over time and could actually decrease. This is especially relevant if you're buying at or above asking price in a competitive market. Only you can decide if the price is right for your situation.
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section" id="s2">
+    <button class="section-btn" onclick="toggle('s2')">
+      <div class="section-num">2</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Your Offering Price</div>
+        <div class="section-subtitle">Paragraph 2A — Why the price you offer is your decision, and what to think through before committing</div>
+        <div class="section-tags">
+          <span class="stag stag-buyer">Buyer</span>
+          <span class="stag stag-important">Important</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>The form is direct on this point: as a buyer, you are responsible for the price you choose to offer. We can pull comparable sales data from the MLS to help you understand the market, but that data is often delayed. Prices can change faster than reported sales reflect, so comps from even a few weeks ago may not tell the full story.</p>
+      <ul class="key-points">
+        <li>If your offer is accepted, the property's value may not increase and could decrease</li>
+        <li>If your offer is accepted, you might later feel you paid too much (buyer's remorse)</li>
+        <li>If your offer is rejected, there's no guarantee you'll find a similar property at the same price</li>
+        <li>If your offer is rejected, you may look back and question whether the amount was right for you</li>
+      </ul>
+      <p>Only you can decide whether your offer makes sense given the property, the market, and your personal circumstances. Our job is to give you the best information available so you can make that call with confidence.</p>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section" id="s3">
+    <button class="section-btn" onclick="toggle('s3')">
+      <div class="section-num">3</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Non-Contingent Offers</div>
+        <div class="section-subtitle">Paragraph 2B — What you give up when you waive contingencies, and the risks that come with it</div>
+        <div class="section-tags">
+          <span class="stag stag-buyer">Buyer</span>
+          <span class="stag stag-important">Important</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>Most purchase agreements include contingencies that give you a window to cancel the transaction without penalty if specific conditions aren't met. In competitive markets, buyers sometimes waive these protections to make their offer more appealing. Sellers may even require it. The MCA spells out exactly what you're giving up if you go that route.</p>
+      <div class="highlight-box">
+        <strong>The Four Main Contingencies</strong>
+        Loan Contingency: Protects you if you can't secure financing. Appraisal Contingency: Protects you if the home appraises below the purchase price. Investigation Contingency: Protects you if you're dissatisfied with the property's condition after inspections. Insurance Contingency: Protects you if you can't obtain homeowners insurance at an acceptable cost.
+      </div>
+      <div class="warn-box">
+        <strong>If You Remove a Contingency and Then Can't Perform</strong>
+        You may be in default under the contract. That means you could be required to pay damages to the seller or forfeit your deposit entirely. Removing contingencies carries real financial risk. The MCA states clearly that writing a non-contingent offer is acting against our advice as your broker.
+      </div>
+      <p>One important note on the investigation contingency: even if you waive it, the seller may still be legally required to disclose material facts about the property. In some cases, California law gives you an independent right to cancel for a limited time after receiving those disclosures, even without a contingency in place.</p>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section" id="s4">
+    <button class="section-btn" onclick="toggle('s4')">
+      <div class="section-num">4</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Broker's Recommendation</div>
+        <div class="section-subtitle">Paragraph 2C — What we recommend if you're considering writing a non-contingent offer</div>
+        <div class="section-tags">
+          <span class="stag stag-buyer">Buyer</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>We recommend against writing a non-contingent offer, even if you plan to pay all cash. If you decide to proceed with one anyway, the MCA outlines three things we strongly encourage you to do first:</p>
+      <ul class="key-points">
+        <li>Review all available seller reports, disclosures, and documents before submitting the offer</li>
+        <li>Have a qualified professional inspect the property, even if it's being sold "as-is"</li>
+        <li>Carefully assess your financial position and risk with your attorney, accountant, or financial advisor</li>
+      </ul>
+      <div class="highlight-box">
+        <strong>The Bottom Line</strong>
+        The decision to write a non-contingent offer is yours alone. We can advise you, walk you through the risks, and help you prepare, but only you can decide how much risk you're willing to accept. We are not able to make that decision for you.
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section" id="s5">
+    <button class="section-btn" onclick="toggle('s5')">
+      <div class="section-num">5</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Writing Multiple Offers</div>
+        <div class="section-subtitle">Paragraph 2D — The legal and ethical risks of making offers on more than one property at the same time</div>
+        <div class="section-tags">
+          <span class="stag stag-buyer">Buyer</span>
+          <span class="stag stag-important">Important</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>In competitive markets or during short sale situations, some buyers submit offers on multiple properties even though they intend to buy only one. The MCA addresses this directly because it carries real legal risk that many buyers aren't aware of.</p>
+      <p>While making offers on multiple properties isn't illegal, you can find yourself legally bound to more than one seller if more than one accepts your offer. If you then cancel without using a valid contingency, a seller may claim you fraudulently induced them into the contract, even if you still have standard contingencies remaining.</p>
+      <div class="warn-box">
+        <strong>The Risk of Not Disclosing</strong>
+        If you are writing offers on multiple properties and have not disclosed this to each seller, and you later cancel without a contingency that specifically covers this situation, you could be exposed to a breach of contract claim. This applies even when you have other standard contingencies still in place. Talk to us before submitting multiple offers so we can help you navigate this properly.
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="section" id="s6">
+    <button class="section-btn" onclick="toggle('s6')">
+      <div class="section-num">6</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Seller Considerations</div>
+        <div class="section-subtitle">Paragraph 3 — What sellers need to know about pricing and market responsibility</div>
+        <div class="section-tags">
+          <span class="stag stag-seller">Seller</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>The MCA's final section addresses sellers directly. As a seller, you are responsible for setting your asking price. We can provide comparable sales data from the MLS, but just as with buyers, that data is often delayed. Prices can move faster than reported sales reflect, in either direction.</p>
+      <p>There is no guarantee that your asking price, or the price you ultimately agree to accept, is the highest price the market would have paid for your property. Pricing is a decision only you can make, informed by the data and advice we provide but not determined by us.</p>
+      <div class="highlight-box">
+        <strong>What Your Signature Means</strong>
+        By signing the MCA, both buyers and sellers confirm they have read, understood, and received a copy of this advisory. You are not agreeing to any particular price or outcome. You are acknowledging that we reviewed these market realities with you before your transaction moved forward.
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-name">Kevin Lo | Lo Realty Group</div>
+  <p><a href="https://www.lorealtygroup.com">lorealtygroup.com</a> &nbsp;·&nbsp; DRE #02008476 &nbsp;·&nbsp; 626.833.8932</p>
+  <p style="margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.25);">This guide is for informational purposes only and does not constitute legal advice. Always read the full contract and consult a qualified professional with questions.</p>
+</footer>
+
+<script>
+  function toggle(id) { document.getElementById(id).classList.toggle('open'); }
+  function openSection(id) {
+    const el = document.getElementById(id);
+    el.classList.add('open');
+    setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+  let allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    document.querySelectorAll('.section').forEach(s => allOpen ? s.classList.add('open') : s.classList.remove('open'));
+    document.getElementById('expandAllBtn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+</body>
+</html>

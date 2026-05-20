@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FHDS — Fire Hardening and Defensible Space Guide | Lo Realty Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --black: #9EA58A;
+  --white: #ffffff;
+  --cream: #f5f4f0;
+  --cream-dark: #eeecea;
+  --gold: #92836b;
+  --gold-light: #c9a96e;
+  --border: #e0ddd8;
+  --text-muted: #7a7570;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); background: var(--cream); color: var(--black); line-height: 1.6; }
+header { background: var(--black); color: var(--white); padding: 60px 24px 52px; text-align: center; }
+.eyebrow { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); margin-bottom: 18px; }
+header h1 { font-family: var(--font-serif); font-size: 44px; font-weight: 400; line-height: 1.15; color: var(--white); margin-bottom: 16px; letter-spacing: -0.01em; max-width: 640px; margin-left: auto; margin-right: auto; }
+header p { font-size: 15px; color: rgba(255,255,255,0.55); max-width: 480px; margin: 0 auto; line-height: 1.65; }
+.intro-band { background: var(--white); border-bottom: 1px solid var(--border); }
+.intro { max-width: 760px; margin: 0 auto; padding: 36px 24px; }
+.intro-inner { display: flex; gap: 18px; align-items: flex-start; }
+.intro-icon { font-size: 26px; flex-shrink: 0; margin-top: 3px; }
+.intro h2 { font-family: var(--font-serif); font-size: 22px; font-weight: 400; margin-bottom: 8px; color: var(--black); }
+.intro p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+.disclaimer { background: #fdf8f0; border-left: 3px solid var(--gold-light); padding: 14px 18px; margin: 24px 0 0; border-radius: 0 4px 4px 0; font-size: 13px; color: #7a6030; line-height: 1.6; }
+.toc-band { background: var(--cream); border-bottom: 1px solid var(--border); }
+.toc { max-width: 760px; margin: 0 auto; padding: 28px 24px; }
+.toc-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+.toc-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc-chip { background: var(--white); border: 1.5px solid var(--border); border-radius: 100px; padding: 7px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; transition: all 0.15s; cursor: pointer; }
+.toc-chip:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+main { max-width: 760px; margin: 0 auto; padding: 36px 24px 100px; }
+.toolbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+.expand-all-btn { background: var(--white); border: 1.5px solid var(--border); border-radius: 100px; padding: 8px 20px; font-size: 13px; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
+.expand-all-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+.section { background: var(--white); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 10px; overflow: hidden; transition: box-shadow 0.18s; }
+.section:hover, .section.open { box-shadow: 0 4px 18px rgba(0,0,0,0.07); }
+.section-btn { width: 100%; text-align: left; background: none; border: none; padding: 22px 24px; cursor: pointer; display: flex; align-items: center; gap: 16px; }
+.section-num { width: 36px; height: 36px; background: var(--cream); border: 1px solid var(--border); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 16px; font-weight: 600; color: var(--black); flex-shrink: 0; transition: all 0.15s; }
+.section.open .section-num { background: var(--black); color: var(--white); border-color: var(--black); }
+.section-title-wrap { flex: 1; }
+.section-title { font-family: var(--font-serif); font-size: 18px; font-weight: 600; color: var(--black); line-height: 1.25; letter-spacing: -0.01em; }
+.section-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+.section-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 7px; }
+.stag { font-size: 11px; letter-spacing: 0.04em; padding: 3px 10px; border-radius: 100px; font-weight: 500; }
+.stag-buyer { background: #e8f0fb; color: #2a5fa8; }
+.stag-seller { background: #fef3e2; color: #9a5f10; }
+.stag-both { background: #eaf5ea; color: #2a6e30; }
+.stag-important { background: #f8ece8; color: #8a2a1a; }
+.chevron { font-size: 20px; color: #ccc; transition: transform 0.2s, color 0.2s; flex-shrink: 0; }
+.section.open .chevron { transform: rotate(180deg); color: var(--black); }
+.section-body { display: none; border-top: 1px solid var(--cream-dark); padding: 28px 24px; }
+.section.open .section-body { display: block; }
+.section-body p { font-size: 14px; color: #4a4540; margin-bottom: 16px; line-height: 1.7; }
+.section-body p:last-child { margin-bottom: 0; }
+.highlight-box { background: #fdf8f0; border-left: 3px solid var(--gold-light); border-radius: 0 4px 4px 0; padding: 16px 18px; margin: 18px 0; font-size: 13.5px; color: #5a5040; line-height: 1.65; }
+.highlight-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: var(--black); display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+.warn-box { background: #fff8ee; border-left: 3px solid #d4901a; border-radius: 0 4px 4px 0; padding: 16px 18px; margin: 18px 0; font-size: 13.5px; color: #7a5510; line-height: 1.65; }
+.warn-box strong { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: #a06010; display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+.key-points { margin: 18px 0; list-style: none; }
+.key-points li { font-size: 14px; color: #4a4540; padding: 9px 0 9px 24px; border-bottom: 1px solid var(--cream-dark); position: relative; line-height: 1.6; }
+.key-points li:last-child { border-bottom: none; }
+.key-points li::before { content: "✓"; position: absolute; left: 0; color: var(--gold-light); font-weight: 700; }
+footer { background: var(--black); color: rgba(255,255,255,0.4); text-align: center; padding: 40px 24px; font-size: 13px; line-height: 1.7; }
+footer .footer-name { font-family: var(--font-serif); font-size: 18px; font-weight: 400; color: var(--white); margin-bottom: 10px; }
+footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+@media (max-width: 600px) { header { padding: 44px 20px 36px; } header h1 { font-size: 32px; } .section-btn { padding: 18px; } .section-body { padding: 22px 18px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Lo Realty Group | Client Resource</div>
+  <h1>Understanding the Fire Hardening and Defensible Space Disclosure</h1>
+  <p>A simple guide to help you understand what you're signing and what it means for you.</p>
+</header>
+
+<div class="intro-band">
+  <div class="intro">
+    <div class="intro-inner">
+      <div class="intro-icon">🔥</div>
+      <div>
+        <h2>What is the FHDS?</h2>
+        <p>The Fire Hardening and Defensible Space Disclosure and Addendum (C.A.R. Form FHDS, Revised 6/25) is a two-part form used in California real estate transactions involving properties in fire hazard zones. Part one covers fire hardening, meaning the physical features of the home that make it more or less resistant to wildfire. Part two covers defensible space, meaning the cleared area around the home required by state and local law. The form discloses what the seller knows, and confirms what the buyer and seller have each agreed to handle after closing.</p>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <strong>Important:</strong> This guide is for informational purposes only and is not legal advice. The FHDS is a legally binding disclosure and addendum. Always read the full document and consult a qualified attorney if you have questions before signing.
+    </div>
+  </div>
+</div>
+
+<div class="toc-band">
+  <div class="toc">
+    <div class="toc-label">Jump to a section</div>
+    <div class="toc-grid">
+      <a class="toc-chip" href="#" onclick="openSection('s1'); return false;">Does This Form Apply?</a>
+      <a class="toc-chip" href="#" onclick="openSection('s2'); return false;">The Statutory Fire Warning</a>
+      <a class="toc-chip" href="#" onclick="openSection('s3'); return false;">Fire Hardening Vulnerabilities</a>
+      <a class="toc-chip" href="#" onclick="openSection('s4'); return false;">Low-Cost Retrofits</a>
+      <a class="toc-chip" href="#" onclick="openSection('s5'); return false;">Defensible Space Compliance</a>
+      <a class="toc-chip" href="#" onclick="openSection('s6'); return false;">Who Is Responsible for Compliance?</a>
+      <a class="toc-chip" href="#" onclick="openSection('s7'); return false;">Final Inspection Report</a>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="toolbar">
+    <button class="expand-all-btn" id="expandAllBtn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section" id="s1">
+    <button class="section-btn" onclick="toggle('s1')">
+      <div class="section-num">1</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Does This Form Apply to Your Property?</div>
+        <div class="section-subtitle">Paragraph 1A and 1B — The four conditions that trigger this disclosure</div>
+        <div class="section-tags">
+          <span class="stag stag-seller">Seller</span>
+          <span class="stag stag-important">Important</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>Not every property requires the full FHDS. The form has two parts, each with its own set of trigger conditions. If a property doesn't meet those conditions, that section of the form doesn't need to be filled out.</p>
+      <div class="highlight-box">
+        <strong>Fire Hardening Disclosure (Paragraph 2) Applies When All 4 Are True</strong>
+        (1) The property has one to four units. (2) The seller is required to complete a Transfer Disclosure Statement (TDS). (3) The property is in a high or very high fire hazard severity zone. (4) The improvements were built before January 1, 2010. If any one of these four conditions is NOT met, the seller does not have to answer the vulnerability and retrofit questions in paragraphs 2B and 2C.
+      </div>
+      <div class="highlight-box">
+        <strong>Defensible Space Disclosure (Paragraph 3) Applies When All 3 Are True</strong>
+        (1) The property has one to four units. (2) The seller is required to complete a Transfer Disclosure Statement (TDS). (3) The property is in a high or very high fire hazard severity zone. If any one of these three conditions is NOT met, paragraph 3 does not need to be completed.
+      </div>
+      <p>You can check whether a property is in a high or very high fire hazard severity zone using CAL FIRE's online viewer at <strong>fire.ca.gov/dspace</strong>. Natural Hazard Disclosure reports also typically include this information.</p>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section" id="s2">
+    <button class="section-btn" onclick="toggle('s2')">
+      <div class="section-num">2</div>
+      <div class="section-title-wrap">
+        <div class="section-title">The Statutory Fire Warning</div>
+        <div class="section-subtitle">Paragraph 2A — The state-mandated notice about older homes in fire hazard zones</div>
+        <div class="section-tags">
+          <span class="stag stag-buyer">Buyer</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>For homes built before January 1, 2010 that sit in a high or very high fire hazard severity zone, California law requires sellers to include a specific statutory notice. It reads:</p>
+      <div class="highlight-box">
+        <strong>Required State Notice (Paragraph 2A)</strong>
+        "This home is located in a high or very high fire hazard severity zone and this home was built before the implementation of the Wildfire Urban Interface building codes which help to fire harden a home. To better protect your home from wildfire, you might need to consider improvements. Information on fire hardening, including current building standards and information on minimum annual vegetation management standards to protect homes from wildfires, can be obtained on the internet website http://www.readyforwildfire.org."
+      </div>
+      <p>This notice exists because California's Wildfire Urban Interface (WUI) building codes, which require fire-resistant construction materials and designs, only became law after 2010. Older homes simply weren't built to those standards and may have features that make them more vulnerable to catching fire from embers or direct flame contact.</p>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section" id="s3">
+    <button class="section-btn" onclick="toggle('s3')">
+      <div class="section-num">3</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Fire Hardening Vulnerabilities</div>
+        <div class="section-subtitle">Paragraph 2B — Six specific features the seller must disclose awareness of</div>
+        <div class="section-tags">
+          <span class="stag stag-seller">Seller</span>
+          <span class="stag stag-buyer">Buyer</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>If the fire hardening disclosure applies (see Section 1), the seller must answer yes or no to whether they are aware of each of the following six vulnerabilities. Sellers are not required to explain their answers, but may do so voluntarily.</p>
+      <ul class="key-points">
+        <li>Eave, soffit, and roof vents with openings larger than 1/8 inch, or that are not flame and ember resistant</li>
+        <li>Roof coverings made of untreated wood shingles or shakes</li>
+        <li>Combustible landscaping or materials within five feet of the home or under an attached deck</li>
+        <li>Single-pane or non-tempered glass windows</li>
+        <li>Loose or missing bird stopping or roof flashing</li>
+        <li>Rain gutters without metal or noncombustible gutter covers</li>
+      </ul>
+      <div class="warn-box">
+        <strong>For Buyers</strong>
+        A "yes" answer to any of these items doesn't necessarily mean the home is disqualified, but it does tell you where the vulnerabilities are. Use this information to guide your inspection and to have a conversation about whether the seller will address any items before closing.
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section" id="s4">
+    <button class="section-btn" onclick="toggle('s4')">
+      <div class="section-num">4</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Low-Cost Retrofits</div>
+        <div class="section-subtitle">Paragraph 2C — Twelve improvements developed by CAL FIRE that the seller discloses having completed</div>
+        <div class="section-tags">
+          <span class="stag stag-seller">Seller</span>
+          <span class="stag stag-buyer">Buyer</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>This section lists twelve specific improvements developed by CAL FIRE and the California Governor's Office of Emergency Services that are known to reduce a home's wildfire risk. The seller discloses which, if any, they have completed during their ownership. If something was only partially done, or if they're unsure, the seller is instructed to check "No" and provide clarification.</p>
+      <ul class="key-points">
+        <li>Roof replaced with a Class A fire-rated material</li>
+        <li>Gaps between roof covering and sheathing blocked with noncombustible materials (bird stops)</li>
+        <li>Noncombustible gutter covers installed to prevent debris accumulation</li>
+        <li>Chimney and stovepipe outlets covered with a corrosion-resistant metal mesh spark arrestor (3/8 to 1/2 inch openings)</li>
+        <li>Ember and flame-resistant vents installed</li>
+        <li>Gaps greater than 1/8 inch around exposed rafters and blocking caulked to prevent ember intrusion</li>
+        <li>Exterior siding inspected for dry rot and gaps; boards replaced and gaps caulked</li>
+        <li>Weather-stripping installed on garage doors to gaps greater than 1/8 inch (must meet UL Standard 10C)</li>
+        <li>Windows replaced with multi-paned windows that include at least one tempered glass pane</li>
+        <li>Siding or deck replaced with noncombustible, ignition-resistant, or OSFM WUI-compliant products</li>
+        <li>Operable skylight openings covered with noncombustible metal mesh screen (openings no larger than 1/8 inch)</li>
+        <li>Minimum 6-inch metal flashing installed vertically at deck-to-wall intersections to protect combustible siding</li>
+      </ul>
+      <div class="highlight-box">
+        <strong>Where to Learn More</strong>
+        CAL FIRE's full list of low-cost retrofits with detailed instructions is available at readyforwildfire.org. This is a useful resource whether you are a seller preparing to disclose, or a buyer evaluating what improvements the home may still need.
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section" id="s5">
+    <button class="section-btn" onclick="toggle('s5')">
+      <div class="section-num">5</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Defensible Space Compliance</div>
+        <div class="section-subtitle">Paragraph 3A and 3B — Whether a local ordinance applies and what the seller currently knows about compliance</div>
+        <div class="section-tags">
+          <span class="stag stag-seller">Seller</span>
+          <span class="stag stag-important">Important</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>If the defensible space requirements apply (see Section 1), the seller must first disclose whether the property is subject to a local vegetation management ordinance in addition to state law. Then the seller must represent one of three things about the property's current compliance status.</p>
+      <div class="highlight-box">
+        <strong>Paragraph 3B — Seller's Three Options</strong>
+        (1) Seller is unaware of whether the property is in compliance and does not have a report from an Authorized Defensible Space Inspector. (2) Property IS in compliance with state or local defensible space law. If only state law applies, compliance must have been obtained within the last 6 months. Documentation must be delivered to the buyer within 3 days. (3) Property is NOT in compliance. If the seller has or agrees to obtain an inspector's report, it must be delivered to the buyer within 3 days.
+      </div>
+      <div class="warn-box">
+        <strong>For Buyers</strong>
+        If the seller checks option (1), that means they simply don't know whether the property is compliant. This is common, but it means the cost and effort of getting into compliance may fall on you after closing. Ask us to help you understand what that could involve before you remove contingencies.
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="section" id="s6">
+    <button class="section-btn" onclick="toggle('s6')">
+      <div class="section-num">6</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Who Is Responsible for Defensible Space Compliance?</div>
+        <div class="section-subtitle">Paragraph 3C — Six options that determine whether the buyer or seller handles compliance</div>
+        <div class="section-tags">
+          <span class="stag stag-both">Buyer &amp; Seller</span>
+          <span class="stag stag-important">Important</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>This is the addendum portion of the FHDS. Paragraph 3C is where the buyer and seller actually agree in writing on who is responsible for obtaining documentation of compliance with defensible space requirements. One of six options is checked, and both parties sign to confirm their agreement.</p>
+      <div class="highlight-box">
+        <strong>The Six Options (Paragraph 3C)</strong>
+        (1) Buyer responsibility, no local ordinance: Buyer obtains state compliance documentation within one year of closing. (2) Buyer responsibility, local ordinance requires compliance on sale: Buyer complies after closing. (3) Buyer responsibility, local ordinance does NOT require compliance on sale: Buyer obtains state compliance within one year, or complies with local requirement after closing. (4) Seller responsibility, local ordinance requires compliance on sale: Seller obtains documentation before the buyer's final walkthrough. (5) Seller responsibility, state or local compliance already complete: Seller delivers documentation to buyer. (6) Seller responsibility, seller agrees to obtain state compliance: Seller delivers documentation before the buyer's final walkthrough.
+      </div>
+      <div class="warn-box">
+        <strong>Watch Out</strong>
+        The requirement to provide compliance documentation only applies if there is an Authorized Defensible Space Inspector in the area. If no such inspector exists in your jurisdiction, the documentation requirement may not apply. We can help you determine what applies to your specific property.
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 7 -->
+  <div class="section" id="s7">
+    <button class="section-btn" onclick="toggle('s7')">
+      <div class="section-num">7</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Final Inspection Report</div>
+        <div class="section-subtitle">Paragraph 4 — Applies only to newly constructed or fire-damaged homes rebuilt with a permit</div>
+        <div class="section-tags">
+          <span class="stag stag-seller">Seller</span>
+        </div>
+      </div>
+      <span class="chevron">›</span>
+    </button>
+    <div class="section-body">
+      <p>Paragraph 4 only applies to a specific and narrow group of properties: homes that were newly constructed, or were rebuilt after fire damage under a permit, and where the seller obtained a final inspection report addressing compliance with fire hardening recommended building standards under Government Code Section 51182.</p>
+      <p>If this applies, the seller either attaches the report or discloses where the buyer can obtain a copy. For most resale transactions involving older homes, this paragraph will not be relevant.</p>
+      <div class="highlight-box">
+        <strong>What Your Signatures Confirm</strong>
+        The seller confirms that all answers are based on their awareness at the time of signing and that the retrofit answers are accurate. The buyer confirms they received and read the form, and both parties agree to the applicable terms in paragraph 3C.
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-name">Kevin Lo | Lo Realty Group</div>
+  <p><a href="https://www.lorealtygroup.com">lorealtygroup.com</a> &nbsp;·&nbsp; DRE #02008476 &nbsp;·&nbsp; 626.833.8932</p>
+  <p style="margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.25);">This guide is for informational purposes only and does not constitute legal advice. Always read the full contract and consult a qualified professional with questions.</p>
+</footer>
+
+<script>
+  function toggle(id) { document.getElementById(id).classList.toggle('open'); }
+  function openSection(id) {
+    const el = document.getElementById(id);
+    el.classList.add('open');
+    setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+  let allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    document.querySelectorAll('.section').forEach(s => allOpen ? s.classList.add('open') : s.classList.remove('open'));
+    document.getElementById('expandAllBtn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+</body>
+</html>

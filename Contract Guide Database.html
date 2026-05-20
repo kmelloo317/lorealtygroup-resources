@@ -361,7 +361,7 @@
   </div>
 </div>
 
-<div class="count-bar" id="countBar">Showing all 41 forms</div>
+<div class="count-bar" id="countBar">Showing all 43 forms</div>
 
 <main id="main">
 
@@ -449,7 +449,7 @@
   <div class="category-block" data-category="Disclosures">
     <div class="category-header">
       <h2>Disclosures</h2>
-      <span class="cat-count">9 forms</span>
+      <span class="cat-count">11 forms</span>
     </div>
     <div class="forms-grid">
 
@@ -568,6 +568,36 @@
           <span class="tag tag-both">Buyer &amp; Seller</span>
         </div>
         <div class="form-updated">Updated Dec 2022</div>
+      </div>
+
+      <div class="form-card has-guide" data-tags="both" data-name="Fire Hardening and Defensible Space Disclosure and Addendum" data-desc="Required for properties in high or very high fire hazard severity zones. Seller discloses known fire vulnerabilities, completed retrofits, and defensible space compliance status.">
+        <div class="form-top">
+          <span class="form-abbr">FHDS</span>
+          <span class="form-name">Fire Hardening and Defensible Space Disclosure and Addendum</span>
+        </div>
+        <div class="form-desc">Required for properties in high or very high fire hazard severity zones. Seller discloses known fire vulnerabilities, completed retrofits, and defensible space compliance status.</div>
+        <div class="form-meta">
+          <span class="tag tag-both">Buyer &amp; Seller</span>
+        </div>
+        <div class="form-footer">
+          <span class="form-updated">Updated Jun 2025</span>
+          <a class="guide-link" href="https://resources.lorealtygroup.com/FHDS — Fire Hardening and Defensible Space Guide.html" target="_blank">View Guide <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="form-card has-guide" data-tags="both" data-name="Square Footage and Lot Size Advisory and Disclosure" data-desc="Advises buyers that square footage and lot size figures from listings may not be accurate. Discloses available measurements by source and strongly recommends independent verification.">
+        <div class="form-top">
+          <span class="form-abbr">SFLS</span>
+          <span class="form-name">Square Footage and Lot Size Advisory and Disclosure</span>
+        </div>
+        <div class="form-desc">Advises buyers that square footage and lot size figures from listings may not be accurate. Discloses available measurements by source and strongly recommends independent verification.</div>
+        <div class="form-meta">
+          <span class="tag tag-both">Buyer &amp; Seller</span>
+        </div>
+        <div class="form-footer">
+          <span class="form-updated">Updated Dec 2024</span>
+          <a class="guide-link" href="https://resources.lorealtygroup.com/SFLS — Square Footage and Lot Size Advisory Guide.html" target="_blank">View Guide <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
       </div>
 
     </div>
@@ -805,7 +835,7 @@
         <div class="form-updated">Updated Jun 2024</div>
       </div>
 
-      <div class="form-card" data-tags="advisory" data-name="Market Conditions Advisory" data-desc="Informs clients about current real estate market conditions and the risks of relying on market data alone when making buying or selling decisions.">
+      <div class="form-card has-guide" data-tags="advisory" data-name="Market Conditions Advisory" data-desc="Informs clients about current real estate market conditions and the risks of relying on market data alone when making buying or selling decisions.">
         <div class="form-top">
           <span class="form-abbr">MCA</span>
           <span class="form-name">Market Conditions Advisory</span>
@@ -815,7 +845,10 @@
           <span class="tag tag-advisory">Advisory</span>
           <span class="tag tag-both">Buyer &amp; Seller</span>
         </div>
-        <div class="form-updated">Updated Jun 2024</div>
+        <div class="form-footer">
+          <span class="form-updated">Updated Jun 2024</span>
+          <a class="guide-link" href="https://resources.lorealtygroup.com/MCA — Market Conditions Advisory Guide.html" target="_blank">View Guide <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
       </div>
 
       <div class="form-card" data-tags="advisory" data-name="Fair Housing and Discrimination Advisory" data-desc="Advises clients and agents of rights and obligations under California and federal fair housing laws, including protected classes and prohibited conduct.">
@@ -1039,9 +1072,9 @@
       if (catCount) catCount.textContent = visibleCards.length + ' form' + (visibleCards.length !== 1 ? 's' : '');
     });
 
-    countBar.textContent = visible === 41
-      ? 'Showing all 41 forms'
-      : `Showing ${visible} of 41 forms`;
+    countBar.textContent = visible === 43
+      ? 'Showing all 43 forms'
+      : `Showing ${visible} of 43 forms`;
     emptyState.classList.toggle('hidden', visible > 0);
     main.classList.toggle('hidden', visible === 0);
   }
